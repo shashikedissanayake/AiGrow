@@ -58,7 +58,7 @@ namespace AiGrow.Data
             para[4] = new MySqlParameter("@Address", user.address);
             para[5] = new MySqlParameter("@Email", user.email);
             para[6] = new MySqlParameter("@Telephone", user.telephone);
-            para[7] = new MySqlParameter("@Mobile", user.telephone);
+            para[7] = new MySqlParameter("@Mobile", user.mobile);
             para[8] = new MySqlParameter("@Country", user.country);
             para[9] = new MySqlParameter("@OrganizationName", user.organization_name);
             para[11] = new MySqlParameter("@Role", user.role_id);
@@ -68,7 +68,7 @@ namespace AiGrow.Data
             para[15] = new MySqlParameter("@picURL", user.profile_picture_url);
             para[16] = new MySqlParameter("@unique_id", user.user_unique_id);
 
-            var lastInsert = MySQLHelper.ExecuteScalar(DBConnection.connectionString, System.Data.CommandType.Text, "INSERT INTO 'user' (id_user, user_unique_id, title, gender, first_name, last_name, address, email, telephone, mobile, username, password, salt, country, organization_name, role_id, deleted, created_date, last_modified, profile_picture_url) VALUES (NULL, @unique_id, @Title, @Gender, @FirstName, @LastName, @Address, @Email, @Telephone, @Mobile, @Username, @Password, @Salt, @Country, @OrganizationName, @Role, NOW(), 0, @picURL); SELECT LAST_INSERT_ID();", para);
+            var lastInsert = MySQLHelper.ExecuteScalar(DBConnection.connectionString, System.Data.CommandType.Text, "INSERT INTO `user` (id_user, user_unique_id, title, gender, first_name, last_name, address, email, telephone, mobile, username, password, salt, country, organization_name, role_id, deleted, created_date, last_modified, profile_picture_url) VALUES (NULL, @unique_id, @Title, @Gender, @FirstName, @LastName, @Address, @Email, @Telephone, @Mobile, @Username, @Password, @Salt, @Country, @OrganizationName, @Role, 0, NOW(), NOW(), @picURL); SELECT LAST_INSERT_ID();", para);
 
             return System.Convert.ToInt32(lastInsert);
         }
