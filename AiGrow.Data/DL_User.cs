@@ -22,8 +22,16 @@ namespace AiGrow.Data
         {
             var para = new MySqlParameter[1];
             para[0] = new MySqlParameter("@userName", user.username);
-            return MySQLHelper.ExecuteDataTable(DBConnection.connectionString, CommandType.Text, "SELECT id_user, email, telephone, mobile, username, role_id, deleted FROM `user`, role WHERE (username = @userName) AND deleted = 0 AND role.id_role = `user`.role_id ORDER BY id_user ASC", para);
+            return MySQLHelper.ExecuteDataTable(DBConnection.connectionString, CommandType.Text, "SELECT id_user, email, telephone, mobile, username, role_id, role_name, deleted FROM `user`, role WHERE (username = @userName) AND deleted = 0 AND role.id_role = `user`.role_id ORDER BY id_user ASC", para);
 
+        }
+
+        public DataTable select(string userName)
+        {
+            var para = new MySqlParameter[1];
+            para[0] = new MySqlParameter("@userName", userName);
+
+            return MySQLHelper.ExecuteDataTable(DBConnection.connectionString, CommandType.Text, "SELECT * FROM `user` WHERE `username` = @userName", para);
         }
         public int validateToken(string loginToken)
         {
@@ -78,12 +86,12 @@ namespace AiGrow.Data
 
             return MySQLHelper.ExecuteDataTable(DBConnection.connectionString, System.Data.CommandType.Text, "SELECT * FROM `role` WHERE `role_name`= @userType", para);
         }
-        public string getUserIDByReference(string username)
+        public string getUserIDByReference(string uniqueID)
         {
             var para = new MySqlParameter[1];
-            para[0] = new MySqlParameter("@username", username);
+            para[0] = new MySqlParameter("@unique_id", uniqueID);
 
-            return MySQLHelper.ExecuteDataTable(DBConnection.connectionString, System.Data.CommandType.Text, "SELECT id_user FROM `user` WHERE username = @username", para).Rows[0]["id_user"].ToString();
+            return MySQLHelper.ExecuteDataTable(DBConnection.connectionString, System.Data.CommandType.Text, "SELECT id_user FROM `user` WHERE user_unique_id = @unique_id", para).Rows[0]["id_user"].ToString();
         }
         public DataTable selectCustomer(AiGrow.Model.ML_User user, string token)
         {
@@ -95,7 +103,7 @@ namespace AiGrow.Data
         }
         public int update(AiGrow.Model.ML_User user)
         {
-            var para = new MySqlParameter[15];
+            var para = new MySqlParameter[14];
 
             para[1] = new MySqlParameter("@title", user.title);
             para[2] = new MySqlParameter("@gender", user.gender);
@@ -112,7 +120,7 @@ namespace AiGrow.Data
             para[14] = new MySqlParameter("@mobile", user.mobile);
             para[0] = new MySqlParameter("@picURL", user.profile_picture_url);
 
-            return MySQLHelper.ExecuteNonQuery(DBConnection.connectionString, CommandType.Text, "UPDATE `user` SET title = COALESCE(@title, title), gender = COALESCE(@gender, gender) ,first_name = COALESCE(@firstName, first_name) ,last_name = COALESCE(@lastName, last_name), address = COALESCE(@address, address) ,email = COALESCE(@email, email) ,telephone = COALESCE(@telephone, telephone) ,mobile = COALESCE(@mobile, mobile) ,password = COALESCE(@password, password) ,salt = COALESCE(@salt, salt) ,country = COALESCE(@country, country) ,organization_name = COALESCE(@organizationName, organization_name) ,last_modified = NOW(), profile_picture_url = COALESCE(@picURL, profile_picture_url) WHERE id_user = @userID", para);
+            return MySQLHelper.ExecuteNonQuery(DBConnection.connectionString, CommandType.Text, "UPDATE `user` SET title = @title, gender = @gender ,first_name = @firstName ,last_name = @lastName, address = @address ,email = @email ,telephone = @telephone ,mobile = @mobile ,password = COALESCE(@password, password) ,salt = COALESCE(@salt, salt) ,country = @country ,organization_name = @organizationName ,last_modified = NOW(), profile_picture_url = @picURL WHERE id_user = @userID", para);
         }
         public string getUserIDByUserName(string userName)
         {
@@ -142,13 +150,6 @@ namespace AiGrow.Data
             para[0] = new MySqlParameter("@userID", user.id_user);
 
             return MySQLHelper.ExecuteDataTable(DBConnection.connectionString, CommandType.Text, "SELECT id_user, first_name, last_name, address, email, telephone, mobile, username, role_idrole, deleted, created_date, last_modified_date, profile_pic_url, organization_name, organization_address, country, title, gender, activation_pin FROM `user` WHERE id_user = @userID AND deleted=0;", para);
-        }
-        public DataTable select(string userName)
-        {
-            var para = new MySqlParameter[1];
-            para[0] = new MySqlParameter("@userName", userName);
-
-            return MySQLHelper.ExecuteDataTable(DBConnection.connectionString, CommandType.Text, "SELECT * FROM `user` WHERE `username` = @userName", para);
         }
     }
 }

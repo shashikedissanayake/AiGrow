@@ -36,9 +36,9 @@ namespace AiGrow.Business
         {
             return new DL_User().getRoleID(userType);
         }
-        public string getUserIDByReference(string username)
+        public string getUserIDByReference(string uniqueID)
         {
-            return new AiGrow.Data.DL_User().getUserIDByReference(username);
+            return new AiGrow.Data.DL_User().getUserIDByReference(uniqueID);
         }
         public System.Data.DataTable selectCustomer(AiGrow.Model.ML_User user, string token)
         {
@@ -64,6 +64,7 @@ namespace AiGrow.Business
         {
             return new AiGrow.Data.DL_User().selectByUserID(user);
         }
+
         public System.Data.DataTable select(string userName)
         {
             return new AiGrow.Data.DL_User().select(userName);
