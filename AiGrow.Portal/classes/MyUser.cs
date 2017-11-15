@@ -376,7 +376,7 @@ namespace AiGrow
             String userID = null;
             try
             {
-                string sqlQuery = string.Format("SELECT `iduser` FROM `user` WHERE `username`='{0}'", username);
+                string sqlQuery = string.Format("SELECT `id_user` FROM `user` WHERE `username`='{0}'", username);
 
                 DBConnection myConnectionObject = new DBConnection();
                 MySqlConnection connection = myConnectionObject.getConnection(DBConnection.connectionString);
@@ -386,7 +386,7 @@ namespace AiGrow
 
                 while (myReader.Read())
                 {
-                    userID = myReader["iduser"].ToString();
+                    userID = myReader["id_user"].ToString();
                 }
 
                 myConnectionObject.closeConnection(ref connection);

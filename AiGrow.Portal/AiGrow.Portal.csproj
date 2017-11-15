@@ -219,6 +219,7 @@
     <Content Include="docs\MySqlParameterCollection.xml" />
     <Content Include="docs\MySqlTransaction.xml" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="ForgotPassword.aspx" />
     <Content Include="img\Aigrow_Logo.png" />
     <Content Include="img\background.jpg" />
     <Content Include="img\logo.png" />
@@ -231,6 +232,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Account\Web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="ResetPassword.aspx" />
     <Content Include="Scripts\alertify.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -401,6 +403,7 @@
     <Compile Include="classes\DBConnection.cs" />
     <Compile Include="classes\identityServer\JSONReturn.cs" />
     <Compile Include="classes\identityServer\LoginResponse.cs" />
+    <Compile Include="classes\Mailer.cs" />
     <Compile Include="classes\Messages.cs" />
     <Compile Include="classes\MyUser.cs" />
     <Compile Include="classes\server\BaseResponse.cs" />
@@ -428,6 +431,13 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ForgotPassword.aspx.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ForgotPassword.aspx.designer.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -440,6 +450,13 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResetPassword.aspx.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResetPassword.aspx.designer.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="signUp.aspx.cs">
       <DependentUpon>signUp.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
