@@ -86,5 +86,61 @@ namespace AiGrow.DeviceServer
             response.message = UniversalProperties.locationDeletedSuccessfully;
             HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(response));
         }
+
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void UpdateLocation( string uniqueId, string longitude, string latitude, string address, string locationName, string token)
+        {
+            BaseResponse returnObj = new BaseResponse();
+
+            try
+            {
+                if (new BL_User().validateToken(token.Trim()) == 1)
+                {
+
+                    #region Database Insertion
+
+                    int updateLocation = new AiGrow.Business.BL_Location().update(new ML_Location()
+                    {
+                        longitude = longitude.IsEmpty() ? null : longitude,
+                        latitude = latitude.IsEmpty() ? null : latitude,
+                        location_address = address.IsEmpty() ? null : address,
+                        location_name = locationName.IsEmpty() ? null : locationName,
+                        location_unique_id = uniqueId.IsEmpty() ? null : uniqueId
+
+                    });
+
+                    if (updateLocation != -1)
+                    {
+                        returnObj.success = true;
+                        returnObj.message = UniversalProperties.locationUpdatedSuccesfully;
+                    }
+                    else
+                    {
+                        returnObj.success = false;
+                        returnObj.errorMessage = UniversalProperties.locationUpdateFailed;
+                        returnObj.errorCode = UniversalProperties.EC_LocationUpdateFailed;
+                    }
+                    #endregion
+                }
+                else
+                {
+                    returnObj.success = false;
+                    returnObj.errorMessage = UniversalProperties.invalidRequest;
+                    returnObj.errorCode = UniversalProperties.EC_InvalidRequest;
+                }
+                HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(returnObj));
+                return;
+            }
+            catch (System.Exception ex)
+            {
+                returnObj.success = false;
+                returnObj.errorMessage = UniversalProperties.unknownError;
+                returnObj.errorCode = UniversalProperties.EC_UnhandledError;
+                HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(returnObj));
+                return;
+            }
+        }
     }
 }

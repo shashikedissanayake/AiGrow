@@ -28,5 +28,17 @@ namespace AiGrow.Data
             para[0] = new MySqlParameter("@unique_id", location.location_unique_id);
             return MySQLHelper.ExecuteNonQuery(DBConnection.connectionString, CommandType.Text, "DELETE FROM location WHERE location_unique_id = @unique_id", para) != -1;
         }
+
+        public int update(Model.ML_Location location)
+        {
+            var para = new MySqlParameter[5];
+            para[0] = new MySqlParameter("@location", location.location_name);
+            para[1] = new MySqlParameter("@longitude", location.longitude);
+            para[2] = new MySqlParameter("@location_address", location.location_address);
+            para[3] = new MySqlParameter("@latitude", location.latitude);
+            para[4] = new MySqlParameter("@unique_id", location.location_unique_id);
+
+            return MySQLHelper.ExecuteNonQuery(DBConnection.connectionString, CommandType.Text, "UPDATE `location` SET location_name =  COALESCE(@location, location_name), location_address = COALESCE(@location_address, location_address), longitude = COALESCE(@longitude, longitude), latitude = COALESCE(@latitude, latitude), location_unique_id = COALESCE(@unique_id, location_unique_id)  where location_unique_id = @unique_id", para);
+        }
     }
 }

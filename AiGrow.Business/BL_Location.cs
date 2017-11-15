@@ -13,5 +13,9 @@ namespace AiGrow.Business
         {
             return new DL_Location().delete(loaction);
         }
+        public int update(AiGrow.Model.ML_Location location)
+        {
+            return new AiGrow.Data.DL_Location().update(location);
+        }
     }
 }

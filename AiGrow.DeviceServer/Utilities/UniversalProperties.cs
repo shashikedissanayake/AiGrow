@@ -35,6 +35,8 @@ namespace AiGrow.DeviceServer
         public static string userExists = "Username is already in the system. Please enter a different username.";
         public static string noSuchUserFound = "The specified username is not available in the system. Please re-check!";
         public static string userAddedSuccesfully = "The user was added successfully.";
+        public static string locationUpdateFailed = "Error in updating location";
+        public static string locationUpdatedSuccesfully = "The location was updated successfully";
         public static string ratingUpdated = "Rating updated successfully.";
         public static string favouriteUpdated = "User favourite value updated successfully.";
         public static string error = "ERROR";
@@ -52,10 +54,10 @@ namespace AiGrow.DeviceServer
         public static string credentials = "CREDENTIALS";
 
         //User Constants
-        public const String CHG_ADMIN = "CHG_ADMIN";
-        public const String CHG_NETWORK = "CHG_NETWORK";
-        public const String CHG_OWNER = "CHG_OWNER";
-        public const String CHG_CUSTOMER = "CHG_CUSTOMER";
+        public const String AIGROW_ADMIN = "AIGROW_ADMIN";
+        public const String AIGROW_NETWORK = "AIGROW_NETWORK";
+        public const String AIGROW_OWNER = "AIGROW_OWNER";
+        public const String AIGROW_CUSTOMER = "AIGROW_CUSTOMER";
         public const String ACTIVE_USER = "ACTIVE_USER";
         public const String INACTIVE_USER = "INACTIVE_USER";
         public const String ONLINE = "ONLINE";
@@ -171,6 +173,7 @@ namespace AiGrow.DeviceServer
         public const int EC_NoSuchUserFoundOrPinIsIncorrect = 20;
         public const int EC_InvalidPromotionID = 21;
         public const int EC_OperationSpecificError = 22;
+        public const int EC_LocationUpdateFailed = 23;
 
         #endregion
 

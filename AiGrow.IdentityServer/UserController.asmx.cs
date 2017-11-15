@@ -290,12 +290,12 @@ namespace AiGrow.IdentityServer
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public void GetUserID(string uniqueID)
+        public void GetUserID(string username)
         {
             BaseResponse returnObj = new BaseResponse();
             try
             {
-                string userID = new BL_User().getUserIDByReference(uniqueID);
+                string userID = new BL_User().getUserIDByReference(username);
                 returnObj.success = true;
                 returnObj.message = userID;
                 HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(returnObj));
@@ -313,7 +313,7 @@ namespace AiGrow.IdentityServer
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public void AddUserJSON(string userName, string unique_id, string password, string token, string gender, string title, string mobile, string email, string organizationAddress, string organizationName, string telephone, string lastName, string firstName, string country, string address, string profilePicURL, string role)
+        public void AddUserJSON(string userName, string password, string token, string gender, string title, string mobile, string email, string organizationName, string telephone, string lastName, string firstName, string country, string address, string profilePicURL, string role)
         {
             BaseResponse returnObj = new BaseResponse();
             try
@@ -431,7 +431,6 @@ namespace AiGrow.IdentityServer
                     int insertCustomer = new AiGrow.Business.BL_User().insert(new ML_User()
                     {
                         username = userName,
-                        user_unique_id = unique_id,
                         address = address,
                         country = country,
                         email = email,
@@ -439,7 +438,7 @@ namespace AiGrow.IdentityServer
                         gender = gender,
                         last_name = lastName,
                         mobile = mobile,
-                        organization_name = organizationAddress,
+                        organization_name = organizationName,
                         password = password,
                         role_id = new AiGrow.Business.BL_User().getRoleID(role).Rows[0][0].ToString().ToInt(),
                         salt = userSalt,
@@ -482,26 +481,26 @@ namespace AiGrow.IdentityServer
         }
 
 
-        [WebMethod]
-        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public void UpdateUserImageJSON(string userName, string image, string token)
-        {
-            UserResponse returnObj = new UserResponse();
+        //[WebMethod]
+        //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        //public void UpdateUserImageJSON(string userName, string image, string token)
+        //{
+        //    UserResponse returnObj = new UserResponse();
 
-            if (new BL_User().validateToken(token) == 1)
-            {
-                Image img = ApplicationUtilities.Base64ToImage(image);
+        //    if (new BL_User().validateToken(token) == 1)
+        //    {
+        //        Image img = ApplicationUtilities.Base64ToImage(image);
 
-            }
-            else
-            {
-                returnObj.success = false;
-                returnObj.errorMessage = UniversalProperties.invalidRequest;
-                returnObj.errorCode = UniversalProperties.EC_InvalidRequest;
-            }
-            HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(returnObj));
-            return;
-        }
+        //    }
+        //    else
+        //    {
+        //        returnObj.success = false;
+        //        returnObj.errorMessage = UniversalProperties.invalidRequest;
+        //        returnObj.errorCode = UniversalProperties.EC_InvalidRequest;
+        //    }
+        //    HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(returnObj));
+        //    return;
+        //}
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
@@ -527,10 +526,9 @@ namespace AiGrow.IdentityServer
                     returnObj.telephone = customer.Rows[0]["telephone"].ToString();
                     returnObj.mobile = customer.Rows[0]["mobile"].ToString();
                     returnObj.organization_name = customer.Rows[0]["organization_name"].ToString();
-                    returnObj.organization_address = customer.Rows[0]["organization_address"].ToString();
                     returnObj.country = customer.Rows[0]["country"].ToString();
                     returnObj.username = customer.Rows[0]["username"].ToString();
-                    returnObj.profile_pic_url = customer.Rows[0]["profile_pic_url"].ToString();
+                    returnObj.profile_pic_url = customer.Rows[0]["profile_picture_url"].ToString();
                 }
                 else
                 {
@@ -551,7 +549,7 @@ namespace AiGrow.IdentityServer
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public void UpdateCustomerJSON(string userID, string unique_id, string password, string token, string gender, string title, string mobile, string email, string organizationAddress, string organizationName, string telephone, string lastName, string firstName, string country, string address, string picURL, string rfid = null)
+        public void UpdateCustomerJSON(string userID, string password, string token, string gender, string title, string mobile, string email, string organizationName, string telephone, string lastName, string firstName, string country, string address, string picURL)
         {
             BaseResponse returnObj = new BaseResponse();
 
@@ -645,21 +643,20 @@ namespace AiGrow.IdentityServer
                     int updateCustomer = new AiGrow.Business.BL_User().update(new ML_User()
                     {
                         id_user = userID.ToInt(),
-                        user_unique_id = unique_id,
-                        address = address,
-                        country = country,
-                        email = email,
-                        first_name = firstName,
-                        gender = gender,
-                        last_name = lastName,
-                        mobile = mobile,
-                        organization_name = organizationAddress,
+                        address = address.IsEmpty() ? null : address,
+                        country = country.IsEmpty() ? null : country,
+                        email = email.IsEmpty() ? null : email,
+                        first_name = firstName.IsEmpty() ? null : firstName,
+                        gender = gender.IsEmpty() ? null : gender,
+                        last_name = lastName.IsEmpty() ? null : lastName,
+                        mobile = mobile.IsEmpty() ? null : mobile,
+                        organization_name = organizationName.IsEmpty() ? null : organizationName,
                         password = password.IsEmpty() ? null : password,
                         role_id = new AiGrow.Business.BL_User().getRoleID(UniversalProperties.AIGROW_CUSTOMER).Rows[0][0].ToString().ToInt(),
                         salt = password.IsEmpty() ? null : userSalt,
-                        telephone = telephone,
-                        title = title,
-                        profile_picture_url = picURL,
+                        telephone = telephone.IsEmpty() ? null : telephone,
+                        title = title.IsEmpty() ? null : title,
+                        profile_picture_url = picURL.IsEmpty() ? null : picURL,
                     });
 
                     if (updateCustomer != -1)
@@ -694,150 +691,149 @@ namespace AiGrow.IdentityServer
             }
         }
 
-        [WebMethod]
-        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public void UpdateCustomerAllFieldsJSON(string userID, string unique_id, string password, string token, string gender, string title, string mobile, string email, string organizationAddress, string organizationName, string telephone, string lastName, string firstName, string country, string address, string picURL, string status, string rfid)
-        {
-            BaseResponse returnObj = new BaseResponse();
+        //[WebMethod]
+        //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        //public void UpdateCustomerAllFieldsJSON(string userID, string password, string token, string gender, string title, string mobile, string email, string organizationAddress, string organizationName, string telephone, string lastName, string firstName, string country, string address, string picURL, string status, string rfid)
+        //{
+        //    BaseResponse returnObj = new BaseResponse();
 
-            try
-            {
-                if (new BL_User().validateToken(token.Trim()) == 1)
-                {
-                    #region Required Field Validations
+        //    try
+        //    {
+        //        if (new BL_User().validateToken(token.Trim()) == 1)
+        //        {
+        //            #region Required Field Validations
 
-                    List<string> required = new List<string>(new AiGrow.Business.BL_Configurations().getConfigValue(UniversalProperties.required).Rows[0][0].ToString().Split(new char[] { ';' }));
-
-
-                    if (required.Contains(UniversalProperties.Mobile) && mobile.IsEmpty())
-                    {
-                        returnObj.success = false;
-                        returnObj.errorMessage = UniversalProperties.requiredFieldsMissing;
-                        returnObj.errorCode = UniversalProperties.EC_RequiredFieldsMissing;
-                        HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(returnObj));
-                        return;
-                    }
-
-                    if (required.Contains(UniversalProperties.Email) && email.IsEmpty())
-                    {
-                        returnObj.success = false;
-                        returnObj.errorMessage = UniversalProperties.requiredFieldsMissing;
-                        returnObj.errorCode = UniversalProperties.EC_RequiredFieldsMissing;
-                        HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(returnObj));
-                        return;
-                    }
-                    #endregion
-
-                    #region Data Validations
-                    //Do validations
-
-                    List<string> toBeValidated = new List<string>(new AiGrow.Business.BL_Configurations().getConfigValue(UniversalProperties.validationNeeded).Rows[0][0].ToString().Split(new char[] { ';' }));
-
-                    if (toBeValidated.Contains(UniversalProperties.Password))
-                    {
-                        int passwordLength = new AiGrow.Business.BL_Configurations().getConfigValue(UniversalProperties.minimumPasswordLength).Rows[0][0].ToString().ToInt();
-                        if (password.Length < passwordLength)
-                        {
-                            returnObj.success = false;
-                            returnObj.errorMessage = string.Format("{0} Please enter a password of at least {1} characters long.", UniversalProperties.passwordLengthInvalid, passwordLength);
-                            returnObj.errorCode = UniversalProperties.EC_PasswordLengthInvalid;
-                            HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(returnObj));
-                            return;
-                        }
-                    }
-
-                    if (toBeValidated.Contains(UniversalProperties.Email))
-                    {
-                        Match m = Regex.Match(email, @"^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$", RegexOptions.IgnoreCase);
-                        if (!m.Success)
-                        {
-                            returnObj.success = false;
-                            returnObj.errorMessage = UniversalProperties.invalidEmail;
-                            returnObj.errorCode = UniversalProperties.EC_InvalidEmail;
-                            HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(returnObj));
-                            return;
-                        }
-                    }
-
-                    if (toBeValidated.Contains(UniversalProperties.Mobile))
-                    {
-                        Match m = Regex.Match(mobile, "^[0-9|+]{10,12}$", RegexOptions.IgnoreCase);
-
-                        if (!m.Success)
-                        {
-                            returnObj.success = false;
-                            returnObj.errorMessage = UniversalProperties.invalidMobile;
-                            returnObj.errorCode = UniversalProperties.EC_InvalidMobile;
-                            HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(returnObj));
-                            return;
-                        }
-                    }
-
-                    #endregion
-
-                    #region Database Insertion
-
-                    string userSalt = null;
-
-                    if (password.IsNotEmpty())
-                    {
-                        string[] userCredentials = new CustomCryptography().encryptPassword(password);
-                        password = userCredentials[0];
-                        userSalt = userCredentials[1];
-                    }
+        //            List<string> required = new List<string>(new AiGrow.Business.BL_Configurations().getConfigValue(UniversalProperties.required).Rows[0][0].ToString().Split(new char[] { ';' }));
 
 
-                    int updateCustomer = new AiGrow.Business.BL_User().update(new ML_User()
-                    {
-                        id_user = userID.ToInt(),
-                        user_unique_id = unique_id,
-                        address = address,
-                        country = country,
-                        email = email,
-                        first_name = firstName,
-                        gender = gender,
-                        last_name = lastName,
-                        mobile = mobile,
-                        organization_name = organizationName,
-                        password = password.IsEmpty() ? null : password,
-                        role_id = new AiGrow.Business.BL_User().getRoleID(UniversalProperties.AIGROW_CUSTOMER).Rows[0][0].ToString().ToInt(),
-                        salt = password.IsEmpty() ? null : userSalt,
-                        telephone = telephone,
-                        title = title,
-                        profile_picture_url = picURL,
-                    });
+        //            if (required.Contains(UniversalProperties.Mobile) && mobile.IsEmpty())
+        //            {
+        //                returnObj.success = false;
+        //                returnObj.errorMessage = UniversalProperties.requiredFieldsMissing;
+        //                returnObj.errorCode = UniversalProperties.EC_RequiredFieldsMissing;
+        //                HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(returnObj));
+        //                return;
+        //            }
 
-                    if (updateCustomer != -1)
-                    {
-                        returnObj.success = true;
-                        returnObj.message = UniversalProperties.userUpdatedSuccesfully;
-                    }
-                    else
-                    {
-                        returnObj.success = false;
-                        returnObj.errorMessage = UniversalProperties.userUpdateFailed;
-                        returnObj.errorCode = UniversalProperties.EC_UserUpdateFailed;
-                    }
-                    #endregion
-                }
-                else
-                {
-                    returnObj.success = false;
-                    returnObj.errorMessage = UniversalProperties.invalidRequest;
-                    returnObj.errorCode = UniversalProperties.EC_InvalidRequest;
-                }
-                HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(returnObj));
-                return;
-            }
-            catch (System.Exception ex)
-            {
-                returnObj.success = false;
-                returnObj.errorMessage = UniversalProperties.unhandledError;
-                returnObj.errorCode = UniversalProperties.EC_UnhandledError;
-                HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(returnObj));
-                return;
-            }
-        }
+        //            if (required.Contains(UniversalProperties.Email) && email.IsEmpty())
+        //            {
+        //                returnObj.success = false;
+        //                returnObj.errorMessage = UniversalProperties.requiredFieldsMissing;
+        //                returnObj.errorCode = UniversalProperties.EC_RequiredFieldsMissing;
+        //                HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(returnObj));
+        //                return;
+        //            }
+        //            #endregion
+
+        //            #region Data Validations
+        //            //Do validations
+
+        //            List<string> toBeValidated = new List<string>(new AiGrow.Business.BL_Configurations().getConfigValue(UniversalProperties.validationNeeded).Rows[0][0].ToString().Split(new char[] { ';' }));
+
+        //            if (toBeValidated.Contains(UniversalProperties.Password))
+        //            {
+        //                int passwordLength = new AiGrow.Business.BL_Configurations().getConfigValue(UniversalProperties.minimumPasswordLength).Rows[0][0].ToString().ToInt();
+        //                if (password.Length < passwordLength)
+        //                {
+        //                    returnObj.success = false;
+        //                    returnObj.errorMessage = string.Format("{0} Please enter a password of at least {1} characters long.", UniversalProperties.passwordLengthInvalid, passwordLength);
+        //                    returnObj.errorCode = UniversalProperties.EC_PasswordLengthInvalid;
+        //                    HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(returnObj));
+        //                    return;
+        //                }
+        //            }
+
+        //            if (toBeValidated.Contains(UniversalProperties.Email))
+        //            {
+        //                Match m = Regex.Match(email, @"^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$", RegexOptions.IgnoreCase);
+        //                if (!m.Success)
+        //                {
+        //                    returnObj.success = false;
+        //                    returnObj.errorMessage = UniversalProperties.invalidEmail;
+        //                    returnObj.errorCode = UniversalProperties.EC_InvalidEmail;
+        //                    HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(returnObj));
+        //                    return;
+        //                }
+        //            }
+
+        //            if (toBeValidated.Contains(UniversalProperties.Mobile))
+        //            {
+        //                Match m = Regex.Match(mobile, "^[0-9|+]{10,12}$", RegexOptions.IgnoreCase);
+
+        //                if (!m.Success)
+        //                {
+        //                    returnObj.success = false;
+        //                    returnObj.errorMessage = UniversalProperties.invalidMobile;
+        //                    returnObj.errorCode = UniversalProperties.EC_InvalidMobile;
+        //                    HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(returnObj));
+        //                    return;
+        //                }
+        //            }
+
+        //            #endregion
+
+        //            #region Database Insertion
+
+        //            string userSalt = null;
+
+        //            if (password.IsNotEmpty())
+        //            {
+        //                string[] userCredentials = new CustomCryptography().encryptPassword(password);
+        //                password = userCredentials[0];
+        //                userSalt = userCredentials[1];
+        //            }
+
+
+        //            int updateCustomer = new AiGrow.Business.BL_User().update(new ML_User()
+        //            {
+        //                id_user = userID.ToInt(),
+        //                address = address,
+        //                country = country,
+        //                email = email,
+        //                first_name = firstName,
+        //                gender = gender,
+        //                last_name = lastName,
+        //                mobile = mobile,
+        //                organization_name = organizationName,
+        //                password = password.IsEmpty() ? null : password,
+        //                role_id = new AiGrow.Business.BL_User().getRoleID(UniversalProperties.AIGROW_CUSTOMER).Rows[0][0].ToString().ToInt(),
+        //                salt = password.IsEmpty() ? null : userSalt,
+        //                telephone = telephone,
+        //                title = title,
+        //                profile_picture_url = picURL,
+        //            });
+
+        //            if (updateCustomer != -1)
+        //            {
+        //                returnObj.success = true;
+        //                returnObj.message = UniversalProperties.userUpdatedSuccesfully;
+        //            }
+        //            else
+        //            {
+        //                returnObj.success = false;
+        //                returnObj.errorMessage = UniversalProperties.userUpdateFailed;
+        //                returnObj.errorCode = UniversalProperties.EC_UserUpdateFailed;
+        //            }
+        //            #endregion
+        //        }
+        //        else
+        //        {
+        //            returnObj.success = false;
+        //            returnObj.errorMessage = UniversalProperties.invalidRequest;
+        //            returnObj.errorCode = UniversalProperties.EC_InvalidRequest;
+        //        }
+        //        HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(returnObj));
+        //        return;
+        //    }
+        //    catch (System.Exception ex)
+        //    {
+        //        returnObj.success = false;
+        //        returnObj.errorMessage = UniversalProperties.unhandledError;
+        //        returnObj.errorCode = UniversalProperties.EC_UnhandledError;
+        //        HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(returnObj));
+        //        return;
+        //    }
+        //}
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public void CheckUserNameJSON(string userName)
