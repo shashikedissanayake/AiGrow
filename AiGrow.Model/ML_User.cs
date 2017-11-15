@@ -8,7 +8,6 @@ namespace AiGrow.Model
 {
     public class ML_User
     {
-        public string user_unique_id { get; set; }
         public string title { get; set; }
         public string gender { get; set; }
         public string telephone { get; set; }

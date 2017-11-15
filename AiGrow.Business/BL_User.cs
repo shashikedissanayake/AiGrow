@@ -64,5 +64,10 @@ namespace AiGrow.Business
         {
             return new AiGrow.Data.DL_User().selectByUserID(user);
         }
+
+        public System.Data.DataTable select(string userName)
+        {
+            return new AiGrow.Data.DL_User().select(userName);
+        }
     }
 }

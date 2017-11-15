@@ -313,7 +313,7 @@ namespace AiGrow.IdentityServer
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public void AddUserJSON(string userName, string unique_id, string password, string token, string gender, string title, string mobile, string email, string organizationAddress, string organizationName, string telephone, string lastName, string firstName, string country, string address, string profilePicURL, string role)
+        public void AddUserJSON(string userName, string password, string token, string gender, string title, string mobile, string email, string organizationName, string telephone, string lastName, string firstName, string country, string address, string profilePicURL, string role)
         {
             BaseResponse returnObj = new BaseResponse();
             try
@@ -431,7 +431,6 @@ namespace AiGrow.IdentityServer
                     int insertCustomer = new AiGrow.Business.BL_User().insert(new ML_User()
                     {
                         username = userName,
-                        user_unique_id = unique_id,
                         address = address,
                         country = country,
                         email = email,
@@ -439,7 +438,7 @@ namespace AiGrow.IdentityServer
                         gender = gender,
                         last_name = lastName,
                         mobile = mobile,
-                        organization_name = organizationAddress,
+                        organization_name = organizationName,
                         password = password,
                         role_id = new AiGrow.Business.BL_User().getRoleID(role).Rows[0][0].ToString().ToInt(),
                         salt = userSalt,
@@ -482,26 +481,26 @@ namespace AiGrow.IdentityServer
         }
 
 
-        [WebMethod]
-        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public void UpdateUserImageJSON(string userName, string image, string token)
-        {
-            UserResponse returnObj = new UserResponse();
+        //[WebMethod]
+        //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        //public void UpdateUserImageJSON(string userName, string image, string token)
+        //{
+        //    UserResponse returnObj = new UserResponse();
 
-            if (new BL_User().validateToken(token) == 1)
-            {
-                Image img = ApplicationUtilities.Base64ToImage(image);
+        //    if (new BL_User().validateToken(token) == 1)
+        //    {
+        //        Image img = ApplicationUtilities.Base64ToImage(image);
 
-            }
-            else
-            {
-                returnObj.success = false;
-                returnObj.errorMessage = UniversalProperties.invalidRequest;
-                returnObj.errorCode = UniversalProperties.EC_InvalidRequest;
-            }
-            HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(returnObj));
-            return;
-        }
+        //    }
+        //    else
+        //    {
+        //        returnObj.success = false;
+        //        returnObj.errorMessage = UniversalProperties.invalidRequest;
+        //        returnObj.errorCode = UniversalProperties.EC_InvalidRequest;
+        //    }
+        //    HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(returnObj));
+        //    return;
+        //}
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
@@ -527,10 +526,9 @@ namespace AiGrow.IdentityServer
                     returnObj.telephone = customer.Rows[0]["telephone"].ToString();
                     returnObj.mobile = customer.Rows[0]["mobile"].ToString();
                     returnObj.organization_name = customer.Rows[0]["organization_name"].ToString();
-                    returnObj.organization_address = customer.Rows[0]["organization_address"].ToString();
                     returnObj.country = customer.Rows[0]["country"].ToString();
                     returnObj.username = customer.Rows[0]["username"].ToString();
-                    returnObj.profile_pic_url = customer.Rows[0]["profile_pic_url"].ToString();
+                    returnObj.profile_pic_url = customer.Rows[0]["profile_picture_url"].ToString();
                 }
                 else
                 {
@@ -551,7 +549,7 @@ namespace AiGrow.IdentityServer
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public void UpdateCustomerJSON(string userID, string unique_id, string password, string token, string gender, string title, string mobile, string email, string organizationAddress, string organizationName, string telephone, string lastName, string firstName, string country, string address, string picURL, string rfid = null)
+        public void UpdateCustomerJSON(string userID, string password, string token, string gender, string title, string mobile, string email, string organizationAddress, string organizationName, string telephone, string lastName, string firstName, string country, string address, string picURL, string rfid = null)
         {
             BaseResponse returnObj = new BaseResponse();
 
@@ -645,7 +643,6 @@ namespace AiGrow.IdentityServer
                     int updateCustomer = new AiGrow.Business.BL_User().update(new ML_User()
                     {
                         id_user = userID.ToInt(),
-                        user_unique_id = unique_id,
                         address = address,
                         country = country,
                         email = email,
@@ -696,7 +693,7 @@ namespace AiGrow.IdentityServer
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public void UpdateCustomerAllFieldsJSON(string userID, string unique_id, string password, string token, string gender, string title, string mobile, string email, string organizationAddress, string organizationName, string telephone, string lastName, string firstName, string country, string address, string picURL, string status, string rfid)
+        public void UpdateCustomerAllFieldsJSON(string userID, string password, string token, string gender, string title, string mobile, string email, string organizationAddress, string organizationName, string telephone, string lastName, string firstName, string country, string address, string picURL, string status, string rfid)
         {
             BaseResponse returnObj = new BaseResponse();
 
@@ -790,7 +787,6 @@ namespace AiGrow.IdentityServer
                     int updateCustomer = new AiGrow.Business.BL_User().update(new ML_User()
                     {
                         id_user = userID.ToInt(),
-                        user_unique_id = unique_id,
                         address = address,
                         country = country,
                         email = email,

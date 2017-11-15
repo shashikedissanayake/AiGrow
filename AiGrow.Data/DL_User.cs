@@ -22,8 +22,16 @@ namespace AiGrow.Data
         {
             var para = new MySqlParameter[1];
             para[0] = new MySqlParameter("@userName", user.username);
-            return MySQLHelper.ExecuteDataTable(DBConnection.connectionString, CommandType.Text, "SELECT id_user, email, telephone, mobile, username, role_id, deleted FROM `user`, role WHERE (username = @userName) AND deleted = 0 AND role.id_role = `user`.role_id ORDER BY id_user ASC", para);
+            return MySQLHelper.ExecuteDataTable(DBConnection.connectionString, CommandType.Text, "SELECT id_user, email, telephone, mobile, username, role_id, role_name, deleted FROM `user`, role WHERE (username = @userName) AND deleted = 0 AND role.id_role = `user`.role_id ORDER BY id_user ASC", para);
 
+        }
+
+        public DataTable select(string userName)
+        {
+            var para = new MySqlParameter[1];
+            para[0] = new MySqlParameter("@userName", userName);
+
+            return MySQLHelper.ExecuteDataTable(DBConnection.connectionString, CommandType.Text, "SELECT * FROM `user` WHERE `username` = @userName", para);
         }
         public int validateToken(string loginToken)
         {
@@ -50,7 +58,7 @@ namespace AiGrow.Data
         }
         public int insert(AiGrow.Model.ML_User user)
         {
-            var para = new MySqlParameter[17];
+            var para = new MySqlParameter[16];
             para[0] = new MySqlParameter("@Username", user.username);
             para[1] = new MySqlParameter("@Password", user.password);
             para[2] = new MySqlParameter("@FirstName", user.first_name);
@@ -66,9 +74,8 @@ namespace AiGrow.Data
             para[13] = new MySqlParameter("@Title", user.title);
             para[14] = new MySqlParameter("@Salt", user.salt);
             para[15] = new MySqlParameter("@picURL", user.profile_picture_url);
-            para[16] = new MySqlParameter("@unique_id", user.user_unique_id);
 
-            var lastInsert = MySQLHelper.ExecuteScalar(DBConnection.connectionString, System.Data.CommandType.Text, "INSERT INTO `user` (id_user, user_unique_id, title, gender, first_name, last_name, address, email, telephone, mobile, username, password, salt, country, organization_name, role_id, deleted, created_date, last_modified, profile_picture_url) VALUES (NULL, @unique_id, @Title, @Gender, @FirstName, @LastName, @Address, @Email, @Telephone, @Mobile, @Username, @Password, @Salt, @Country, @OrganizationName, @Role, 0, NOW(), NOW(), @picURL); SELECT LAST_INSERT_ID();", para);
+            var lastInsert = MySQLHelper.ExecuteScalar(DBConnection.connectionString, System.Data.CommandType.Text, "INSERT INTO `user` (id_user, title, gender, first_name, last_name, address, email, telephone, mobile, username, password, salt, country, organization_name, role_id, deleted, created_date, last_modified, profile_picture_url) VALUES (NULL, @Title, @Gender, @FirstName, @LastName, @Address, @Email, @Telephone, @Mobile, @Username, @Password, @Salt, @Country, @OrganizationName, @Role, 0, NOW(), NOW(), @picURL); SELECT LAST_INSERT_ID();", para);
 
             return System.Convert.ToInt32(lastInsert);
         }
@@ -92,11 +99,11 @@ namespace AiGrow.Data
             para[0] = new MySqlParameter("@userName", user.username);
             para[1] = new MySqlParameter("@token", token);
 
-            return MySQLHelper.ExecuteDataTable(DBConnection.connectionString, System.Data.CommandType.Text, "SELECT u.title, u.gender, u.first_name, u.last_name, u.address, u.email, u.telephone, u.mobile, u.USERNAME, u.country, u.organization_name, u.organization_address, u.role_idrole, u.deleted, u.profile_pic_url FROM `user` u WHERE u.USERNAME = @userName AND u.deleted = FALSE AND (SELECT COUNT(*) FROM login WHERE login_token = @token AND id_user = (SELECT iduser FROM `user` u1 WHERE u1.USERNAME = @userName))", para);
+            return MySQLHelper.ExecuteDataTable(DBConnection.connectionString, System.Data.CommandType.Text, "SELECT u.title, u.gender, u.first_name, u.last_name, u.address, u.email, u.telephone, u.mobile, u.USERNAME, u.country, u.organization_name, u.role_id, u.deleted, u.profile_picture_url FROM `user` u WHERE u.USERNAME = @userName AND u.deleted = FALSE AND (SELECT COUNT(*) FROM login WHERE login_token = @token AND id_user = (SELECT id_user FROM `user` u1 WHERE u1.USERNAME = @userName))", para);
         }
         public int update(AiGrow.Model.ML_User user)
         {
-            var para = new MySqlParameter[15];
+            var para = new MySqlParameter[14];
 
             para[1] = new MySqlParameter("@title", user.title);
             para[2] = new MySqlParameter("@gender", user.gender);
@@ -111,10 +118,9 @@ namespace AiGrow.Data
             para[12] = new MySqlParameter("@password", user.password);
             para[13] = new MySqlParameter("@userID", user.id_user);
             para[14] = new MySqlParameter("@mobile", user.mobile);
-            para[10] = new MySqlParameter("@picURL", user.profile_picture_url);
-            para[0] = new MySqlParameter("@unique_id", user.user_unique_id);
+            para[0] = new MySqlParameter("@picURL", user.profile_picture_url);
 
-            return MySQLHelper.ExecuteNonQuery(DBConnection.connectionString, CommandType.Text, "UPDATE `user` SET title = @title ,user_unique_id = @unique_id, gender = @gender ,first_name = @firstName ,last_name = @lastName ,address = @address ,email = @email ,telephone = @telephone ,mobile = @mobile ,password = COALESCE(@password, password) ,salt = COALESCE(@salt, salt) ,country = @country ,organization_name = @organizationName ,last_modified_date = NOW(), profile_pic_url = @picURL WHERE iduser = @userID", para);
+            return MySQLHelper.ExecuteNonQuery(DBConnection.connectionString, CommandType.Text, "UPDATE `user` SET title = @title, gender = @gender ,first_name = @firstName ,last_name = @lastName, address = @address ,email = @email ,telephone = @telephone ,mobile = @mobile ,password = COALESCE(@password, password) ,salt = COALESCE(@salt, salt) ,country = @country ,organization_name = @organizationName ,last_modified = NOW(), profile_picture_url = @picURL WHERE id_user = @userID", para);
         }
         public string getUserIDByUserName(string userName)
         {
