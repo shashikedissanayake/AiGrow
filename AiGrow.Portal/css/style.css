@@ -148,17 +148,31 @@ input::-moz-placeholder {
   background-color: #0ab20d;
 }
 
+p.login__signup {
+    text-align:end;
+    }
+
 p {
   display: inline-block;
   width: 170px;
   margin: 0 40px;
-  font-size: .62rem;
-  color: rgba(255,255,255,.4);
+  font-size: 1rem;
+  color: rgba(255,255,255,.9);
   /*background-color: yellow;*/
+}
+
+.forgot {
+  margin: 10px 0;
+  height: 1px;
+  width: 100%;
+  text-align="end"
 }
 
 p a {
   color: #fff;
+}
+p a:hover{
+    color:rgba(255,255,255,.4)
 }
 
 label,

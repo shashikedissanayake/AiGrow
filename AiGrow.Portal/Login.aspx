@@ -5,10 +5,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 
-    <meta charset="UTF-8">
+      <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>AiGrow login page</title>
     <link rel="shortcut icon" href="img/logo.png" />
     <link rel="stylesheet" href="css/style.css">
+
 
     <script src="https://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
 
@@ -98,9 +103,9 @@
                         <asp:TextBox ID="password" ForeColor="White" TextMode="Password" runat="server" MaxLength="100" placeholder="password"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="valPass" runat="server" ControlToValidate="password" ValidationGroup="valGroup" Display="Dynamic" ErrorMessage="*"></asp:RequiredFieldValidator>
                     </div>
-                    <div style="float: right;">
-                        <p align="right" class="login__signup"><i class="fa fa-lock"></i>&nbsp;<a href="../ForgotPassword.aspx">Forgot password? </a></p>
-                    </div>
+                    <div class="forgot">
+                            <p class="login__signup"><i class="fa fa-lock"></i>&nbsp;<a href="ForgotPassword.aspx">Forgot password? </a></p>
+                        </div>
                     <div class="call-to-action">
                         <center>
                             <button id="loginButton" type="button" runat="server" onserverclick="signinClick" validationgroup="valGroup">Log In</button>
@@ -116,10 +121,5 @@
         <script src="js/index.js"></script>
         </form>
             <!--    -->
-        <footer>
-            <div class="panel-footer">
-                <center>chargeNET Pvt (Ltd) - Trace Expert City, Tripoli Market, Maradana, Sri Lanka. info@vega.lk +94-1-5551-551	</center>
-            </div>
-        </footer>
 </body>
 </html>
