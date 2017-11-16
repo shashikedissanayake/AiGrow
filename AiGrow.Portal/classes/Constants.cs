@@ -68,7 +68,7 @@ namespace AiGrow
         public static string HOME_PATH_DASHBOARDS_ACCOUNTANT = HOST_URL + "Dashboards/Accountant/";
 
         public static string HOME_PATH_DASHBOARDS = HOST_URL + "Dashboards/";
-        public static string LOG_OUT_URL = HOST_URL + "Dashboards/Logout.aspx";
+        public static string LOG_OUT_URL = HOST_URL + "/Logout.aspx";
         public static string PROFILE_IMAGE_PATH = HOST_URL + "Dashboards/dist/img/";
 
         public static string VIEW_PROFILE_URL = HOST_URL + "Dashboards/ViewProfile.aspx";

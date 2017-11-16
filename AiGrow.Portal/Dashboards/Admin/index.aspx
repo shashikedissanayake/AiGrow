@@ -1,16 +1,15 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="AiGrow.Portal.Dashboards.Admin.index" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminDashboardMaster.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="AiGrow.Portal.Dashboards.Admin.index" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
-    <p>hello!!!</p>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <div class="jumbotron">
+        <center><img src="../../img/logo.png" height="300px" width="300px" />
+            <!--class="img-circle"-->
+           <h3>Hello...</h3>
+           <p>
+            Welcome to AiGrow. This is the Administration Dashboard... 
+           <br />
+            Click on an option in the left to begin!
+            </p></center>
     </div>
-    </form>
-</body>
-</html>
+
+</asp:Content>
