@@ -53,10 +53,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ML_BayDevice.cs" />
+    <Compile Include="ML_Bay.cs" />
+    <Compile Include="ML_BayLine.cs" />
     <Compile Include="ML_BayLineDevice.cs" />
     <Compile Include="ML_Greenhouse.cs" />
+    <Compile Include="ML_Level.cs" />
+    <Compile Include="ML_LevelDevice.cs" />
+    <Compile Include="ML_LevelLine.cs" />
+    <Compile Include="ML_LevelLineDevice.cs" />
     <Compile Include="ML_Location.cs" />
     <Compile Include="ML_Login.cs" />
+    <Compile Include="ML_Rack.cs" />
+    <Compile Include="ML_RackDevice.cs" />
     <Compile Include="ML_User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -130,7 +130,10 @@
       <DependentUpon>SensorController.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Tables\BayDeviceRequest.cs" />
+    <Compile Include="Tables\GreenhouseRequest.cs" />
     <Compile Include="Utilities\ApplicationUtilities.cs" />
+    <Compile Include="Utilities\BaseRequest.cs" />
     <Compile Include="Utilities\BaseResponse.cs" />
     <Compile Include="Utilities\Encryption.cs" />
     <Compile Include="Utilities\UniversalProperties.cs" />

@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Web;
+using System.Web.Script.Serialization;
 using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
+using AiGrow.Model;
+using AiGrow.Business;
 
 namespace AiGrow.DeviceServer
 {
@@ -21,6 +26,7 @@ namespace AiGrow.DeviceServer
         /// </summary>
         private const int BrokerPort = 8883;
         static X509Certificate caCert = X509Certificate.CreateFromSignedFile(@"D:\visual studio\MQTTAmazon\MQTTAmazon\certificates\VeriSign-Class 3-Public-Primary-Certification-Authority-G5.pem");
+
         //convert to pfx using openssl
         //you'll need to add these two files to the project and copy them to the output
         static X509Certificate2 clientCert = new X509Certificate2(@"D:\visual studio\MQTTAmazon\MQTTAmazon\certificates\070bf213e6-certificate.pem.pfx", "");
@@ -31,7 +37,6 @@ namespace AiGrow.DeviceServer
 
         public static void Subscribe()
         {
-
             //this is the AWS caroot.pem file that you get as part of the download
             // this doesn't have to be a new X509 type...
 
@@ -45,20 +50,83 @@ namespace AiGrow.DeviceServer
 
             // '#' is the wildcard to subscribe to anything under the 'root' topic
             // the QOS level here - I only partially understand why it has to be this level - it didn't seem to work at anything else.
-            client.Subscribe(new[] { "/authenticate" }, new[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
+            client.Subscribe(new[] { "/aigrow_common" }, new[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE });
 
-             while (true)
-            {
-                //listen good!
-            }
+            // while (true)
+            //{
+            //    //listen good!
+            //}
 
         }
         public static void ClientMqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
-           
-            string s_unicode2 = System.Text.Encoding.UTF8.GetString(e.Message);
-	
-            
+            string JSONMessage = System.Text.Encoding.UTF8.GetString(e.Message);
+            try
+            {
+                BaseRequest request = new JavaScriptSerializer().Deserialize<BaseRequest>(JSONMessage);
+                switch (request.command)
+                {
+                    case "registerGreenhouse":
+
+                        GreenhouseRequest gr = new JavaScriptSerializer().Deserialize<GreenhouseRequest>(JSONMessage);
+
+                        List<ML_BayDevice> Devices = gr.listOfBayDevices;
+                        foreach (ML_BayDevice device in Devices)
+                        {
+                            if (!(new AiGrow.Business.BL_BayDevice().doesDeviceExist(device.bay_device_unique_id)))
+                            {
+                                new BL_BayDevice().insert(new ML_BayDevice()
+                                {
+                                    bay_device_unique_id = device.bay_device_unique_id,
+                                    bay_device_name = device.bay_device_name,
+                                    device_type = device.device_type,
+                                    io_type = device.io_type,
+                                    bay_id = device.bay_id,
+                                    default_unit = device.default_unit,
+                                    status = device.status
+                                });
+                            }
+                        }
+                        break;
+                    case "registerBayDevice":
+
+                        BayDeviceRequest bay = new JavaScriptSerializer().Deserialize<BayDeviceRequest>(JSONMessage);
+
+                        if (!(new AiGrow.Business.BL_BayDevice().doesDeviceExist(bay.bay_device_unique_id)))
+                        {
+                            new BL_BayDevice().insert(new ML_BayDevice()
+                            {
+                                bay_device_unique_id = bay.bay_device_unique_id,
+                                bay_device_name = bay.bay_device_name,
+                                device_type = bay.device_type,
+                                io_type = bay.io_type,
+                                bay_id = bay.bay_id,
+                                default_unit = bay.default_unit,
+                                status = bay.status
+                            });
+                        }
+                        break;
+                    //case "mapGreenhosue":
+                    //    List<ML_Bay> bays = gr.listOfBays;
+                    //    List<ML_BayLine> bayLines = gr.listOfBayLines;
+                    //    List<ML_BayLineDevice> bayLineDevicees = gr.listOfBayLineDevices;
+                    //    List<ML_BayDevice> bayDevices = gr.listOfBayDevices;
+                    //    List<ML_Rack> bayRacks = gr.listOfBayRacks;
+                    //    List<ML_RackDevice> bayRackDevices = gr.listOfBayRackDevices;
+                    //    List<ML_Level> bayRackLevels = gr.listOfBayRackLevels;
+                    //    List<ML_LevelDevice> bayRackLevelDevices = gr.listOfBayRackLevelDevices;
+                    //    List<ML_LevelLine> bayRackLevelLines = gr.listOfBayRackLevelLines;
+                    //    List<ML_LevelLineDevice> bayRackLevelLineDevices = gr.listofBayRAckLevelLineDevices;
+                    //    break;
+                    default:
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
         }
 
     }
