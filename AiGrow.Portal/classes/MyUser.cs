@@ -317,7 +317,7 @@ namespace AiGrow
 
         public static string getProfileImageURL()
         {
-            string profile_pic_url = new BL_User().select(SessionHandler.getLoggedInUsername()).Rows[0]["profile_pic_url"].ToString();
+            string profile_pic_url = new BL_User().select(SessionHandler.getLoggedInUsername()).Rows[0]["profile_picture_url"].ToString();
             return (profile_pic_url == string.Empty || profile_pic_url == null) ? AppFunction.ReadSetting("DefaultProPicURL") : profile_pic_url;           
         }
 

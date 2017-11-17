@@ -208,6 +208,8 @@
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\error-css.css" />
     <Content Include="css\style.css" />
+    <Content Include="Dashboards\Admin\AdminEditProfile.aspx" />
+    <Content Include="Dashboards\Admin\AdminProfile.aspx" />
     <Content Include="Dashboards\Admin\index.aspx" />
     <Content Include="Dashboards\bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.css" />
     <Content Include="Dashboards\bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.min.css" />
@@ -7462,6 +7464,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="classes\AppFunction.cs" />
+    <Compile Include="classes\ApplicationUtilities.cs" />
+    <Compile Include="classes\ChargeCustomer.cs" />
     <Compile Include="classes\Constants.cs" />
     <Compile Include="classes\DBConnection.cs" />
     <Compile Include="classes\identityServer\JSONReturn.cs" />
@@ -7479,6 +7483,20 @@
     </Compile>
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboards\Admin\AdminEditProfile.aspx.cs">
+      <DependentUpon>AdminEditProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboards\Admin\AdminEditProfile.aspx.designer.cs">
+      <DependentUpon>AdminEditProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboards\Admin\AdminProfile.aspx.cs">
+      <DependentUpon>AdminProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboards\Admin\AdminProfile.aspx.designer.cs">
+      <DependentUpon>AdminProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Dashboards\Admin\index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>

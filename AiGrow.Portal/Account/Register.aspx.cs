@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Owin;
 using AiGrow.Portal.Models;
+using System.Collections.Generic;
 
 namespace AiGrow.Portal.Account
 {
@@ -31,6 +32,13 @@ namespace AiGrow.Portal.Account
             {
                 ErrorMessage.Text = result.Errors.FirstOrDefault();
             }
+        }
+
+        public static List<String> getCountryList()
+        {
+            List<String> country = new List<string>(new AiGrow.Business.BL_Configurations().getConfigValue(Constants.countryList).Rows[0][0].ToString().Split(new char[] { ';' }));
+            country.Sort();
+            return country;
         }
     }
 }

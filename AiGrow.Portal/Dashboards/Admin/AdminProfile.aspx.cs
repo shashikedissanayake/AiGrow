@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace AiGrow.Portal.Dashboards.Admin
 {
-    public partial class index : System.Web.UI.Page
+    public partial class AdminProfile : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

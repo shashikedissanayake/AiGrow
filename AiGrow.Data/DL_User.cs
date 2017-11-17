@@ -62,7 +62,7 @@ namespace AiGrow.Data
             para[0] = new MySqlParameter("@Username", user.username);
             para[1] = new MySqlParameter("@Password", user.password);
             para[2] = new MySqlParameter("@FirstName", user.first_name);
-            para[3] = new MySqlParameter("@LastName", user.first_name);
+            para[3] = new MySqlParameter("@LastName", user.last_name);
             para[4] = new MySqlParameter("@Address", user.address);
             para[5] = new MySqlParameter("@Email", user.email);
             para[6] = new MySqlParameter("@Telephone", user.telephone);
@@ -146,10 +146,10 @@ namespace AiGrow.Data
         }
         public DataTable selectByUserID(AiGrow.Model.ML_User user)
         {
-            var para = new MySqlParameter[2];
+            var para = new MySqlParameter[1];
             para[0] = new MySqlParameter("@userID", user.id_user);
 
-            return MySQLHelper.ExecuteDataTable(DBConnection.connectionString, CommandType.Text, "SELECT id_user, first_name, last_name, address, email, telephone, mobile, username, role_idrole, deleted, created_date, last_modified_date, profile_pic_url, organization_name, organization_address, country, title, gender, activation_pin FROM `user` WHERE id_user = @userID AND deleted=0;", para);
+            return MySQLHelper.ExecuteDataTable(DBConnection.connectionString, CommandType.Text, "SELECT id_user, first_name, last_name, address, email, telephone, mobile, username, role_id, deleted, created_date, last_modified, profile_picture_url, organization_name, country, title, gender FROM `user` WHERE id_user = @userID AND deleted=0;", para);
         }
     }
 }
