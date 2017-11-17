@@ -59,7 +59,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DL_Bay.cs" />
     <Compile Include="DL_BayDevice.cs" />
+    <Compile Include="DL_BayLine.cs" />
     <Compile Include="DL_Configurations.cs" />
     <Compile Include="DL_Greenhouse.cs" />
     <Compile Include="DL_Login.cs" />

@@ -62,7 +62,7 @@ namespace AiGrow.Data
             para[0] = new MySqlParameter("@Username", user.username);
             para[1] = new MySqlParameter("@Password", user.password);
             para[2] = new MySqlParameter("@FirstName", user.first_name);
-            para[3] = new MySqlParameter("@LastName", user.first_name);
+            para[3] = new MySqlParameter("@LastName", user.last_name);
             para[4] = new MySqlParameter("@Address", user.address);
             para[5] = new MySqlParameter("@Email", user.email);
             para[6] = new MySqlParameter("@Telephone", user.telephone);

@@ -29,15 +29,10 @@ namespace AiGrow.DeviceServer
         [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
         public void GetDeviceJSONTest()
         {
-            BayDeviceRequest br = new BayDeviceRequest();
-            br.command = "registerBayDevice";
-            br.bay_device_unique_id = "device_1";
-            br.bay_device_name = "sensor";
+            BayLineRequest br = new BayLineRequest();
+            br.command = "registerBayLine";
+            br.bay_line_unique_id = "line_1";
             br.bay_id = 1;
-            br.default_unit = "kg";
-            br.device_type = "pump";
-            br.io_type = "in";
-            br.status = "up";
             HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(br));
         }
 

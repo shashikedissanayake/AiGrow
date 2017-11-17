@@ -12,6 +12,7 @@ using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
 using AiGrow.Model;
 using AiGrow.Business;
+using AiGrow.DeviceServer;
 
 namespace AiGrow.DeviceServer
 {
@@ -70,42 +71,43 @@ namespace AiGrow.DeviceServer
 
                         GreenhouseRequest gr = new JavaScriptSerializer().Deserialize<GreenhouseRequest>(JSONMessage);
 
-                        List<ML_BayDevice> Devices = gr.listOfBayDevices;
-                        foreach (ML_BayDevice device in Devices)
-                        {
-                            if (!(new AiGrow.Business.BL_BayDevice().doesDeviceExist(device.bay_device_unique_id)))
-                            {
-                                new BL_BayDevice().insert(new ML_BayDevice()
-                                {
-                                    bay_device_unique_id = device.bay_device_unique_id,
-                                    bay_device_name = device.bay_device_name,
-                                    device_type = device.device_type,
-                                    io_type = device.io_type,
-                                    bay_id = device.bay_id,
-                                    default_unit = device.default_unit,
-                                    status = device.status
-                                });
-                            }
-                        }
+                        //List<ML_BayDevice> Devices = gr.listOfBayDevices;
+                        //foreach (ML_BayDevice device in Devices)
+                        //{
+                        //    if (!(new AiGrow.Business.BL_BayDevice().doesBayExist(device.bay_device_unique_id)))
+                        //    {
+                        //        new BL_BayDevice().insert(new ML_BayDevice()
+                        //        {
+                        //            bay_device_unique_id = device.bay_device_unique_id,
+                        //            bay_device_name = device.bay_device_name,
+                        //            device_type = device.device_type,
+                        //            io_type = device.io_type,
+                        //            bay_id = device.bay_id,
+                        //            default_unit = device.default_unit,
+                        //            status = device.status
+                        //        });
+                        //    }
+                        //}
                         break;
+
                     case "registerBayDevice":
-
-                        BayDeviceRequest bay = new JavaScriptSerializer().Deserialize<BayDeviceRequest>(JSONMessage);
-
-                        if (!(new AiGrow.Business.BL_BayDevice().doesDeviceExist(bay.bay_device_unique_id)))
-                        {
-                            new BL_BayDevice().insert(new ML_BayDevice()
-                            {
-                                bay_device_unique_id = bay.bay_device_unique_id,
-                                bay_device_name = bay.bay_device_name,
-                                device_type = bay.device_type,
-                                io_type = bay.io_type,
-                                bay_id = bay.bay_id,
-                                default_unit = bay.default_unit,
-                                status = bay.status
-                            });
-                        }
+                        BayDeviceRequest bayDevice = new JavaScriptSerializer().Deserialize<BayDeviceRequest>(JSONMessage);
+                        new DatabaseUpdate().registerBayDevice(bayDevice);
                         break;
+
+                    case "registerBay":
+                        BayRequest bay = new JavaScriptSerializer().Deserialize<BayRequest>(JSONMessage);
+                        new DatabaseUpdate().registerBay(bay);
+                        break;
+
+                    case "registerBayLine":
+                        BayLineRequest bayLine = new JavaScriptSerializer().Deserialize<BayLineRequest>(JSONMessage);
+                        new DatabaseUpdate().registerBayLine(bayLine);
+                        break;
+
+                    //*****************************USE DEVICE ENTRY FOR ALL OTHER QUERIES***********************
+
+
                     //case "mapGreenhosue":
                     //    List<ML_Bay> bays = gr.listOfBays;
                     //    List<ML_BayLine> bayLines = gr.listOfBayLines;
