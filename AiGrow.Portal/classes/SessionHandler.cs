@@ -5,13 +5,14 @@ using System.Linq;
 using System.Web;
 using MySql.Data.MySqlClient;
 using AiGrow.Business;
+using AiGrow.Classes;
 
 namespace AiGrow
 {
     public class SessionHandler : System.Web.UI.Page
     {
 
-        public static void initiateLoginSession(string username, string type, string token, string userID)
+        public static void initiateLoginSession(string username, string type, string token, string userID,string loginID)
         {
 
             try
@@ -21,6 +22,7 @@ namespace AiGrow
                 HttpContext.Current.Session["type"] = type.Trim();
                 HttpContext.Current.Session["token"] = token.Trim();
                 HttpContext.Current.Session["userID"] = userID.Trim();
+                HttpContext.Current.Session["loginID"] = loginID.Trim();
             }
             catch (Exception ex)
             {
@@ -51,8 +53,20 @@ namespace AiGrow
             }
         }
 
+        public static void loginWithCookies(string token)
+        {
+            AiGrow.BaseResponse login = AiGrow.MyUser.validateUserLogout(SessionHandler.getLoggedInid(), SessionHandler.getToken());
+            int userID = SessionHandler.getLoggedInUserID().ToInt();
+
+            if (login.success.Equals("true")) { 
+                
+            }
+                       
+        }
+
         public static void logout()
         {
+            AiGrow.LoginResponse login = AiGrow.MyUser.validateUserLogout(SessionHandler.getLoggedInid(), SessionHandler.getToken());
             HttpContext.Current.Session["username"] = null;
             HttpContext.Current.Session["type"] = null;
         }
@@ -198,6 +212,25 @@ namespace AiGrow
         {
             //HttpContext.Current.Session["username"] = "rashiga";
             //HttpContext.Current.Session["type"] = chargeNET.Constants.CHG_CUSTOMER;
+        }
+
+        public static String getLoggedInid()
+        {
+            try
+            {
+                if ((Boolean)SessionHandler.doesSessionExist())
+                {
+                    return (String)HttpContext.Current.Session["loginID"];
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public static String getLoggedInUsername()

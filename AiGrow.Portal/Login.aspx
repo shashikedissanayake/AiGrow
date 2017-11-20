@@ -102,11 +102,16 @@
                         </label>
                         <asp:TextBox ID="password" ForeColor="White" TextMode="Password" runat="server" MaxLength="100" placeholder="password"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="valPass" runat="server" ControlToValidate="password" ValidationGroup="valGroup" Display="Dynamic" ErrorMessage="*"></asp:RequiredFieldValidator>
+                        
+                        
                     </div>
+                    <label align="left" class="checkbox-inline" style="font-size:12px"><asp:CheckBox runat="server" ID="chkRememberMe" /> Remember me</label>
                     <div class="forgot">
+                    
                             <p class="login__signup"><i class="fa fa-lock"></i>&nbsp;<a href="ForgotPassword.aspx">Forgot password? </a></p>
                         </div>
                     <div class="call-to-action">
+                      
                         <center>
                             <button id="loginButton" type="button" runat="server" onserverclick="signinClick" validationgroup="valGroup">Log In</button>
                         </center>

@@ -146,16 +146,6 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="id_txt_org_address">Organization Address: </label>
-                    <asp:TextBox CssClass="form-control" ID="id_txt_org_address" TextMode="multiline" Rows="4" Columns="6" runat="server" />
-                </div>
-
-            </div>
-        </div>
-
         <div class="form-group" style="display: none;">
             <label for="id_txt_username">Username: </label>
             <asp:TextBox ID="id_txt_username" MaxLength="50" CssClass="form-control" runat="server"></asp:TextBox>

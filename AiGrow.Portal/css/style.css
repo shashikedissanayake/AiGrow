@@ -93,6 +93,13 @@ html, body {
   animation: dash 3s .8s linear forwards;
 }
 
+input[type="checkbox"]{
+  width: 12px; /*Desired width*/
+  height: 12px; /*Desired height*/
+  cursor: pointer;
+  font-size: 10px;
+}
+
 input {
   position: absolute;
   width: 195px;

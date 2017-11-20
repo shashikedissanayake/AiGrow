@@ -39,7 +39,6 @@ namespace AiGrow.Portal.Dashboards.Admin
             id_txt_email.Text = currentMember.Email;
             id_txt_mobile.Text = currentMember.Mobile;
             id_txt_org_name.Text = currentMember.OrganizationName;
-            //id_txt_username.Text = userName;
             id_txt_telephone.Text = currentMember.Telephone;
             cbo_title.Text = currentMember.Title;
             cbo_gender.Text = currentMember.Gender;
@@ -68,7 +67,7 @@ namespace AiGrow.Portal.Dashboards.Admin
                 post.PostItems.Add("firstName", idFirstName.Text.Trim());
                 post.PostItems.Add("country", lst_countries.Text.Trim());
                 post.PostItems.Add("address", id_txt_address.Text.Trim());
-                post.PostItems.Add("profilePicURL", null);
+                post.PostItems.Add("picURL", null);
 
                 post.Type = RequestHandler.PostTypeEnum.Post;
                 string result = post.Post();

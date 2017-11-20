@@ -156,6 +156,7 @@ namespace AiGrow
 
         public static string CHECK_LOGIN_POST = HOST_URL_IDENTITY_SERVER + "LoginController.asmx/CheckLoginPOST";
         public static string CHECK_LOGIN_POST_JSON = HOST_URL_IDENTITY_SERVER + "LoginController.asmx/CheckLoginPOSTJSON";
+        public static string CHECK_LOGOUT_POST_JSON = HOST_URL_IDENTITY_SERVER + "LoginController.asmx/LogOut";
         public static string RESET_PASSWORD_JSON = HOST_URL_IDENTITY_SERVER + "DatabaseHandler.asmx/ResetPassword";
         public static string ADD_CUSTOMER = HOST_URL_IDENTITY_SERVER + "UserController.asmx/AddUserJSON";
         public static string UPDATE_CUSTOMER = HOST_URL_IDENTITY_SERVER + "UserController.asmx/UpdateCustomerJSON";

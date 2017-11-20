@@ -32,7 +32,7 @@ namespace AiGrow
         {
 
         }
-        public ChargeCustomer(string firstName, string lastName, string gender, string email, string password, string organization_name, string organization_address, string username, string mobile, string telephone, string title, string country, string address)
+        public ChargeCustomer(string firstName, string lastName, string gender, string email, string password, string organization_name, string username, string mobile, string telephone, string title, string country, string address)
         {
             // TODO: Complete member initialization
             this.FirstName = firstName;
@@ -41,7 +41,6 @@ namespace AiGrow
             this.Gender = gender;
             this.Password = password;
             this.OrganizationName = organization_name;
-            this.OrganizationAddress = organization_address;
             this.Username = username;
             this.Mobile = mobile;
             this.Telephone = telephone;

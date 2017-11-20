@@ -257,6 +257,20 @@ namespace AiGrow
             return login;
         }
 
+        public static LoginResponse validateUserLogout(String login_id, String token)
+        {
+            RequestHandler post = new RequestHandler();
+            post.Url = Constants.CHECK_LOGOUT_POST_JSON;
+            post.PostItems.Add("loginID", login_id);
+            post.PostItems.Add("token", token);
+            post.Type = RequestHandler.PostTypeEnum.Post;
+            string result = post.Post();
+
+            LoginResponse login = new JavaScriptSerializer().Deserialize<LoginResponse>(result);
+
+            return login;
+        }
+
         public static string getValidString(ref MySqlDataReader myReader, string columnName)
         {
             string returnString = "";

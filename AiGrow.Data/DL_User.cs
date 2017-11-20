@@ -103,11 +103,11 @@ namespace AiGrow.Data
         }
         public int update(AiGrow.Model.ML_User user)
         {
-            var para = new MySqlParameter[14];
+            var para = new MySqlParameter[15];
 
             para[1] = new MySqlParameter("@title", user.title);
             para[2] = new MySqlParameter("@gender", user.gender);
-            para[3] = new MySqlParameter("@firstName", user.gender);
+            para[3] = new MySqlParameter("@firstName", user.first_name);
             para[4] = new MySqlParameter("@lastName", user.last_name);
             para[5] = new MySqlParameter("@address", user.address);
             para[6] = new MySqlParameter("@email", user.email);
