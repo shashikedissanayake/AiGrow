@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="BL_Bay.cs" />
     <Compile Include="BL_BayDevice.cs" />
+    <Compile Include="BL_BayDeviceData.cs" />
     <Compile Include="BL_BayLine.cs" />
     <Compile Include="BL_Configurations.cs" />
     <Compile Include="BL_Greenhouse.cs" />

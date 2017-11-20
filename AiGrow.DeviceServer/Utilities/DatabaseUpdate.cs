@@ -52,5 +52,14 @@ namespace AiGrow.DeviceServer
                 });
             }
         }
+
+        public void bayDeviceDataEntry(BaseDeviceRequest data) {
+            string device = (data.deviceID).getUniqueID();
+            new BL_BayDeviceData().insert(new ML_BayDeviceData()
+            {
+                device_unique_id = device,
+                data = data.data
+            });
+        }
     }
 }

@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="ML_BayDevice.cs" />
     <Compile Include="ML_Bay.cs" />
+    <Compile Include="ML_BayDeviceData.cs" />
     <Compile Include="ML_BayLine.cs" />
     <Compile Include="ML_BayLineDevice.cs" />
     <Compile Include="ML_Greenhouse.cs" />

@@ -9,5 +9,6 @@ namespace AiGrow.DeviceServer
     {
         public string deviceID { get; set; }
         public string command { get; set; }
+        public string data { get; set; }
     }
 }

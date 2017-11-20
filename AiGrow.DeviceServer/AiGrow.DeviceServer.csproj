@@ -135,6 +135,7 @@
     <Compile Include="Tables\BayRequest.cs" />
     <Compile Include="Tables\GreenhouseRequest.cs" />
     <Compile Include="Utilities\ApplicationUtilities.cs" />
+    <Compile Include="Utilities\BaseDeviceResponse.cs" />
     <Compile Include="Utilities\BaseRequest.cs" />
     <Compile Include="Utilities\BaseResponse.cs" />
     <Compile Include="Utilities\DatabaseUpdate.cs" />

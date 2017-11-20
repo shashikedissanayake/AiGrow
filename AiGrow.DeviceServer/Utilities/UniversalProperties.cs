@@ -110,6 +110,20 @@ namespace AiGrow.DeviceServer
 
         #endregion
 
+        #region Data Table Constants
+
+        public static int bay_device_data = 1;
+        public static int bay_line_device_data = 2;
+        public static int bay_rack_device_data = 3;
+        public static int bay_rack_level_device_data = 4;
+        public static int bay_rack_level_line_device_data = 5;
+
+        public static string UNKNOWN_COMPONENT = "Unknown Component.";
+
+
+        #endregion
+
+
         #region Charger Constants
 
         public static double doubleRate = 4.5;
@@ -174,6 +188,7 @@ namespace AiGrow.DeviceServer
         public const int EC_InvalidPromotionID = 21;
         public const int EC_OperationSpecificError = 22;
         public const int EC_LocationUpdateFailed = 23;
+        public const int EC_UnknownComponent = 24;
 
         #endregion
 

@@ -10,5 +10,7 @@ namespace AiGrow.DeviceServer
         public string bay_unique_id { get; set; }
         public int bay_id { get; set; }
         public int greenhouse_id { get; set; }
+        public List<BayDeviceRequest> listOfBayDevices { get; set; }
+
     }
 }

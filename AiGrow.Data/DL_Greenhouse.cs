@@ -21,5 +21,13 @@ namespace AiGrow.Data
             return MySQLHelper.ExecuteNonQuery(DBConnection.connectionString, CommandType.Text, "INSERT INTO greenhouse ( greenhouse_name ,owner_user_id ,location_id , greenhouse_unique_id, created_date_time, last_updated_date ) VALUES ( @greenhouse_name ,@user_id ,@location_id ,@unique_id, NOW(), NOW() )", para) != -1;
            
         }
+        public bool doesGreenhouseExist(string greenhouse)
+        {
+            var para = new MySqlParameter[1];
+            para[0] = new MySqlParameter("@greenhouse_id", greenhouse);
+
+            int count = MySQLHelper.ExecuteDataTable(DBConnection.connectionString, System.Data.CommandType.Text, "SELECT * FROM `greenhouse` WHERE greenhouse_unique_id = @greenhouse_id", para).Rows.Count;
+            return count >= 1;
+        }
     }
 }

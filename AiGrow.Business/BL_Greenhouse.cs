@@ -13,5 +13,9 @@ namespace AiGrow.Business
         {
             return new DL_Greenhouse().insert(greenhouse);
         }
+        public bool doesGreenhouseExist(string greenhouse)
+        {
+            return new DL_Greenhouse().doesGreenhouseExist(greenhouse);
+        }
     }
 }
