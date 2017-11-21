@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DL_Configurations.cs" />
+    <Compile Include="DL_GreenHouses.cs" />
     <Compile Include="DL_Login.cs" />
     <Compile Include="DL_User.cs" />
     <Compile Include="Utilities\DBConnection.cs" />

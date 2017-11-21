@@ -61,6 +61,7 @@
     <Compile Include="BL_Location.cs" />
     <Compile Include="BL_Login.cs" />
     <Compile Include="BL_User.cs" />
+    <Compile Include="BL_GreenHouses.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
