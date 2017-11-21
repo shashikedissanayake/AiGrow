@@ -17,7 +17,19 @@ namespace AiGrow.Portal
         {
             errorDiv.Visible = false;
 
+            //getCountryList();
+            foreach (String my_country in getCountryList())
+            {
+                lst_countries.Items.Add(my_country);
+            }
            
+        }
+
+        public static List<String> getCountryList()
+        {
+            List<String> country = new List<string>(new AiGrow.Business.BL_Configurations().getConfigValue(Constants.countryList).Rows[0][0].ToString().Split(new char[] { ';' }));
+            country.Sort();
+            return country;
         }
 
        
@@ -55,17 +67,15 @@ namespace AiGrow.Portal
                     post.PostItems.Add("gender", cbo_gender.Text.Trim());
                     post.PostItems.Add("title", cbo_title.Text.Trim());
                     post.PostItems.Add("mobile", id_txt_mobile.Text.Trim());
-                    post.PostItems.Add("status", Constants.INACTIVE_USER);
                     post.PostItems.Add("email", id_txt_email.Text.Trim());
-                    post.PostItems.Add("organizationAddress", id_txt_org_address.Text.Trim());
                     post.PostItems.Add("organizationName", id_txt_org_name.Text.Trim());
                     post.PostItems.Add("telephone", id_txt_telephone.Text.Trim());
                     post.PostItems.Add("lastName", idLastName.Text.Trim());
                     post.PostItems.Add("firstName", idFirstName.Text.Trim());
                     post.PostItems.Add("country", lst_countries.Text.Trim());
                     post.PostItems.Add("address", id_txt_address.Text.Trim());
-                    post.PostItems.Add("rfid", null);
                     post.PostItems.Add("profilePicURL", null);
+                    post.PostItems.Add("role", "AIGROW_CUSTOMER");
 
                     post.Type = RequestHandler.PostTypeEnum.Post;
                     string result = post.Post();
@@ -96,17 +106,17 @@ namespace AiGrow.Portal
             }
         }
 
-        public static Boolean validateFields(String[] inputArray)
+        private void sendSMS(string userID, string message, string mobileNo)
         {
-            Boolean result = true;
-            foreach (String inpString in inputArray)
-            {
-                if (inpString == "")
-                {
-                    result = false;
-                }
-            }
-            return result;
+            RequestHandler post = new RequestHandler();
+            post.Url = Constants.SMS_URL;
+            post.PostItems.Add("userID", userID);
+            post.PostItems.Add("message", message);
+            post.PostItems.Add("destination", mobileNo);
+            post.PostItems.Add("token", Encryption.createSHA1(userID));
+            post.Type = RequestHandler.PostTypeEnum.Post;
+            string result = post.Post();
         }
+
     }
 }

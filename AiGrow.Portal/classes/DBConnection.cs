@@ -8,10 +8,10 @@ namespace AiGrow
 {
     public class DBConnection
     {
-        //public static string connectionString = "datasource=localhost;port=3306;database=chargenet;username=root;password=";
+        public static string connectionString = "datasource=localhost;port=3306;database=greenhouse;username=root;password=";
         //public static string connectionStringVegadev = "datasource=localhost;port=3306;database=vegadev;username=root;password=";
-        public static string connectionString = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
-        public static string connectionStringVegadev = ConfigurationManager.ConnectionStrings["connectionStringVegadev"].ConnectionString;
+       // public static string connectionString = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
+      //  public static string connectionStringVegadev = ConfigurationManager.ConnectionStrings["connectionStringVegadev"].ConnectionString;
         public MySql.Data.MySqlClient.MySqlConnection getConnection(String connectionString)
         {
             MySqlConnection connection = new MySqlConnection(connectionString);

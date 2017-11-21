@@ -57,7 +57,7 @@ namespace AiGrow
         public static string FAST = "FAST";
 
         //Paths & Common
-        public static string HOME_URL = "Index.aspx";
+        public static string HOME_URL = "index.aspx";
         public static string HOST_URL = string.Format("http://{0}:{1}/", HttpContext.Current.Request.Url.Host, HttpContext.Current.Request.Url.Port);
         //"http://localhost:10000/";
         public static string HOME_PATH_DASHBOARDS_ADMIN = HOST_URL + "Dashboards/Admin/";
@@ -68,12 +68,12 @@ namespace AiGrow
         public static string HOME_PATH_DASHBOARDS_ACCOUNTANT = HOST_URL + "Dashboards/Accountant/";
 
         public static string HOME_PATH_DASHBOARDS = HOST_URL + "Dashboards/";
-        public static string LOG_OUT_URL = HOST_URL + "Dashboards/Logout.aspx";
+        public static string LOG_OUT_URL = HOST_URL + "/Logout.aspx";
         public static string PROFILE_IMAGE_PATH = HOST_URL + "Dashboards/dist/img/";
 
         public static string VIEW_PROFILE_URL = HOST_URL + "Dashboards/ViewProfile.aspx";
         public static string RESET_PASSWORD = HOST_URL + "Dashboards/ResetPassword.aspx";
-        public static string LOGIN_URL = HOST_URL + "Dashboards/Login.aspx";
+        public static string LOGIN_URL = HOST_URL + "Login.aspx";
         public static string FAVICON_URL = AppFunction.ReadSetting("FaviconURL");
         public static string CHARGENET_LOGO_URL = AppFunction.ReadSetting("chargeNETLogoURL");
         public static string BOOTSTRAP_CDN_LINK = AppFunction.ReadSetting("BootstrapURL");
@@ -86,7 +86,7 @@ namespace AiGrow
         public static string INFO_CHARGENET_PASSWORD = AppFunction.ReadSetting("chargeNETInfoPassword");
         public static string GOOGLE_CHARGENET_EMAIL = AppFunction.ReadSetting("chargeNETGoogleEmail");
         public static string FORGOT_PASSWORD_LINK = HOST_URL + "ForgotPassword.aspx";
-        public static string REGISTER_URL = HOST_URL + "Register.aspx";
+        public static string REGISTER_URL = HOST_URL + "signUp.aspx";
 
         //Admin Dashboard Links
         public static String ADMIN_DASHBOARD_CHG_NETWORKS_EDIT = HOST_URL + "Dashboards/Admin/AdminEditNetwork.aspx";
@@ -120,7 +120,6 @@ namespace AiGrow
         public static string ADMIN_DASHBOARD_VIEW_NETWORK = HOST_URL + "Dashboards/Admin/AdminViewNetwork.aspx";
         public static string ADMIN_DASHBOARD_CHG_POINT_OWNERS_EDIT = HOST_URL + "Dashboards/Admin/AdminEditPointOwner.aspx";
         public static string ADMIN_DASHBOARD_CHG_NETWORK_OWNERS_EDIT = HOST_URL + "Dashboards/Admin/AdminEditNetworkOwner.aspx";
-
         public static string VIEW_PROFILE_URL_ADMIN = HOST_URL + "Dashboards/Admin/AdminProfile.aspx";
         public static string EDIT_PROFILE_URL_ADMIN = HOST_URL + "Dashboards/Admin/AdminEditProfile.aspx";
 
@@ -149,6 +148,7 @@ namespace AiGrow
         public static string VIEW_PROFILE_URL_ACCOUNTANT = HOST_URL + "Dashboards/Accountant/AccountantProfile.aspx";
         public static string EDIT_PROFILE_URL_ACCOUNTANT = HOST_URL + "Dashboards/Accountant/AccountantEditProfile.aspx";
 
+
         //Identity Server Links
         public static string IS_PORT = AppFunction.ReadSetting("IdentityServerPort");
 
@@ -156,8 +156,9 @@ namespace AiGrow
 
         public static string CHECK_LOGIN_POST = HOST_URL_IDENTITY_SERVER + "LoginController.asmx/CheckLoginPOST";
         public static string CHECK_LOGIN_POST_JSON = HOST_URL_IDENTITY_SERVER + "LoginController.asmx/CheckLoginPOSTJSON";
+        public static string CHECK_LOGOUT_POST_JSON = HOST_URL_IDENTITY_SERVER + "LoginController.asmx/LogOut";
         public static string RESET_PASSWORD_JSON = HOST_URL_IDENTITY_SERVER + "DatabaseHandler.asmx/ResetPassword";
-        public static string ADD_CUSTOMER = HOST_URL_IDENTITY_SERVER + "UserController.asmx/AddCustomerJSON";
+        public static string ADD_CUSTOMER = HOST_URL_IDENTITY_SERVER + "UserController.asmx/AddUserJSON";
         public static string UPDATE_CUSTOMER = HOST_URL_IDENTITY_SERVER + "UserController.asmx/UpdateCustomerJSON";
         public static string UPDATE_CUSTOMER_ALL_FIELDS = HOST_URL_IDENTITY_SERVER + "UserController.asmx/UpdateCustomerAllFieldsJSON";
         public static string UPDATE_USER_IMAGE = HOST_URL_IDENTITY_SERVER + "UserController.asmx/UpdateUserImageJSON";

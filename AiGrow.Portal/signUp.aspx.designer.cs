@@ -310,15 +310,6 @@ namespace AiGrow.Portal {
         protected global::System.Web.UI.WebControls.TextBox id_txt_org_name;
         
         /// <summary>
-        /// id_txt_org_address control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox id_txt_org_address;
-        
-        /// <summary>
         /// idSubmitButton control.
         /// </summary>
         /// <remarks>

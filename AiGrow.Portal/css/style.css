@@ -1,6 +1,15 @@
 *, *:before, *:after {
-  box-sizing: border-box;
+   box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
+
+.alert{padding:15px;margin-bottom:20px;border:1px solid transparent;border-radius:4px}
+
+.alert-danger{color:#b94a48;background-color:#f2dede;border-color:#eed3d7}
+
+.alert-dismissable{padding-right:35px}
+
 
 html, body {
   height: 100%;
@@ -28,7 +37,6 @@ html, body {
 .login-icon-field {
   height: 250px;
   width: 100%;
-  background-color: red;
 }
 
 .login-icon {
@@ -85,6 +93,13 @@ html, body {
   animation: dash 3s .8s linear forwards;
 }
 
+input[type="checkbox"]{
+  width: 12px; /*Desired width*/
+  height: 12px; /*Desired height*/
+  cursor: pointer;
+  font-size: 10px;
+}
+
 input {
   position: absolute;
   width: 195px;
@@ -114,7 +129,7 @@ input::-moz-placeholder {
   /*background-color: blue;*/
 }
 
-button {
+#loginButton {
   display: block;
   width: 100px;
   height: 40px;
@@ -132,25 +147,39 @@ button {
   user-select:none;
 }
 
-button:hover {
+#loginButton:hover {
   background-color: #26d69a;
 }
 
-button:active {
+#loginButton:active {
   background-color: #0ab20d;
 }
+
+p.login__signup {
+    text-align:end;
+    }
 
 p {
   display: inline-block;
   width: 170px;
   margin: 0 40px;
-  font-size: .62rem;
-  color: rgba(255,255,255,.4);
+  font-size: 1rem;
+  color: rgba(255,255,255,.9);
   /*background-color: yellow;*/
+}
+
+.forgot {
+  margin: 10px 0;
+  height: 1px;
+  width: 100%;
+  text-align="end"
 }
 
 p a {
   color: #fff;
+}
+p a:hover{
+    color:rgba(255,255,255,.4)
 }
 
 label,

@@ -11,7 +11,8 @@ namespace AiGrow.Portal.Dashboards.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Master.FindControl("errorDiv").Visible = false;
+            Master.FindControl("successDiv").Visible = false;
         }
     }
 }

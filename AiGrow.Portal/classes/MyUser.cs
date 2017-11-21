@@ -257,6 +257,20 @@ namespace AiGrow
             return login;
         }
 
+        public static LoginResponse validateUserLogout(String login_id, String token)
+        {
+            RequestHandler post = new RequestHandler();
+            post.Url = Constants.CHECK_LOGOUT_POST_JSON;
+            post.PostItems.Add("loginID", login_id);
+            post.PostItems.Add("token", token);
+            post.Type = RequestHandler.PostTypeEnum.Post;
+            string result = post.Post();
+
+            LoginResponse login = new JavaScriptSerializer().Deserialize<LoginResponse>(result);
+
+            return login;
+        }
+
         public static string getValidString(ref MySqlDataReader myReader, string columnName)
         {
             string returnString = "";
@@ -317,7 +331,7 @@ namespace AiGrow
 
         public static string getProfileImageURL()
         {
-            string profile_pic_url = new BL_User().select(SessionHandler.getLoggedInUsername()).Rows[0]["profile_pic_url"].ToString();
+            string profile_pic_url = new BL_User().select(SessionHandler.getLoggedInUsername()).Rows[0]["profile_picture_url"].ToString();
             return (profile_pic_url == string.Empty || profile_pic_url == null) ? AppFunction.ReadSetting("DefaultProPicURL") : profile_pic_url;           
         }
 
@@ -376,7 +390,7 @@ namespace AiGrow
             String userID = null;
             try
             {
-                string sqlQuery = string.Format("SELECT `iduser` FROM `user` WHERE `username`='{0}'", username);
+                string sqlQuery = string.Format("SELECT `id_user` FROM `user` WHERE `username`='{0}'", username);
 
                 DBConnection myConnectionObject = new DBConnection();
                 MySqlConnection connection = myConnectionObject.getConnection(DBConnection.connectionString);
@@ -386,7 +400,7 @@ namespace AiGrow
 
                 while (myReader.Read())
                 {
-                    userID = myReader["iduser"].ToString();
+                    userID = myReader["id_user"].ToString();
                 }
 
                 myConnectionObject.closeConnection(ref connection);
