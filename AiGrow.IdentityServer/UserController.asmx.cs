@@ -549,7 +549,7 @@ namespace AiGrow.IdentityServer
 
         [WebMethod]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public void UpdateCustomerJSON(string userID, string password, string token, string gender, string title, string mobile, string email, string organizationAddress, string organizationName, string telephone, string lastName, string firstName, string country, string address, string picURL, string rfid = null)
+        public void UpdateCustomerJSON(string userID, string password, string token, string gender, string title, string mobile, string email, string organizationName, string telephone, string lastName, string firstName, string country, string address, string picURL)
         {
             BaseResponse returnObj = new BaseResponse();
 
@@ -650,7 +650,7 @@ namespace AiGrow.IdentityServer
                         gender = gender,
                         last_name = lastName,
                         mobile = mobile,
-                        organization_name = organizationAddress,
+                        organization_name = organizationName,
                         password = password.IsEmpty() ? null : password,
                         role_id = new AiGrow.Business.BL_User().getRoleID(UniversalProperties.AIGROW_CUSTOMER).Rows[0][0].ToString().ToInt(),
                         salt = password.IsEmpty() ? null : userSalt,

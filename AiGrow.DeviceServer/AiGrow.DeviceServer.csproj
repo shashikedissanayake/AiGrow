@@ -45,8 +45,9 @@
     <Reference Include="AWSSDK.IoT">
       <HintPath>..\..\MQTTAmazon\MQTTAmazon\bin\Debug\AWSSDK.IoT.dll</HintPath>
     </Reference>
-    <Reference Include="M2Mqtt.Net">
-      <HintPath>..\..\MQTTAmazon\MQTTAmazon\bin\Debug\M2Mqtt.Net.dll</HintPath>
+    <Reference Include="M2Mqtt.Net, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\M2Mqtt.4.3.0.0\lib\net45\M2Mqtt.Net.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp">
       <Private>True</Private>
