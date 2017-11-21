@@ -50,9 +50,6 @@
     <Reference Include="Microsoft.CSharp">
       <Private>True</Private>
     </Reference>
-    <Reference Include="MySql.Data">
-      <HintPath>..\..\vega\chargenet-master - Copy\chargeNET\bin\MySql.Data.dll</HintPath>
-    </Reference>
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.IdentityModel.Selectors" />
     <Reference Include="System.identitymodel.services" />
