@@ -13,6 +13,8 @@ using uPLibrary.Networking.M2Mqtt.Messages;
 using AiGrow.Model;
 using AiGrow.Business;
 using AiGrow.DeviceServer;
+using System.Web.Script.Services;
+using System.Web.Services;
 
 namespace AiGrow.DeviceServer
 {
@@ -59,6 +61,7 @@ namespace AiGrow.DeviceServer
             //}
 
         }
+
         public static void ClientMqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
             BaseResponse response = new BaseResponse();
@@ -79,8 +82,23 @@ namespace AiGrow.DeviceServer
                         else if (device_id == 1)
                         {
                             BaseDeviceRequest dataRequest = new JavaScriptSerializer().Deserialize<BaseDeviceRequest>(JSONMessage);
-                            new DatabaseUpdate().bayDeviceDataEntry(dataRequest);
+                            new DatabaseUpdate().greenhouseDeviceDataEntry(dataRequest);
+                            response.message = UniversalProperties.DATA_ENTERED_SUCCESSFULLY;
+                            response.success = true;
+                            response.errorMessage = "None";
+                            response.errorCode = -1;
                         }
+                        else if (device_id == 2)
+                        {
+                            BaseDeviceRequest dataRequest = new JavaScriptSerializer().Deserialize<BaseDeviceRequest>(JSONMessage);
+                            new DatabaseUpdate().bayDeviceDataEntry(dataRequest);
+                            response.message = UniversalProperties.DATA_ENTERED_SUCCESSFULLY;
+                            response.success = true;
+                            response.errorMessage = "None";
+                            response.errorCode = -1;
+                            HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(response));
+                        }
+
                         break;
 
                     case "registerGreenhouse":
@@ -123,10 +141,33 @@ namespace AiGrow.DeviceServer
             }
             catch (Exception ex)
             {
-
+                response.errorMessage = UniversalProperties.unknownError;
+                response.errorCode = UniversalProperties.EC_UnhandledError;
+                response.success = false;
             }
+            string responseJSON = new JavaScriptSerializer().Serialize(response);
+            Publish("/aigrow_common",responseJSON);
+        }
+        public static void Publish(string Topic, string content)
+        {
+            //convert to pfx using openssl - see confluence
+            //you'll need to add these two files to the project and copy them to the output (not included in source control deliberately!)
+
+            var client = new MqttClient(IotEndpoint, BrokerPort, true, caCert, clientCert, MqttSslProtocols.TLSv1_2);
+            //message to publish - could be anything
+            var message = "Insert your message here";
+            //client naming has to be unique if there was more than one publisher
+            client.Connect("clientid1");
+            //publish to the topic
+            client.Publish(Topic, Encoding.UTF8.GetBytes(content));
+            //this was in for debug purposes but it's useful to see something in the console
+            if (client.IsConnected)
+            {
+                Debug.WriteLine("SUCCESS!");
+            }
+            //wait so that we can see the outcome
+           
 
         }
-
     }
 }

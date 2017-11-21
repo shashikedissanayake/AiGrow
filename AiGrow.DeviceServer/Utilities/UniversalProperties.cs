@@ -25,6 +25,7 @@ namespace AiGrow.DeviceServer
         #endregion
 
         public const string SriLanka = "Sri Lanka";
+        public static string MySQLDateFormat = "yyyy-MM-dd HH:mm:ss";
 
         public const string passwordLengthInvalid = "The password length does not match the requirements.";
         public const string locationInsertedSuccessfully = "Location inserted successfully.";
@@ -119,6 +120,9 @@ namespace AiGrow.DeviceServer
         public static int bay_rack_level_line_device_data = 5;
 
         public static string UNKNOWN_COMPONENT = "Unknown Component.";
+
+        public static string DATA_ENTERED_SUCCESSFULLY = "Data Entered succesfully";
+
 
 
         #endregion

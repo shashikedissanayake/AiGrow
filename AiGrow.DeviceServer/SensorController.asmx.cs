@@ -31,8 +31,9 @@ namespace AiGrow.DeviceServer
         {
             BaseDeviceRequest request = new BaseDeviceRequest();
             request.data = "123";
-            request.deviceID = "G_001:B_001:BD_001";
+            request.deviceID = "G_001:GD_001";
             request.command = "dataEntry";
+            request.received_time = "2017-12-33 21:32:43";
             //List<BayRequest> baylist = new List<BayRequest>();
             //List<BayDeviceRequest> devicelist = new List<BayDeviceRequest>();
 

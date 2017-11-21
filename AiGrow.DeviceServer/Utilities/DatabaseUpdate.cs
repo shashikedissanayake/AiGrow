@@ -55,10 +55,28 @@ namespace AiGrow.DeviceServer
 
         public void bayDeviceDataEntry(BaseDeviceRequest data) {
             string device = (data.deviceID).getUniqueID();
+            DateTime t = DateTime.Now;
+            string time = t.ToString(UniversalProperties.MySQLDateFormat);
             new BL_BayDeviceData().insert(new ML_BayDeviceData()
             {
+                received_time = time,
                 device_unique_id = device,
-                data = data.data
+                data = data.data,
+                data_unit = data.data_unit
+            });
+        }
+
+        public void greenhouseDeviceDataEntry(BaseDeviceRequest data)
+        {
+            string device = (data.deviceID).getUniqueID();
+            DateTime t = DateTime.Now;
+            string time = t.ToString(UniversalProperties.MySQLDateFormat);
+            new BL_GreenhouseDeviceData().insert(new ML_GreenhouseDeviceData()
+            {
+                received_time = time,
+                device_unique_id = device,
+                data = data.data,
+                data_unit = data.data_unit
             });
         }
     }

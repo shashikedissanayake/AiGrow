@@ -31,10 +31,15 @@ namespace AiGrow.DeviceServer
                             break;
                         else
                             return -1;
+                    case "GD":
+                        if ((new AiGrow.Business.BL_GreenhouseDevice().doesDeviceExist(id)))
+                            return 1;
+                        else
+                            return -1;
 
                     case "BD":
                         if ((new AiGrow.Business.BL_BayDevice().doesDeviceExist(id)))
-                            return 1;
+                            return 2;
                         else
                             return -1;
 
