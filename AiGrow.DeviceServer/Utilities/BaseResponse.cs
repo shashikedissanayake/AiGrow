@@ -11,5 +11,6 @@ namespace AiGrow.DeviceServer
         public string message { get; set; }
         public string errorMessage { get; set; }
         public int errorCode { get; set; }
+        public string deviceID { get; set; }
     }
 }

@@ -97,6 +97,9 @@ namespace AiGrow.DeviceServer
         public const string ERROR_TEXT_USER_OR_CHARGE_POINT_NOT_ACTIVE = "Error. The charge point or user is not in active status.";
         public const string ERROR_TEXT_CHARGE_NETWORK_IS_PRIVATE = "Error. The network of the charge point is a private network.";
         public const string unknownError = "Undefined error occurred. Please contact the administrator.";
+        public const string bayNotRegsitered = "Bay registration error.";
+        public const string lineNotRegsitered = "Line registration error.";
+        public const string rackNotRegsitered = "Rack registration error.";
         public const string messageNotSent = "The SMS was not sent.";
         public const string invalidTransactionID = "The supplied transaction ID is invalid or malformed.";
         public const string duplicateStopRequest = "Duplicate stop request for a stopped transaction ID.";
@@ -122,9 +125,12 @@ namespace AiGrow.DeviceServer
         public static string UNKNOWN_COMPONENT = "Unknown Component.";
 
         public static string DATA_ENTERED_SUCCESSFULLY = "Data Entered succesfully";
-
-
-
+        public static string GREENHOUSE_REGISTERED_SUCCESSFULLY = "Greenhouse Regstered succesfully";
+        public static string BAY_REGISTERED_SUCCESSFULLY = "Bay Regstered succesfully";
+        public static string LINE_REGISTERED_SUCCESSFULLY = "Line Regstered succesfully";
+        public static string RACK_REGISTERED_SUCCESSFULLY = "Rack Regstered succesfully";
+        public static string DEVICE_REGISTERED_SUCCESSFULLY = "Device Regstered succesfully";
+        
         #endregion
 
 
@@ -193,6 +199,7 @@ namespace AiGrow.DeviceServer
         public const int EC_OperationSpecificError = 22;
         public const int EC_LocationUpdateFailed = 23;
         public const int EC_UnknownComponent = 24;
+        public const int EC_RegistrationError = 23;
 
         #endregion
 

@@ -52,7 +52,18 @@ namespace AiGrow.DeviceServer
                 });
             }
         }
+        public void registerBayRack(BayRackRequest bayRack)
+        {
 
+            if (!(new AiGrow.Business.BL_BayRack().doesBayRackExist(bayRack.bay_rack_unique_id)))
+            {
+                new BL_BayRack().insert(new ML_BayRack()
+                {
+                   bay_id = bayRack.bay_id,
+                   rack_unique_id = bayRack.bay_rack_unique_id
+                });
+            }
+        }
         public void bayDeviceDataEntry(BaseDeviceRequest data) {
             string device = (data.deviceID).getUniqueID();
             DateTime t = DateTime.Now;
@@ -78,6 +89,36 @@ namespace AiGrow.DeviceServer
                 data = data.data,
                 data_unit = data.data_unit
             });
+        }
+        public void bayLineDeviceDataEntry(BaseDeviceRequest data)
+        {
+            string device = (data.deviceID).getUniqueID();
+            DateTime t = DateTime.Now;
+            string time = t.ToString(UniversalProperties.MySQLDateFormat);
+            new BL_BayLineDeviceData().insert(new ML_BayLineDeviceData()
+            {
+                received_time = time,
+                device_unique_id = device,
+                data = data.data,
+                data_unit = data.data_unit
+            });
+        }
+        public void registerBayLineDevice(BayLineDeviceRequest bayLineDevice)
+        {
+
+            if (!(new AiGrow.Business.BL_BayLineDevice().doesDeviceExist(bayLineDevice.bay_line_device_unique_id)))
+            {
+                new BL_BayLineDevice().insert(new ML_BayLineDevice()
+                {
+                    bay_line_device_unique_id = bayLineDevice.bay_line_device_unique_id,
+                    bay_line_device_name = bayLineDevice.bay_line_device_name,
+                    default_unit = bayLineDevice.default_unit,
+                    device_type = bayLineDevice.device_type,
+                    io_type = bayLineDevice.io_type,
+                    line_id = bayLineDevice.bay_line_id,
+                    status = bayLineDevice.status
+                });
+            }
         }
     }
 }

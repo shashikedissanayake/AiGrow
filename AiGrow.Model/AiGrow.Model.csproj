@@ -58,6 +58,8 @@
     <Compile Include="ML_BayDeviceData.cs" />
     <Compile Include="ML_BayLine.cs" />
     <Compile Include="ML_BayLineDevice.cs" />
+    <Compile Include="ML_BayLineDeviceData.cs" />
+    <Compile Include="ML_BayRack.cs" />
     <Compile Include="ML_Greenhouse.cs" />
     <Compile Include="ML_GreenhouseDevice.cs" />
     <Compile Include="ML_GreenhouseDeviceData.cs" />

@@ -31,6 +31,11 @@ namespace AiGrow.DeviceServer
                             break;
                         else
                             return -1;
+                    case "BL":
+                        if ((new AiGrow.Business.BL_BayLine().doesBayLineExist(id)))
+                            break;
+                        else
+                            return -1;
                     case "GD":
                         if ((new AiGrow.Business.BL_GreenhouseDevice().doesDeviceExist(id)))
                             return 1;
@@ -40,6 +45,11 @@ namespace AiGrow.DeviceServer
                     case "BD":
                         if ((new AiGrow.Business.BL_BayDevice().doesDeviceExist(id)))
                             return 2;
+                        else
+                            return -1;
+                    case "BLD":
+                        if ((new AiGrow.Business.BL_BayLineDevice().doesDeviceExist(id)))
+                            return 3;
                         else
                             return -1;
 

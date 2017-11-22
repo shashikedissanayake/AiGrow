@@ -120,7 +120,7 @@ namespace AiGrow.DeviceServer
                     {
                         returnObj.success = false;
                         returnObj.errorMessage = UniversalProperties.locationUpdateFailed;
-                        returnObj.errorCode = UniversalProperties.EC_LocationUpdateFailed;
+                        returnObj.errorCode = UniversalProperties.EC_RegistrationError;
                     }
                     #endregion
                 }

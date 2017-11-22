@@ -21,7 +21,7 @@ namespace AiGrow.Data
             para[5] = new MySqlParameter("@status", device.status);
             para[6] = new MySqlParameter("@units", device.default_unit);
 
-            return MySQLHelper.ExecuteNonQuery(DBConnection.connectionString, CommandType.Text, "INSERT INTO bay_device (bay_device_unique_id, bay_device_name, device_type, io_type, bay_id, default_unit, status) VALUES (@device_unique_id, @device_name, @device_type, @io_type, 1, @units, @status);", para) != -1;
+            return MySQLHelper.ExecuteNonQuery(DBConnection.connectionString, CommandType.Text, "INSERT INTO bay_device (bay_device_unique_id, bay_device_name, device_type, io_type, bay_id, default_unit, status) VALUES (@device_unique_id, @device_name, @device_type, @io_type, @bay_id, @units, @status);", para) != -1;
         }
         public bool doesDeviceExist(string device)
         {

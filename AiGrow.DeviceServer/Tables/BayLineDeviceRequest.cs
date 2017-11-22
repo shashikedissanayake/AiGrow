@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace AiGrow.Model
+namespace AiGrow.DeviceServer
 {
-    public class ML_BayLineDevice
+    public class BayLineDeviceRequest : BaseRequest
     {
         public string bay_line_device_unique_id { get; set; }
         public string bay_line_device_name { get; set; }
@@ -15,7 +14,6 @@ namespace AiGrow.Model
         public string default_unit { get; set; }
         public string status { get; set; }
         public int device_id { get; set; }
-        public int line_id { get; set; }
-
+        public int bay_line_id { get; set; }
     }
 }

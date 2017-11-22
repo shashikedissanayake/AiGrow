@@ -28,6 +28,7 @@ namespace AiGrow.DeviceServer
         /// This is the default TLS1.2 port that AWS IoT uses
         /// </summary>
         private const int BrokerPort = 8883;
+        //D:\visual studio\MQTTAmazon\MQTTAmazon\certificates
         static X509Certificate caCert = X509Certificate.CreateFromSignedFile(@"D:\visual studio\MQTTAmazon\MQTTAmazon\certificates\VeriSign-Class 3-Public-Primary-Certification-Authority-G5.pem");
 
         //convert to pfx using openssl
@@ -66,9 +67,15 @@ namespace AiGrow.DeviceServer
         {
             BaseResponse response = new BaseResponse();
             string JSONMessage = System.Text.Encoding.UTF8.GetString(e.Message);
+
             try
             {
                 BaseRequest request = new JavaScriptSerializer().Deserialize<BaseRequest>(JSONMessage);
+                if (request.command == null)
+                {
+                    return;
+                }
+
                 switch (request.command)
                 {
                     case "dataEntry":
@@ -85,8 +92,7 @@ namespace AiGrow.DeviceServer
                             new DatabaseUpdate().greenhouseDeviceDataEntry(dataRequest);
                             response.message = UniversalProperties.DATA_ENTERED_SUCCESSFULLY;
                             response.success = true;
-                            response.errorMessage = "None";
-                            response.errorCode = -1;
+                            response.deviceID = dataRequest.deviceID;
                         }
                         else if (device_id == 2)
                         {
@@ -94,9 +100,15 @@ namespace AiGrow.DeviceServer
                             new DatabaseUpdate().bayDeviceDataEntry(dataRequest);
                             response.message = UniversalProperties.DATA_ENTERED_SUCCESSFULLY;
                             response.success = true;
-                            response.errorMessage = "None";
-                            response.errorCode = -1;
-                            HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(response));
+                            response.deviceID = dataRequest.deviceID;
+                        }
+                        else if (device_id == 3)
+                        {
+                            BaseDeviceRequest dataRequest = new JavaScriptSerializer().Deserialize<BaseDeviceRequest>(JSONMessage);
+                            new DatabaseUpdate().bayLineDeviceDataEntry(dataRequest);
+                            response.message = UniversalProperties.DATA_ENTERED_SUCCESSFULLY;
+                            response.success = true;
+                            response.deviceID = dataRequest.deviceID;
                         }
 
                         break;
@@ -104,34 +116,84 @@ namespace AiGrow.DeviceServer
                     case "registerGreenhouse":
 
                         GreenhouseRequest gr = new JavaScriptSerializer().Deserialize<GreenhouseRequest>(JSONMessage);
-                        List<BayRequest> bays = gr.listOfBays;
 
-                        foreach (BayRequest bay in bays)
+                        foreach (BayRequest bay in gr.listOfBays)
                         {
-                            new DatabaseUpdate().registerBay(bay);
-
-                            List<BayDeviceRequest> devices = bay.listOfBayDevices;
-                            foreach (BayDeviceRequest device in devices)
+                            bool registered = new RegisterComponent().registerBay(bay);
+                            if (!registered)
                             {
-                                new DatabaseUpdate().registerBayDevice(device);
+                                response.errorMessage = UniversalProperties.bayNotRegsitered;
+                                response.errorCode = UniversalProperties.EC_RegistrationError;
+                                response.success = false;
+                                break;
                             }
                         }
+                        response.message = UniversalProperties.GREENHOUSE_REGISTERED_SUCCESSFULLY;
+                        response.success = true;
+                        response.deviceID = gr.deviceID;
+                        break;
+
+                    case "registerBay":
+                        BayRequest bayRequest = new JavaScriptSerializer().Deserialize<BayRequest>(JSONMessage);
+                        bool bayRegistered = new RegisterComponent().registerBay(bayRequest);
+                        if (!bayRegistered)
+                        {
+                            response.errorMessage = UniversalProperties.bayNotRegsitered;
+                            response.errorCode = UniversalProperties.EC_RegistrationError;
+                            response.success = false;
+                            break;
+                        }
+                        response.message = UniversalProperties.BAY_REGISTERED_SUCCESSFULLY;
+                        response.success = true;
+                        response.deviceID = bayRequest.bay_unique_id;
                         break;
 
                     case "registerBayDevice":
                         BayDeviceRequest bayDevice = new JavaScriptSerializer().Deserialize<BayDeviceRequest>(JSONMessage);
                         new DatabaseUpdate().registerBayDevice(bayDevice);
-                        break;
-
-                    case "registerBay":
-                        BayRequest bayRequest = new JavaScriptSerializer().Deserialize<BayRequest>(JSONMessage);
-                        new DatabaseUpdate().registerBay(bayRequest);
+                        response.message = UniversalProperties.DEVICE_REGISTERED_SUCCESSFULLY;
+                        response.success = true;
+                        response.deviceID = bayDevice.bay_device_unique_id;
                         break;
 
                     case "registerBayLine":
                         BayLineRequest bayLine = new JavaScriptSerializer().Deserialize<BayLineRequest>(JSONMessage);
-                        new DatabaseUpdate().registerBayLine(bayLine);
+                        bool lineRegistered = new RegisterComponent().registerBayLine(bayLine);
+                        if (!lineRegistered)
+                        {
+                            response.errorMessage = UniversalProperties.lineNotRegsitered;
+                            response.errorCode = UniversalProperties.EC_RegistrationError;
+                            response.success = false;
+                            break;
+                        }
+                        response.message = UniversalProperties.LINE_REGISTERED_SUCCESSFULLY;
+                        response.success = true;
+                        response.deviceID = bayLine.bay_line_unique_id;
                         break;
+
+                    case "registerBayLineDevice":
+                        BayLineDeviceRequest bayLineDevice = new JavaScriptSerializer().Deserialize<BayLineDeviceRequest>(JSONMessage);
+                        new DatabaseUpdate().registerBayLineDevice(bayLineDevice);
+                        response.message = UniversalProperties.DEVICE_REGISTERED_SUCCESSFULLY;
+                        response.success = true;
+                        response.deviceID = bayLineDevice.bay_line_device_unique_id;
+                        break;
+
+                    case "registerBayRack":
+                        BayRackRequest bayRack = new JavaScriptSerializer().Deserialize<BayRackRequest>(JSONMessage);
+                        bool rackRegistered = new RegisterComponent().registerBayRack(bayRack);
+                        if (!rackRegistered)
+                        {
+                            response.errorMessage = UniversalProperties.rackNotRegsitered;
+                            response.errorCode = UniversalProperties.EC_RegistrationError;
+                            response.success = false;
+                            break;
+                        }  
+                        response.message = UniversalProperties.RACK_REGISTERED_SUCCESSFULLY;
+                        response.success = true;
+                        response.deviceID = bayRack.bay_rack_unique_id;
+                        break;
+
 
                     //*****************************USE DEVICE ENTRY FOR ALL OTHER QUERIES***********************
 
@@ -139,14 +201,14 @@ namespace AiGrow.DeviceServer
                         break;
                 }
             }
-            catch (Exception ex)
+            catch 
             {
                 response.errorMessage = UniversalProperties.unknownError;
                 response.errorCode = UniversalProperties.EC_UnhandledError;
                 response.success = false;
             }
             string responseJSON = new JavaScriptSerializer().Serialize(response);
-            Publish("/aigrow_common",responseJSON);
+            Publish("/aigrow_common", responseJSON);
         }
         public static void Publish(string Topic, string content)
         {
@@ -166,7 +228,7 @@ namespace AiGrow.DeviceServer
                 Debug.WriteLine("SUCCESS!");
             }
             //wait so that we can see the outcome
-           
+
 
         }
     }
