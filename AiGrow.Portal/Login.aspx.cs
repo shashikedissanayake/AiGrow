@@ -110,7 +110,7 @@ namespace AiGrow.Portal
                         }
                     }
                 }
-                catch (Exception ex)
+                catch 
                 {
                     Response.Redirect(string.Format("{0}?error={1}&token={2}", Constants.LOGIN_URL, Messages.undefinedError, Encryption.createSHA1(Messages.undefinedError)), false);
                 }

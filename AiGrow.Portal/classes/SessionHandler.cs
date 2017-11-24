@@ -24,7 +24,7 @@ namespace AiGrow
                 HttpContext.Current.Session["userID"] = userID.Trim();
                 HttpContext.Current.Session["loginID"] = loginID.Trim();
             }
-            catch (Exception ex)
+            catch 
             {
 
             }
@@ -47,7 +47,7 @@ namespace AiGrow
                 }
 
             }
-            catch (Exception ex)
+            catch 
             {
                 return false;
             }
@@ -85,7 +85,7 @@ namespace AiGrow
                     return true;
                 }
             }
-            catch (Exception ex)
+            catch 
             {
                 return false;
             }
@@ -105,7 +105,7 @@ namespace AiGrow
                     return true;
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 return false;
             }
@@ -145,7 +145,7 @@ namespace AiGrow
                     return true;
                 }
             }
-            catch (Exception ex)
+            catch 
             {
                 return false;
             }

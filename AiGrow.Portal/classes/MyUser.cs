@@ -100,7 +100,6 @@ namespace AiGrow
             get { return address; }
             set { address = value; }
         }
-        int roleID;
 
         String gender;
 

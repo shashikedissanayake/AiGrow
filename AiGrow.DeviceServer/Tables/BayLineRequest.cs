@@ -8,7 +8,6 @@ namespace AiGrow.DeviceServer
     public class BayLineRequest : BaseRequest
     {
         public string bay_line_unique_id { get; set; }
-        public int line_id { get; set; }
         public int bay_id { get; set; }
         public List<BayLineDeviceRequest> listOfBayLineDevices { get; set; }
     }

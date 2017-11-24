@@ -85,7 +85,7 @@ namespace AiGrow.IdentityServer
                 HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(returnObj));
                 return;
             }
-            catch (Exception ex)
+            catch 
             {
                 returnObj.success = false;
                 returnObj.errorMessage = UniversalProperties.unhandledError;

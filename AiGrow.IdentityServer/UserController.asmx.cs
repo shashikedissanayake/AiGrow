@@ -681,7 +681,7 @@ namespace AiGrow.IdentityServer
                 HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(returnObj));
                 return;
             }
-            catch (System.Exception ex)
+            catch
             {
                 returnObj.success = false;
                 returnObj.errorMessage = UniversalProperties.unhandledError;
@@ -825,7 +825,7 @@ namespace AiGrow.IdentityServer
                 HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(returnObj));
                 return;
             }
-            catch (System.Exception ex)
+            catch
             {
                 returnObj.success = false;
                 returnObj.errorMessage = UniversalProperties.unhandledError;
@@ -911,7 +911,7 @@ namespace AiGrow.IdentityServer
                 HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(returnObj));
                 return;
             }
-            catch (Exception e)
+            catch 
             {
                 returnObj.success = false;
                 returnObj.errorMessage = UniversalProperties.unhandledError;
@@ -942,7 +942,7 @@ namespace AiGrow.IdentityServer
                 HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(returnObj));
                 return;
             }
-            catch (Exception e)
+            catch 
             {
                 returnObj.success = false;
                 returnObj.errorMessage = UniversalProperties.unhandledError;
@@ -990,7 +990,7 @@ namespace AiGrow.IdentityServer
                 HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(returnObj));
                 return;
             }
-            catch (Exception e)
+            catch 
             {
                 returnObj.success = false;
                 returnObj.errorMessage = UniversalProperties.unhandledError;
@@ -1056,7 +1056,7 @@ namespace AiGrow.IdentityServer
                 return;
 
             }
-            catch (Exception e)
+            catch 
             {
                 returnObj.success = false;
                 returnObj.errorMessage = UniversalProperties.unhandledError;

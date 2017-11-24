@@ -15,16 +15,19 @@ namespace AiGrow.DeviceServer
 
                 foreach (BayDeviceRequest device in bay.listOfBayDevices)
                 {
+                    device.requestID = bay.requestID;
                     new DatabaseUpdate().registerBayDevice(device);
                 }
 
                 foreach (BayLineRequest line in bay.listOfBayLines)
                 {
+                    line.requestID = bay.requestID;
                     registerBayLine(line);
                 }
 
                 foreach (BayRackRequest rack in bay.listOfBayRacks)
                 {
+                    rack.requestID = bay.requestID;
                     registerBayRack(rack);
                 }
             }
@@ -43,6 +46,7 @@ namespace AiGrow.DeviceServer
 
                 foreach (BayLineDeviceRequest device in line.listOfBayLineDevices)
                 {
+                    device.requestID = line.requestID;
                     new DatabaseUpdate().registerBayLineDevice(device);
                 }
             }
@@ -58,6 +62,12 @@ namespace AiGrow.DeviceServer
             try
             {
                 new DatabaseUpdate().registerBayRack(rack);
+
+                foreach (BayRackDeviceRequest device in rack.listOfRackDevices)
+                {
+                    device.requestID = rack.requestID;
+                    new DatabaseUpdate().registerBayRackDevice(device);
+                }
             }
             catch
             {

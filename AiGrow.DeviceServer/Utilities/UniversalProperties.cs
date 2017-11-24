@@ -116,6 +116,18 @@ namespace AiGrow.DeviceServer
 
         #region Data Table Constants
 
+        public const string MQTT_topic = "/aigrow_common";
+
+        public const string data = "dataEntry";
+        public const string greenhouse = "registerGreenhouse";
+        public const string greenhouseDevice = "registerGreenhouseDevice";
+        public const string bay = "registerBay";
+        public const string bayDevice = "registerBayDevice";
+        public const string bayLine = "registerBayLine";
+        public const string bayLineDevice = "registerBayLineDevice";
+        public const string bayRack = "registerBayRack";
+        public const string bayRackDevice = "registerBayRackDevice";
+
         public static int bay_device_data = 1;
         public static int bay_line_device_data = 2;
         public static int bay_rack_device_data = 3;
@@ -125,11 +137,19 @@ namespace AiGrow.DeviceServer
         public static string UNKNOWN_COMPONENT = "Unknown Component.";
 
         public static string DATA_ENTERED_SUCCESSFULLY = "Data Entered succesfully";
-        public static string GREENHOUSE_REGISTERED_SUCCESSFULLY = "Greenhouse Regstered succesfully";
-        public static string BAY_REGISTERED_SUCCESSFULLY = "Bay Regstered succesfully";
-        public static string LINE_REGISTERED_SUCCESSFULLY = "Line Regstered succesfully";
-        public static string RACK_REGISTERED_SUCCESSFULLY = "Rack Regstered succesfully";
-        public static string DEVICE_REGISTERED_SUCCESSFULLY = "Device Regstered succesfully";
+        public static string GREENHOUSE_REGISTERED_SUCCESSFULLY = "Greenhouse Registered succesfully";
+        public static string BAY_REGISTERED_SUCCESSFULLY = "Bay Registered succesfully";
+        public static string LINE_REGISTERED_SUCCESSFULLY = "Line Registered succesfully";
+        public static string RACK_REGISTERED_SUCCESSFULLY = "Rack Registered succesfully";
+        public static string DEVICE_REGISTERED_SUCCESSFULLY = "Device Registered succesfully";
+
+        public static string DUPLICATE_BAY = "Bay Already Exists";
+        public static string DUPLICATE_BAY_DEVICE = "Bay Device Already Exists";
+        public static string DUPLICATE_BAY_RACK_DEVICE = "Bay Rack Device Already Exists";
+        public static string DUPLICATE_GREENHOUSE_DEVICE = "Greenhouse Device Already Exists";
+        public static string DUPLICATE_BAY_LINE = "Bay Line Already Exists";
+        public static string DUPLICATE_BAY_RACK = "Bay Rack Already Exists";
+        public static string DUPLICATE_BAY_LINE_DEVICE = "Bay Line Device Already Exists";
         
         #endregion
 

@@ -9,6 +9,7 @@ namespace AiGrow.DeviceServer
     public class GreenhouseRequest : BaseRequest
     {
         public List<BayRequest> listOfBays { get; set; }
+        public List<GreenhouseDeviceRequest> listOfDevices { get; set; }
 
     }
 }

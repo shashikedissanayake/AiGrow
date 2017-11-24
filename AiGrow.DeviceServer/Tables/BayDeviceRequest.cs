@@ -13,7 +13,6 @@ namespace AiGrow.DeviceServer
         public string io_type { get; set; }
         public string default_unit { get; set; }
         public string status { get; set; }
-        public int device_id { get; set; }
         public int bay_id { get; set; }
     }
 }

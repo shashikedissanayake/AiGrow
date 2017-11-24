@@ -52,6 +52,17 @@ namespace AiGrow.DeviceServer
                             return 3;
                         else
                             return -1;
+                    case "BR":
+                        if ((new AiGrow.Business.BL_BayRack().doesBayRackExist(id)))
+                            break;
+                        else
+                            return -1;
+                    case "BRD":
+                        if ((new AiGrow.Business.BL_BayRackDevice().doesDeviceExist(id)))
+                            return 4;
+                        else
+                            return -1;
+
 
                     //case "BLD":
                     //    break;
