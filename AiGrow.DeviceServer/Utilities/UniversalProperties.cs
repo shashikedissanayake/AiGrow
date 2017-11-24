@@ -128,11 +128,12 @@ namespace AiGrow.DeviceServer
         public const string bayRack = "registerBayRack";
         public const string bayRackDevice = "registerBayRackDevice";
 
-        public static int bay_device_data = 1;
-        public static int bay_line_device_data = 2;
-        public static int bay_rack_device_data = 3;
-        public static int bay_rack_level_device_data = 4;
-        public static int bay_rack_level_line_device_data = 5;
+        public static int greenhouse_device = 1;
+        public static int bay_device = 2;
+        public static int bay_line_device = 3;
+        public static int bay_rack_device = 4;
+        public static int bay_rack_level_device_data = 5;
+        public static int bay_rack_level_line_device_data = 6;
 
         public static string UNKNOWN_COMPONENT = "Unknown Component.";
 

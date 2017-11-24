@@ -79,6 +79,7 @@
     <Reference Include="System.Web.Extensions">
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq">
       <Private>True</Private>
     </Reference>
@@ -106,6 +107,7 @@
     <Content Include="070bf213e6-certificate.pem.pfx" />
     <None Include="Properties\PublishProfiles\AmazonLive.pubxml" />
     <Content Include="VeriSign-Class 3-Public-Primary-Certification-Authority-G5.pem" />
+    <None Include="Properties\PublishProfiles\local_server.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

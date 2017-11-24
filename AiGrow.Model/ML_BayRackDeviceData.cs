@@ -10,9 +10,9 @@ namespace AiGrow.Model
     {
         public string data { get; set; }
         public string data_unit { get; set; }
-        public DateTime received_time { get; set; }
+        public string received_time { get; set; }
         public int data_id { get; set; }
         public int device_id { get; set; }
-
+        public string device_unique_id { get; set; }
     }
 }

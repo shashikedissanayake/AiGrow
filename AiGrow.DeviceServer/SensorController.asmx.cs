@@ -29,11 +29,11 @@ namespace AiGrow.DeviceServer
         [ScriptMethod(UseHttpGet = true, ResponseFormat = ResponseFormat.Json)]
         public void GetDeviceJSONTest()
         {
-            BaseDeviceRequest request = new BaseDeviceRequest();
-            request.data = "12345";
-            request.deviceID = "G_001:GD_002";
-            request.command = "dataEntry";
-
+            //BaseDeviceRequest request = new BaseDeviceRequest();
+            //request.data = "12345";
+            //request.deviceID = "G_001:B_002:BR_002:BRD_001";
+            //request.command = "dataEntry";
+            //request.requestID = "0000002";
             ////request.received_time = "2017-12-33 21:32:43";
 
             //List<BayRequest> baylist1 = new List<BayRequest>();
@@ -57,15 +57,15 @@ namespace AiGrow.DeviceServer
             //BayLineRequest blr2 = new BayLineRequest();
             //BayRackRequest brr1 = new BayRackRequest();
             //BayRackRequest brr2 = new BayRackRequest();
-            //BayRackDeviceRequest brdr1 = new BayRackDeviceRequest();
+            BayRackDeviceRequest brdr1 = new BayRackDeviceRequest();
 
-            //brdr1.command = "registerBayRackDevice";
-            //brdr1.default_unit = "zxc";
-            //brdr1.device_type = "pump";
-            //brdr1.device_unique_id = "BRD_001";
-            //brdr1.io_type = "out";
-            //brdr1.rack_id = 1;
-            //brdr1.status = "active";
+            brdr1.command = "registerBayRackDevice";
+            brdr1.default_unit = "zxc";
+            brdr1.device_type = "pump";
+            brdr1.device_unique_id = "BRD_002";
+            brdr1.io_type = "out";
+            brdr1.rack_id = 1;
+            brdr1.status = "active";
             //bayRackDevicelist1.Add(brdr1);
 
             //gdr1.greenhouse_device_unique_id = "GD_004";
@@ -174,7 +174,7 @@ namespace AiGrow.DeviceServer
             //gr1.listOfDevices = grDevicelist1;
             //gr1.requestID = "000001";
 
-            HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(request));
+            HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(brdr1));
         }
 
         [WebMethod]
