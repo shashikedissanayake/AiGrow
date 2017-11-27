@@ -28,11 +28,11 @@ namespace AiGrow.DeviceServer
         /// This is the default TLS1.2 port that AWS IoT uses
         /// </summary>
         private const int BrokerPort = 8883;
-        static X509Certificate caCert = X509Certificate.CreateFromSignedFile(@"D:\visual studio\MQTTAmazon\MQTTAmazon\certificates\VeriSign-Class 3-Public-Primary-Certification-Authority-G5.pem");
+        static X509Certificate caCert = X509Certificate.CreateFromSignedFile(@"E:\vega\AiGrow\VeriSign-Class 3-Public-Primary-Certification-Authority-G5.pem");
 
         //convert to pfx using openssl
         //you'll need to add these two files to the project and copy them to the output
-        static X509Certificate2 clientCert = new X509Certificate2(@"D:\visual studio\MQTTAmazon\MQTTAmazon\certificates\070bf213e6-certificate.pem.pfx", "");
+        static X509Certificate2 clientCert = new X509Certificate2(@"E:\vega\AiGrow\070bf213e6-certificate.pem.pfx", "");
         /// <summary>
         /// Just build it and run it up from the bin folder before you publish a message using the publisher
         /// </summary>
@@ -96,7 +96,7 @@ namespace AiGrow.DeviceServer
                             response.success = true;
                             response.errorMessage = "None";
                             response.errorCode = -1;
-                            HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(response));
+                        
                         }
 
                         break;

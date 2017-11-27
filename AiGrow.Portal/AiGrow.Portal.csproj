@@ -45,6 +45,7 @@
     <Reference Include="DevExpress.Printing.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.RichEdit.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Web.ASPxThemes.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Web.Bootstrap.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Web.Resources.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp">
@@ -214,6 +215,7 @@
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\error-css.css" />
     <Content Include="css\style.css" />
+    <Content Include="Dashboards\Admin\AdminEditGreenHouse.aspx" />
     <Content Include="Dashboards\Admin\AdminEditProfile.aspx" />
     <Content Include="Dashboards\Admin\AdminGreenHouses.aspx" />
     <Content Include="Dashboards\Admin\AdminProfile.aspx" />
@@ -7490,6 +7492,13 @@
     </Compile>
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboards\Admin\AdminEditGreenHouse.aspx.cs">
+      <DependentUpon>AdminEditGreenHouse.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboards\Admin\AdminEditGreenHouse.aspx.designer.cs">
+      <DependentUpon>AdminEditGreenHouse.aspx</DependentUpon>
     </Compile>
     <Compile Include="Dashboards\Admin\AdminEditProfile.aspx.cs">
       <DependentUpon>AdminEditProfile.aspx</DependentUpon>

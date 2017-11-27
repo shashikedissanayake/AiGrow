@@ -77,7 +77,7 @@
                         </tbody>
                     </table>
                     <div class="form-group" style="text-align: center">
-                        <a href="AdminEditProfile.aspx">
+                        <a href="<% Response.Write(AiGrow.Constants.EDIT_PROFILE_URL_ADMIN);%>">
                             <button type="button" id="idSubmitButton" class="submit btn btn-info">Edit Profile</button></a>
                     </div>
                 </div>

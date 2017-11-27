@@ -1,6 +1,7 @@
 ﻿using AiGrow.Business;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -18,7 +19,18 @@ namespace AiGrow.Portal.Dashboards.Admin
             {
                 gridGetDataSet();
                 gvNetworks.DataBind();
+                selectGreenHouses_DataBinding();
             }
+        }
+
+        private void selectGreenHouses_DataBinding()
+        {
+            DataTable dt_owner_user_names = new BL_Greenhouse().selectAllGreenhouses();
+            //Map the list to the username list box.
+            selectGreenHouses.DataSource = dt_owner_user_names;
+            selectGreenHouses.DataValueField = "greenhouse_unique_id";
+            selectGreenHouses.DataTextField = "greenhouse_name";
+            selectGreenHouses.DataBind();
         }
 
         protected void gvNetworks_DataBinding(object sender, EventArgs e)
@@ -29,6 +41,11 @@ namespace AiGrow.Portal.Dashboards.Admin
         private void gridGetDataSet()
         {
             gvNetworks.DataSource = new BL_GreenHouses().select();
+
+        }
+
+        protected void addNewgreenhouse(object sender, EventArgs e)
+        {
 
         }
     }

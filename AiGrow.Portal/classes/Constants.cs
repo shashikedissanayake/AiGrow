@@ -89,9 +89,10 @@ namespace AiGrow
         public static string REGISTER_URL = HOST_URL + "signUp.aspx";
 
         //Admin Dashboard Links
-        public static String ADMIN_DASHBOARD_CHG_NETWORKS_EDIT = HOST_URL + "Dashboards/Admin/AdminEditNetwork.aspx";
-        public static String ADMIN_DASHBOARD_CHG_NETWORKS_DELETE = HOST_URL + "Dashboards/Admin/AdminDeleteNetwork.aspx";
-        public static String ADMIN_DASHBOARD_CHG_NETWORKS = HOST_URL + "Dashboards/Admin/AdminNetworks.aspx";
+        public static String ADMIN_DASHBOARD_GREEN_HOUSE_EDIT = HOST_URL + "Dashboards/Admin/AdminEditGreenHouse.aspx";
+        public static String ADMIN_DASHBOARD_GREEN_HOUSE_DELETE = HOST_URL + "Dashboards/Admin/AdminDeleteNetwork.aspx";   
+        public static String ADMIN_DASHBOARD_GREEN_HOUSE = HOST_URL + "/Dashboards/Admin/AdminGreenHouses.aspx";
+       
         public static String ADMIN_DASHBOARD_CHG_POINTS = HOST_URL + "Dashboards/Admin/AdminPoints.aspx";
         public static String ADMIN_DASHBOARD_CHG_POINTS_DELETE = HOST_URL + "Dashboards/Admin/AdminDeletePoint.aspx";
         public static String ADMIN_DASHBOARD_CHG_CUSTOMERS_DELETE = HOST_URL + "Dashboards/Admin/AdminDeleteCustomer.aspx";
@@ -120,8 +121,8 @@ namespace AiGrow
         public static string ADMIN_DASHBOARD_VIEW_NETWORK = HOST_URL + "Dashboards/Admin/AdminViewNetwork.aspx";
         public static string ADMIN_DASHBOARD_CHG_POINT_OWNERS_EDIT = HOST_URL + "Dashboards/Admin/AdminEditPointOwner.aspx";
         public static string ADMIN_DASHBOARD_CHG_NETWORK_OWNERS_EDIT = HOST_URL + "Dashboards/Admin/AdminEditNetworkOwner.aspx";
-        public static string VIEW_PROFILE_URL_ADMIN = HOST_URL + "Dashboards/Admin/AdminProfile.aspx";
-        public static string EDIT_PROFILE_URL_ADMIN = HOST_URL + "Dashboards/Admin/AdminEditProfile.aspx";
+        public static string VIEW_PROFILE_URL_ADMIN = HOST_URL + "/Dashboards/Admin/AdminProfile.aspx";
+        public static string EDIT_PROFILE_URL_ADMIN = HOST_URL + "/Dashboards/Admin/AdminEditProfile.aspx";
 
         //Customer Dashboard Links
         public static string VIEW_PROFILE_URL_CUSTOMER = HOST_URL + "Dashboards/Customer/CustomerProfile.aspx";

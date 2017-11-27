@@ -13,6 +13,15 @@ namespace AiGrow.Portal.Dashboards.Admin {
     public partial class AdminGreenHouses {
         
         /// <summary>
+        /// addNewghButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton addNewghButton;
+        
+        /// <summary>
         /// gvNetworks control.
         /// </summary>
         /// <remarks>
@@ -20,5 +29,23 @@ namespace AiGrow.Portal.Dashboards.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DevExpress.Web.ASPxGridView gvNetworks;
+        
+        /// <summary>
+        /// DropDownList1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        
+        /// <summary>
+        /// selectGreenHouses control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList selectGreenHouses;
     }
 }
