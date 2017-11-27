@@ -80,7 +80,7 @@ namespace AiGrow.Classes
                 };
                 client.Send(emailMessage);
             }
-            catch (System.Exception ex)
+            catch 
             {
                 
                 //throw;

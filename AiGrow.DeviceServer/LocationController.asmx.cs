@@ -50,7 +50,7 @@ namespace AiGrow.DeviceServer
                     response.errorMessage = UniversalProperties.invalidRequest;
                 }
             }
-            catch (Exception ex)
+            catch 
             {
                 response.success = false;
                 response.errorCode = UniversalProperties.EC_UnhandledError;
@@ -120,7 +120,7 @@ namespace AiGrow.DeviceServer
                     {
                         returnObj.success = false;
                         returnObj.errorMessage = UniversalProperties.locationUpdateFailed;
-                        returnObj.errorCode = UniversalProperties.EC_LocationUpdateFailed;
+                        returnObj.errorCode = UniversalProperties.EC_RegistrationError;
                     }
                     #endregion
                 }
@@ -133,7 +133,7 @@ namespace AiGrow.DeviceServer
                 HttpContext.Current.Response.Write(new JavaScriptSerializer().Serialize(returnObj));
                 return;
             }
-            catch (System.Exception ex)
+            catch
             {
                 returnObj.success = false;
                 returnObj.errorMessage = UniversalProperties.unknownError;

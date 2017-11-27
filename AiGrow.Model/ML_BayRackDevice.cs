@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AiGrow.Model
 {
-    public class ML_RackDevice
+    public class ML_BayRackDevice
     {
         public string device_unique_id { get; set; }
         public string device_type { get; set; }

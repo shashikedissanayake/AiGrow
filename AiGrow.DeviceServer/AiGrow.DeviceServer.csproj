@@ -79,6 +79,7 @@
     <Reference Include="System.Web.Extensions">
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq">
       <Private>True</Private>
     </Reference>
@@ -103,6 +104,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="070bf213e6-certificate.pem.pfx" />
+    <None Include="Properties\PublishProfiles\AmazonLive.pubxml" />
+    <Content Include="VeriSign-Class 3-Public-Primary-Certification-Authority-G5.pem" />
+    <None Include="Properties\PublishProfiles\local_server.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -132,8 +137,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Tables\BayDeviceRequest.cs" />
+    <Compile Include="Tables\BayLineDeviceRequest.cs" />
     <Compile Include="Tables\BayLineRequest.cs" />
+    <Compile Include="Tables\BayRackDeviceRequest.cs" />
+    <Compile Include="Tables\BayRackRequest.cs" />
     <Compile Include="Tables\BayRequest.cs" />
+    <Compile Include="Tables\GreenhouseDeviceRequest.cs" />
     <Compile Include="Tables\GreenhouseRequest.cs" />
     <Compile Include="Utilities\ApplicationUtilities.cs" />
     <Compile Include="Utilities\BaseDeviceResponse.cs" />
@@ -141,6 +150,7 @@
     <Compile Include="Utilities\BaseResponse.cs" />
     <Compile Include="Utilities\DatabaseUpdate.cs" />
     <Compile Include="Utilities\Encryption.cs" />
+    <Compile Include="Utilities\RegisterComponent.cs" />
     <Compile Include="Utilities\UniversalProperties.cs" />
     <Compile Include="GreenhouseController.asmx.cs">
       <DependentUpon>GreenhouseController.asmx</DependentUpon>
@@ -172,7 +182,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>24106</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:12456/</IISUrl>
+          <IISUrl>http://localhost:12000</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

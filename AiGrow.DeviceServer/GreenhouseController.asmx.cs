@@ -49,7 +49,7 @@ namespace AiGrow.DeviceServer
                     response.errorMessage = UniversalProperties.invalidRequest;
                 }
             }
-            catch (Exception ex)
+            catch 
             {
                 response.success = false;
                 response.errorCode = UniversalProperties.EC_UnhandledError;

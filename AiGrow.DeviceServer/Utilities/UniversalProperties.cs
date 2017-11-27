@@ -97,6 +97,9 @@ namespace AiGrow.DeviceServer
         public const string ERROR_TEXT_USER_OR_CHARGE_POINT_NOT_ACTIVE = "Error. The charge point or user is not in active status.";
         public const string ERROR_TEXT_CHARGE_NETWORK_IS_PRIVATE = "Error. The network of the charge point is a private network.";
         public const string unknownError = "Undefined error occurred. Please contact the administrator.";
+        public const string bayNotRegsitered = "Bay registration error.";
+        public const string lineNotRegsitered = "Line registration error.";
+        public const string rackNotRegsitered = "Rack registration error.";
         public const string messageNotSent = "The SMS was not sent.";
         public const string invalidTransactionID = "The supplied transaction ID is invalid or malformed.";
         public const string duplicateStopRequest = "Duplicate stop request for a stopped transaction ID.";
@@ -113,18 +116,42 @@ namespace AiGrow.DeviceServer
 
         #region Data Table Constants
 
-        public static int bay_device_data = 1;
-        public static int bay_line_device_data = 2;
-        public static int bay_rack_device_data = 3;
-        public static int bay_rack_level_device_data = 4;
-        public static int bay_rack_level_line_device_data = 5;
+        public const string MQTT_topic = "/aigrow_common";
+
+        public const string data = "dataEntry";
+        public const string greenhouse = "registerGreenhouse";
+        public const string greenhouseDevice = "registerGreenhouseDevice";
+        public const string bay = "registerBay";
+        public const string bayDevice = "registerBayDevice";
+        public const string bayLine = "registerBayLine";
+        public const string bayLineDevice = "registerBayLineDevice";
+        public const string bayRack = "registerBayRack";
+        public const string bayRackDevice = "registerBayRackDevice";
+
+        public static int greenhouse_device = 1;
+        public static int bay_device = 2;
+        public static int bay_line_device = 3;
+        public static int bay_rack_device = 4;
+        public static int bay_rack_level_device_data = 5;
+        public static int bay_rack_level_line_device_data = 6;
 
         public static string UNKNOWN_COMPONENT = "Unknown Component.";
 
         public static string DATA_ENTERED_SUCCESSFULLY = "Data Entered succesfully";
+        public static string GREENHOUSE_REGISTERED_SUCCESSFULLY = "Greenhouse Registered succesfully";
+        public static string BAY_REGISTERED_SUCCESSFULLY = "Bay Registered succesfully";
+        public static string LINE_REGISTERED_SUCCESSFULLY = "Line Registered succesfully";
+        public static string RACK_REGISTERED_SUCCESSFULLY = "Rack Registered succesfully";
+        public static string DEVICE_REGISTERED_SUCCESSFULLY = "Device Registered succesfully";
 
-
-
+        public static string DUPLICATE_BAY = "Bay Already Exists";
+        public static string DUPLICATE_BAY_DEVICE = "Bay Device Already Exists";
+        public static string DUPLICATE_BAY_RACK_DEVICE = "Bay Rack Device Already Exists";
+        public static string DUPLICATE_GREENHOUSE_DEVICE = "Greenhouse Device Already Exists";
+        public static string DUPLICATE_BAY_LINE = "Bay Line Already Exists";
+        public static string DUPLICATE_BAY_RACK = "Bay Rack Already Exists";
+        public static string DUPLICATE_BAY_LINE_DEVICE = "Bay Line Device Already Exists";
+        
         #endregion
 
 
@@ -193,6 +220,7 @@ namespace AiGrow.DeviceServer
         public const int EC_OperationSpecificError = 22;
         public const int EC_LocationUpdateFailed = 23;
         public const int EC_UnknownComponent = 24;
+        public const int EC_RegistrationError = 23;
 
         #endregion
 
