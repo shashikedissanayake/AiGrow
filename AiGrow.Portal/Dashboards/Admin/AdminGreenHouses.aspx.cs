@@ -28,8 +28,8 @@ namespace AiGrow.Portal.Dashboards.Admin
             DataTable dt_owner_user_names = new BL_Greenhouse().selectAllGreenhouses();
             //Map the list to the username list box.
             selectGreenHouses.DataSource = dt_owner_user_names;
-            selectGreenHouses.DataValueField = "greenhouse_unique_id";
-            selectGreenHouses.DataTextField = "greenhouse_name";
+            selectGreenHouses.DataValueField = "greenhouse_id";
+            selectGreenHouses.DataTextField = "greenhouse_unique_id";
             selectGreenHouses.DataBind();
         }
 

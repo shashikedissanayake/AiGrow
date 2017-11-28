@@ -31,6 +31,21 @@
             <dx:GridViewDataDateColumn FieldName="last_updated_date" Caption="Last updated" VisibleIndex="6"></dx:GridViewDataDateColumn>
             <dx:GridViewDataTextColumn Caption="Edit" Name="Edit" VisibleIndex="12" Width="70px">
                                                 <DataItemTemplate>
+
+                                                    <dx:GridViewDataTextColumn Caption="View" Name="View" VisibleIndex="11" Width="70px">
+                                                <DataItemTemplate>
+                                                    <dx:ASPxHyperLink ID="NetworkView" runat="server" NavigateUrl='<%# chargeNET.Constants.ADMIN_DASHBOARD_VIEW_NETWORK + "?networkID=" + Eval("charge_network_id") + "&token=" + chargeNET.Encryption.createSHA1(Eval("charge_network_id").ToString()) %>' Text="View" />
+                                                </DataItemTemplate>
+                                                <HeaderTemplate>
+                                                    <dx:ASPxLabel ID="headingView" Text="View" runat="server" Font-Bold="True" Theme="MetropolisBlue" CssClass="dx-wrap" Style="font-size: Small; font-weight: bold; padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;" />
+                                                </HeaderTemplate>
+                                                <Settings AllowAutoFilter="False" ShowFilterRowMenu="False" />
+                                                <HeaderStyle VerticalAlign="Middle" />
+                                                <CellStyle HorizontalAlign="Center" VerticalAlign="Middle">
+                                                </CellStyle>
+
+                                            </dx:GridViewDataTextColumn>
+
                                                     <dx:ASPxHyperLink ID="NetworkEdit" runat="server" NavigateUrl='<%# AiGrow.Constants.ADMIN_DASHBOARD_GREEN_HOUSE_EDIT+ "?greenhouseID=" + Eval("greenhouse_unique_id") + "&token=" + AiGrow.Encryption.createSHA1(Eval("greenhouse_unique_id").ToString()) %>' Text="Edit" />
                                                 </DataItemTemplate>
                                                 <HeaderTemplate>
@@ -45,11 +60,22 @@
 </Columns>
     </dx:ASPxGridView>
        </center>
-        <asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList>
+        <p>Add component:</p>
+        <asp:DropDownList ID="DropDownList1" runat="server">
+            <asp:ListItem Value="Bay">Bay</asp:ListItem>
+            <asp:ListItem Value="BayLine">Bay Line</asp:ListItem>
+            <asp:ListItem Value="bayLineDevices">Bay Line Devices</asp:ListItem>
+            <asp:ListItem Value="level">Level</asp:ListItem>
+            <asp:ListItem Value="levelLline">Level Line</asp:ListItem>
+            <asp:ListItem Value="levelLineDevice">Level Line Device</asp:ListItem>
+            <asp:ListItem Value="rack">Rack</asp:ListItem>
+            <asp:ListItem Value="rackDevice">Rack Device</asp:ListItem>
+        </asp:DropDownList>
+        <br /><p>Select Green House:</p>
+        
       <asp:DropDownList ID="selectGreenHouses" runat="server">
-          <asp:ListItem Value="addBay">Add a bay</asp:ListItem>
-          <asp:ListItem>Add a</asp:ListItem>
-      </asp:DropDownList>  
+      </asp:DropDownList><br/>  
+        <button runat="server" align="left" style="display: block; width: 130px; height: 40px; padding: 0; margin: 10px 20px 10px; font-weight: 700; color: #fff; background-color: #1cc6a7; border: none; border-radius: 20px; transition: background-color .10s ease-in-out; -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none;">Add Component</button>
     </form>
     
 
