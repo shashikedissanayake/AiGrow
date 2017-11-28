@@ -92,6 +92,7 @@ namespace AiGrow
         public static String ADMIN_DASHBOARD_GREEN_HOUSE_EDIT = HOST_URL + "Dashboards/Admin/AdminEditGreenHouse.aspx";
         public static String ADMIN_DASHBOARD_GREEN_HOUSE_DELETE = HOST_URL + "Dashboards/Admin/AdminDeleteNetwork.aspx";   
         public static String ADMIN_DASHBOARD_GREEN_HOUSE = HOST_URL + "/Dashboards/Admin/AdminGreenHouses.aspx";
+        public static string ADMIN_DASHBOARD_VIEW_GREEN_HOUSE = HOST_URL + "Dashboards/Admin/AdminGreenHouseView.aspx";
        
         public static String ADMIN_DASHBOARD_CHG_POINTS = HOST_URL + "Dashboards/Admin/AdminPoints.aspx";
         public static String ADMIN_DASHBOARD_CHG_POINTS_DELETE = HOST_URL + "Dashboards/Admin/AdminDeletePoint.aspx";
@@ -118,7 +119,7 @@ namespace AiGrow
         public static String ADMIN_DASHBOARD_CHG_TRANSACTIONS_ALL = HOST_URL + "Dashboards/Admin/AdminTransactionsAll.aspx";
         public static string ADMIN_DASHBOARD_CREATE_NETWORK = HOST_URL + "Dashboards/Admin/AdminCreateNetwork.aspx";
         public static string ADMIN_DASHBOARD_CREATE_POINT = HOST_URL + "Dashboards/Admin/AdminCreatePoint.aspx";
-        public static string ADMIN_DASHBOARD_VIEW_NETWORK = HOST_URL + "Dashboards/Admin/AdminViewNetwork.aspx";
+        
         public static string ADMIN_DASHBOARD_CHG_POINT_OWNERS_EDIT = HOST_URL + "Dashboards/Admin/AdminEditPointOwner.aspx";
         public static string ADMIN_DASHBOARD_CHG_NETWORK_OWNERS_EDIT = HOST_URL + "Dashboards/Admin/AdminEditNetworkOwner.aspx";
         public static string VIEW_PROFILE_URL_ADMIN = HOST_URL + "/Dashboards/Admin/AdminProfile.aspx";

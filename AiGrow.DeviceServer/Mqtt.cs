@@ -35,7 +35,9 @@ namespace AiGrow.DeviceServer
 
         //convert to pfx using openssl
         //you'll need to add these two files to the project and copy them to the output
-        //static X509Certificate2 clientCert = new X509Certificate2(@"D:\visual studio\MQTTAmazon\MQTTAmazon\certificates\070bf213e6-certificate.pem.pfx", "");
+        static X509Certificate2 clientCert = new X509Certificate2(@"D:\visual studio\MQTTAmazon\MQTTAmazon\certificates\070bf213e6-certificate.pem.pfx", "");
+        static X509Certificate caCert = X509Certificate.CreateFromSignedFile(@"D:\visual studio\MQTTAmazon\MQTTAmazon\certificates\VeriSign-Class 3-Public-Primary-Certification-Authority-G5.pem");
+
         /// <summary>
         /// Just build it and run it up from the bin folder before you publish a message using the publisher
         /// </summary>
@@ -44,15 +46,15 @@ namespace AiGrow.DeviceServer
         static string caCert_path = "";
         public static void Subscribe()
         {
-            clientCert_path = System.Web.HttpContext.Current.Server.MapPath("070bf213e6-certificate.pem.pfx");
-            X509Certificate2 clientCert1 = new X509Certificate2(clientCert_path, "");
-            caCert_path = System.Web.HttpContext.Current.Server.MapPath("VeriSign-Class 3-Public-Primary-Certification-Authority-G5.pem");
-            X509Certificate caCert1 = X509Certificate.CreateFromSignedFile(caCert_path);
+            //clientCert_path = System.Web.HttpContext.Current.Server.MapPath("070bf213e6-certificate.pem.pfx");
+            //X509Certificate2 clientCert1 = new X509Certificate2(clientCert_path, "");
+            //caCert_path = System.Web.HttpContext.Current.Server.MapPath("VeriSign-Class 3-Public-Primary-Certification-Authority-G5.pem");
+            //X509Certificate caCert1 = X509Certificate.CreateFromSignedFile(caCert_path);
 
             //this is the AWS caroot.pem file that you get as part of the download
             // this doesn't have to be a new X509 type...
 
-            var client = new MqttClient(IotEndpoint, BrokerPort, true, caCert1, clientCert1, MqttSslProtocols.TLSv1_2 /*this is what AWS IoT uses*/);
+            var client = new MqttClient(IotEndpoint, BrokerPort, true, caCert, clientCert, MqttSslProtocols.TLSv1_2 /*this is what AWS IoT uses*/);
 
             //event handler for inbound messages
             client.MqttMsgPublishReceived += ClientMqttMsgPublishReceived;
@@ -316,10 +318,10 @@ namespace AiGrow.DeviceServer
         {
             //convert to pfx using openssl - see confluence
             //you'll need to add these two files to the project and copy them to the output (not included in source control deliberately!)
-            X509Certificate2 clientCert2 = new X509Certificate2(clientCert_path, "");
-            X509Certificate caCert2 = X509Certificate.CreateFromSignedFile(caCert_path);
+            //X509Certificate2 clientCert2 = new X509Certificate2(clientCert_path, "");
+            //X509Certificate caCert2 = X509Certificate.CreateFromSignedFile(caCert_path);
 
-            var client = new MqttClient(IotEndpoint, BrokerPort, true, caCert2, clientCert2, MqttSslProtocols.TLSv1_2);
+            var client = new MqttClient(IotEndpoint, BrokerPort, true, caCert, clientCert, MqttSslProtocols.TLSv1_2);
             //message to publish - could be anything
             var message = "Insert your message here";
             //client naming has to be unique if there was more than one publisher

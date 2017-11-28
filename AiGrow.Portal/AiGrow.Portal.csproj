@@ -45,9 +45,11 @@
     <Reference Include="DevExpress.Printing.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.RichEdit.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Web.ASPxThemes.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Web.ASPxTreeList.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Web.Bootstrap.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Web.Resources.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Web.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp">
       <Private>True</Private>
     </Reference>
@@ -218,6 +220,7 @@
     <Content Include="Dashboards\Admin\AdminEditGreenHouse.aspx" />
     <Content Include="Dashboards\Admin\AdminEditProfile.aspx" />
     <Content Include="Dashboards\Admin\AdminGreenHouses.aspx" />
+    <Content Include="Dashboards\Admin\AdminGreenHouseView.aspx" />
     <Content Include="Dashboards\Admin\AdminProfile.aspx" />
     <Content Include="Dashboards\Admin\index.aspx" />
     <Content Include="Dashboards\bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.css" />
@@ -7513,6 +7516,13 @@
     </Compile>
     <Compile Include="Dashboards\Admin\AdminGreenHouses.aspx.designer.cs">
       <DependentUpon>AdminGreenHouses.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboards\Admin\AdminGreenHouseView.aspx.cs">
+      <DependentUpon>AdminGreenHouseView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboards\Admin\AdminGreenHouseView.aspx.designer.cs">
+      <DependentUpon>AdminGreenHouseView.aspx</DependentUpon>
     </Compile>
     <Compile Include="Dashboards\Admin\AdminProfile.aspx.cs">
       <DependentUpon>AdminProfile.aspx</DependentUpon>

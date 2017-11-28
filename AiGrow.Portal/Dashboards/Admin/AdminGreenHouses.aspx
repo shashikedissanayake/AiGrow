@@ -29,15 +29,14 @@
             <dx:GridViewDataDateColumn FieldName="location_address" Caption="Address" VisibleIndex="4"></dx:GridViewDataDateColumn>
             <dx:GridViewDataDateColumn FieldName="created_date" Caption="Created date" VisibleIndex="5"></dx:GridViewDataDateColumn>
             <dx:GridViewDataDateColumn FieldName="last_updated_date" Caption="Last updated" VisibleIndex="6"></dx:GridViewDataDateColumn>
-            <dx:GridViewDataTextColumn Caption="Edit" Name="Edit" VisibleIndex="12" Width="70px">
-                                                <DataItemTemplate>
+            
 
                                                     <dx:GridViewDataTextColumn Caption="View" Name="View" VisibleIndex="11" Width="70px">
                                                 <DataItemTemplate>
-                                                    <dx:ASPxHyperLink ID="NetworkView" runat="server" NavigateUrl='<%# chargeNET.Constants.ADMIN_DASHBOARD_VIEW_NETWORK + "?networkID=" + Eval("charge_network_id") + "&token=" + chargeNET.Encryption.createSHA1(Eval("charge_network_id").ToString()) %>' Text="View" />
+                                                    <dx:ASPxHyperLink ID="ASPxHyperLink1" runat="server" NavigateUrl='<%# AiGrow.Constants.ADMIN_DASHBOARD_VIEW_GREEN_HOUSE+ "?greenhouseID=" + Eval("greenhouse_id") + "&token=" + AiGrow.Encryption.createSHA1(Eval("greenhouse_id").ToString()) %>' Text="View" />
                                                 </DataItemTemplate>
                                                 <HeaderTemplate>
-                                                    <dx:ASPxLabel ID="headingView" Text="View" runat="server" Font-Bold="True" Theme="MetropolisBlue" CssClass="dx-wrap" Style="font-size: Small; font-weight: bold; padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;" />
+                                                    <dx:ASPxLabel ID="ASPxLabel1" Text="View" runat="server" Font-Bold="True" Theme="MetropolisBlue" CssClass="dx-wrap" Style="font-size: Small; font-weight: bold; padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;" />
                                                 </HeaderTemplate>
                                                 <Settings AllowAutoFilter="False" ShowFilterRowMenu="False" />
                                                 <HeaderStyle VerticalAlign="Middle" />
@@ -46,7 +45,9 @@
 
                                             </dx:GridViewDataTextColumn>
 
-                                                    <dx:ASPxHyperLink ID="NetworkEdit" runat="server" NavigateUrl='<%# AiGrow.Constants.ADMIN_DASHBOARD_GREEN_HOUSE_EDIT+ "?greenhouseID=" + Eval("greenhouse_unique_id") + "&token=" + AiGrow.Encryption.createSHA1(Eval("greenhouse_unique_id").ToString()) %>' Text="Edit" />
+                                            <dx:GridViewDataTextColumn Caption="Edit" Name="Edit" VisibleIndex="12" Width="70px">
+                                                <DataItemTemplate>
+                                                    <dx:ASPxHyperLink ID="ASPxHyperLink2" runat="server" NavigateUrl='<%# AiGrow.Constants.ADMIN_DASHBOARD_GREEN_HOUSE_EDIT+ "?greenhouseID=" + Eval("greenhouse_id") + "&token=" + AiGrow.Encryption.createSHA1(Eval("greenhouse_id").ToString()) %>' Text="Edit" />
                                                 </DataItemTemplate>
                                                 <HeaderTemplate>
                                                     <dx:ASPxLabel ID="headingEdit" Text="Edit" runat="server" Font-Bold="True" Theme="MetropolisBlue" CssClass="dx-wrap" Style="font-size: Small; font-weight: bold; padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px;" />
@@ -57,6 +58,8 @@
                                                 </CellStyle>
 
                                             </dx:GridViewDataTextColumn>
+
+
 </Columns>
     </dx:ASPxGridView>
        </center>

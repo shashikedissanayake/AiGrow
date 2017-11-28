@@ -23,5 +23,10 @@ namespace AiGrow.Business
         {
             return new DL_Greenhouse().select();
         }
+
+        public System.Data.DataTable selectComponentsByNetworkID(string greenHouseID)
+        {
+            return new AiGrow.Data.DL_Greenhouse().selectComponentsByGreenHouseID(greenHouseID);
+        }
     }
 }
