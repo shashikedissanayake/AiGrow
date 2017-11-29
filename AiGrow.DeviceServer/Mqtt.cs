@@ -31,12 +31,14 @@ namespace AiGrow.DeviceServer
         private const int BrokerPort = 8883;
 
         //D:\visual studio\MQTTAmazon\MQTTAmazon\certificates
+        //E:\vega\AiGrow
+        //C:\inetpub\wwwroot\AiGrow.DeviceServer
 
 
         //convert to pfx using openssl
         //you'll need to add these two files to the project and copy them to the output
-        static X509Certificate2 clientCert = new X509Certificate2(@"D:\visual studio\MQTTAmazon\MQTTAmazon\certificates\070bf213e6-certificate.pem.pfx", "");
-        static X509Certificate caCert = X509Certificate.CreateFromSignedFile(@"D:\visual studio\MQTTAmazon\MQTTAmazon\certificates\VeriSign-Class 3-Public-Primary-Certification-Authority-G5.pem");
+        static X509Certificate2 clientCert = new X509Certificate2(@"C:\inetpub\wwwroot\AiGrow.DeviceServer\070bf213e6-certificate.pem.pfx", "");
+        static X509Certificate caCert = X509Certificate.CreateFromSignedFile(@"C:\inetpub\wwwroot\AiGrow.DeviceServer\VeriSign-Class 3-Public-Primary-Certification-Authority-G5.pem");
 
         /// <summary>
         /// Just build it and run it up from the bin folder before you publish a message using the publisher
@@ -44,6 +46,7 @@ namespace AiGrow.DeviceServer
         /// <param name="args">expects Nowt</param>
         static string clientCert_path = "";
         static string caCert_path = "";
+        static byte code;
         public static void Subscribe()
         {
             //clientCert_path = System.Web.HttpContext.Current.Server.MapPath("070bf213e6-certificate.pem.pfx");
@@ -58,9 +61,21 @@ namespace AiGrow.DeviceServer
 
             //event handler for inbound messages
             client.MqttMsgPublishReceived += ClientMqttMsgPublishReceived;
-
             //client id here is totally arbitary, but I'm pretty sure you can't have more than one client named the same.
-            client.Connect("listener");
+            try
+            {
+                //code = client.Connect("listener");
+                code = client.Connect(Guid.NewGuid().ToString());
+                Debug.WriteLine("***************************************");
+                Debug.WriteLine(code);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(code);
+                Debug.WriteLine("***************************************");
+                Debug.WriteLine(e);
+                Debug.WriteLine("***************************************");
+            }
 
             // '#' is the wildcard to subscribe to anything under the 'root' topic
             // the QOS level here - I only partially understand why it has to be this level - it didn't seem to work at anything else.
