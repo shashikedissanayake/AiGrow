@@ -16,7 +16,7 @@ View Green House
     <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['orgchart']}]}"></script>
     <form id="form1" runat="server">  
         <div>  
-             <div id="tree_div"">  
+             <div id="tree_div" style="border: 2px solid rgba(181, 217, 26, 0.00);">  
   
              </div>  
         </div>  

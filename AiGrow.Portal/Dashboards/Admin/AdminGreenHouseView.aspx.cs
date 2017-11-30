@@ -32,11 +32,25 @@ namespace AiGrow.Portal.Dashboards.Admin
             DataSet ds = new BL_Greenhouse().selectComponentsByNetworkID(greenhouseID);
             foreach (DataRow dr in ds.Tables[0].Rows)
             {
-                str = str + "['" + dr["bay_unique_id"].ToString() + "','" + greenhouseID + "'],";
+
+                str = str + "['" + dr["bay_unique_id"].ToString() + "','" + dr["greenhouse_unique_id"].ToString() + "'],";
             }
             foreach (DataRow dr in ds.Tables[1].Rows)
             {
                 str = str + "['" + dr["bay_line_unique_id"].ToString() + "','" + dr["bay_unique_id"].ToString() + "'],";
+            }
+            foreach (DataRow dr in ds.Tables[2].Rows)
+            {
+                str = str + "['" + dr["rack_unique_id"].ToString() + "','" + dr["bay_unique_id"].ToString() + "'],";
+            }
+            foreach (DataRow dr in ds.Tables[3].Rows)
+            {
+                str = str + "['" + dr["level_unique_id"].ToString() + "','" + dr["rack_unique_id"].ToString() + "'],";
+            }
+            foreach (DataRow dr in ds.Tables[4].Rows)
+            {
+                
+                str = str + "['" + dr["level_line_unique_id"].ToString() + "','" + dr["level_unique_id"].ToString() + "'],";
             }
             str.Trim(',');
 
