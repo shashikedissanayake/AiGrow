@@ -37,7 +37,7 @@ namespace AiGrow.DeviceServer
                 response.requestID = greenhouseDevice.requestID;
                 response.deviceID = greenhouseDevice.greenhouse_device_unique_id;
                 string responseJSON = new JavaScriptSerializer().Serialize(response);
-                Mqtt.Publish(UniversalProperties.MQTT_topic, responseJSON);
+                new MQTTHandler().Publish(UniversalProperties.MQTT_topic, responseJSON);
                 return false;
             }
         }
@@ -68,7 +68,7 @@ namespace AiGrow.DeviceServer
                 response.requestID = bayDevice.requestID;
                 response.deviceID = bayDevice.bay_device_unique_id;
                 string responseJSON = new JavaScriptSerializer().Serialize(response);
-                Mqtt.Publish(UniversalProperties.MQTT_topic, responseJSON);
+                new MQTTHandler().Publish(UniversalProperties.MQTT_topic, responseJSON);
                 return false;
             }
         }
@@ -93,7 +93,7 @@ namespace AiGrow.DeviceServer
                 response.requestID = bay.requestID;
                 response.deviceID = bay.bay_unique_id;
                 string responseJSON = new JavaScriptSerializer().Serialize(response);
-                Mqtt.Publish(UniversalProperties.MQTT_topic, responseJSON);
+                new MQTTHandler().Publish(UniversalProperties.MQTT_topic, responseJSON);
             }
         }
         public void registerBayLine(BayLineRequest bayLine)
@@ -116,7 +116,7 @@ namespace AiGrow.DeviceServer
                 response.deviceID = bayLine.bay_line_unique_id;
                 response.requestID = bayLine.requestID;
                 string responseJSON = new JavaScriptSerializer().Serialize(response);
-                Mqtt.Publish(UniversalProperties.MQTT_topic, responseJSON);
+                new MQTTHandler().Publish(UniversalProperties.MQTT_topic, responseJSON);
             }
         }
         public void registerBayRack(BayRackRequest bayRack)
@@ -139,7 +139,7 @@ namespace AiGrow.DeviceServer
                 response.deviceID = bayRack.bay_rack_unique_id;
                 response.errorCode = UniversalProperties.EC_RegistrationError;
                 string responseJSON = new JavaScriptSerializer().Serialize(response);
-                Mqtt.Publish(UniversalProperties.MQTT_topic, responseJSON);
+                new MQTTHandler().Publish(UniversalProperties.MQTT_topic, responseJSON);
             }
         }
         public bool registerBayRackDevice(BayRackDeviceRequest rackDevice)
@@ -167,7 +167,7 @@ namespace AiGrow.DeviceServer
                 response.requestID = rackDevice.requestID;
                 response.deviceID = rackDevice.device_unique_id;
                 string responseJSON = new JavaScriptSerializer().Serialize(response);
-                Mqtt.Publish(UniversalProperties.MQTT_topic, responseJSON);
+                new MQTTHandler().Publish(UniversalProperties.MQTT_topic, responseJSON);
                 return false;
             }
         }
@@ -197,7 +197,7 @@ namespace AiGrow.DeviceServer
                 response.requestID = bayLineDevice.requestID;
                 response.deviceID = bayLineDevice.bay_line_device_unique_id;
                 string responseJSON = new JavaScriptSerializer().Serialize(response);
-                Mqtt.Publish(UniversalProperties.MQTT_topic, responseJSON);
+                new MQTTHandler().Publish(UniversalProperties.MQTT_topic, responseJSON);
                 return false;
             }
         }

@@ -13,12 +13,12 @@ namespace AiGrow.Portal.Dashboards.Admin {
     public partial class AdminGreenHouseView {
         
         /// <summary>
-        /// ghView control.
+        /// form1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DevExpress.Web.ASPxTreeList.ASPxTreeList ghView;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
     }
 }

@@ -35,11 +35,11 @@ namespace AiGrow.Data
             return MySQLHelper.ExecuteDataTable(DBConnection.connectionString, System.Data.CommandType.Text, "SELECT gh.greenhouse_id, gh.greenhouse_unique_id, gh.greenhouse_name ,u.username AS owner,l.location_name,l.location_address,gh.created_date_time AS created_date,gh.last_updated_date FROM greenhouse gh INNER JOIN user u ON gh.owner_user_id = u.id_user INNER JOIN location l ON gh.location_id = l.location_id");
         }
 
-        public DataTable selectComponentsByGreenHouseID(string greenhouseID)
+        public DataSet selectComponentsByGreenHouseID(string greenhouseID)
         {
             var para = new MySqlParameter[1];
             para[0] = new MySqlParameter("@greenhouse_id", greenhouseID);
-            return MySQLHelper.ExecuteDataTable(DBConnection.connectionString, System.Data.CommandType.Text, "SELECT gh.greenhouse_id, gh.greenhouse_unique_id,b.bay_unique_id, bl.bay_line_unique_id, r.rack_unique_id, l.level_unique_id, ll.level_line_unique_id FROM greenhouse gh LEFT OUTER JOIN bay b ON b.greenhouse_id=gh.greenhouse_id LEFT OUTER JOIN bay_line bl ON bl.bay_id=b.bay_id LEFT OUTER JOIN rack r ON b.bay_id = r.bay_id LEFT OUTER JOIN level l ON r.rack_id = l.rack_id LEFT OUTER JOIN level_line ll ON l.level_id = ll.level_id WHERE gh.greenhouse_id= @greenhouse_id",para);
+            return MySQLHelper.ExecuteDataSet(DBConnection.connectionString, System.Data.CommandType.Text, "SELECT b.bay_unique_id, g.greenhouse_unique_id FROM bay b LEFT OUTER JOIN greenhouse g ON b.greenhouse_id=g.greenhouse_id WHERE g.greenhouse_id=@greenhouse_id;SELECT b.bay_unique_id, bl.bay_line_unique_id FROM greenhouse gh LEFT OUTER JOIN bay b ON b.greenhouse_id=gh.greenhouse_id LEFT OUTER JOIN bay_line bl ON bl.bay_id=b.bay_id WHERE gh.greenhouse_id= @greenhouse_id;SELECT bl.bay_line_unique_id, r.rack_unique_id FROM greenhouse gh LEFT OUTER JOIN bay b ON b.greenhouse_id=gh.greenhouse_id LEFT OUTER JOIN bay_line bl ON bl.bay_id=b.bay_id LEFT OUTER JOIN rack r ON b.bay_id = r.bay_id WHERE gh.greenhouse_id= @greenhouse_id;SELECT r.rack_unique_id, l.level_unique_id FROM greenhouse gh LEFT OUTER JOIN bay b ON b.greenhouse_id=gh.greenhouse_id LEFT OUTER JOIN bay_line bl ON bl.bay_id=b.bay_id LEFT OUTER JOIN rack r ON b.bay_id = r.bay_id LEFT OUTER JOIN level l ON r.rack_id = l.rack_id WHERE gh.greenhouse_id= @greenhouse_id;SELECT l.level_unique_id, ll.level_line_unique_id FROM greenhouse gh LEFT OUTER JOIN bay b ON b.greenhouse_id=gh.greenhouse_id LEFT OUTER JOIN bay_line bl ON bl.bay_id=b.bay_id LEFT OUTER JOIN rack r ON b.bay_id = r.bay_id LEFT OUTER JOIN level l ON r.rack_id = l.rack_id LEFT OUTER JOIN level_line ll ON l.level_id = ll.level_id WHERE gh.greenhouse_id= @greenhouse_id;", para);
         }
     }
 }
