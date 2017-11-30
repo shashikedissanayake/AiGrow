@@ -105,7 +105,9 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="070bf213e6-certificate.pem.pfx" />
-    <None Include="Properties\PublishProfiles\AmazonLive.pubxml" />
+    <None Include="Properties\PublishProfiles\AmazonLive.pubxml">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="VeriSign-Class 3-Public-Primary-Certification-Authority-G5.pem" />
     <None Include="Properties\PublishProfiles\local_server.pubxml" />
     <None Include="Web.Debug.config">
@@ -119,7 +121,9 @@
     <Content Include="Global.asax" />
     <Content Include="LocationController.asmx" />
     <Content Include="SensorController.asmx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="GreenhouseController.asmx" />
   </ItemGroup>
   <ItemGroup>
@@ -150,6 +154,7 @@
     <Compile Include="Utilities\BaseResponse.cs" />
     <Compile Include="Utilities\DatabaseUpdate.cs" />
     <Compile Include="Utilities\Encryption.cs" />
+    <Compile Include="Utilities\MQTTHandler.cs" />
     <Compile Include="Utilities\RegisterComponent.cs" />
     <Compile Include="Utilities\UniversalProperties.cs" />
     <Compile Include="GreenhouseController.asmx.cs">

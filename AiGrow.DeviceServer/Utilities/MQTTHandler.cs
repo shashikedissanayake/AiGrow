@@ -19,11 +19,13 @@ using System.Windows.Forms;
 
 namespace AiGrow.DeviceServer
 {
-    public static class Mqtt
+    public class MQTTHandler
     {
+
         /// <summary>
         /// Replace this with your endpoint - it's shown in the AWS IoT console next to the REST endpoint - they're the same.
         /// </summary>
+        ///a2o8dyvqdg4v1r.iot.us-west-2.amazonaws.com
         private const string IotEndpoint = "a2o8dyvqdg4v1r.iot.us-west-2.amazonaws.com";
         /// <summary>
         /// This is the default TLS1.2 port that AWS IoT uses
@@ -31,14 +33,11 @@ namespace AiGrow.DeviceServer
         private const int BrokerPort = 8883;
 
         //D:\visual studio\MQTTAmazon\MQTTAmazon\certificates
-        //E:\vega\AiGrow
-        //C:\inetpub\wwwroot\AiGrow.DeviceServer
 
 
         //convert to pfx using openssl
         //you'll need to add these two files to the project and copy them to the output
-        //static X509Certificate2 clientCert = new X509Certificate2(@"C:\inetpub\wwwroot\AiGrow.DeviceServer\070bf213e6-certificate.pem.pfx", "");
-        //static X509Certificate caCert = X509Certificate.CreateFromSignedFile(@"C:\inetpub\wwwroot\AiGrow.DeviceServer\VeriSign-Class 3-Public-Primary-Certification-Authority-G5.pem");
+
 
         /// <summary>
         /// Just build it and run it up from the bin folder before you publish a message using the publisher
@@ -46,39 +45,30 @@ namespace AiGrow.DeviceServer
         /// <param name="args">expects Nowt</param>
         static string clientCert_path = "";
         static string caCert_path = "";
-        static byte code;
-        public static void Subscribe()
+        public void Subscribe()
         {
             //clientCert_path = System.Web.HttpContext.Current.Server.MapPath("070bf213e6-certificate.pem.pfx");
             //X509Certificate2 clientCert1 = new X509Certificate2(clientCert_path, "");
             //caCert_path = System.Web.HttpContext.Current.Server.MapPath("VeriSign-Class 3-Public-Primary-Certification-Authority-G5.pem");
             //X509Certificate caCert1 = X509Certificate.CreateFromSignedFile(caCert_path);
 
-            //this is the AWS caroot.pem file that you get as part of the downloadk
+            //this is the AWS caroot.pem file that you get as part of the download
             // this doesn't have to be a new X509 type...
+
+            //X509Certificate2 clientCert = new X509Certificate2(@"C:\inetpub\wwwroot\AiGrow\070bf213e6-certificate.pem.pfx", "");
+            //X509Certificate caCert = X509Certificate.CreateFromSignedFile(@"C:\inetpub\wwwroot\AiGrow\VeriSign-Class 3-Public-Primary-Certification-Authority-G5.pem");
             string path = HttpContext.Current.Server.MapPath("/");
             string path2 = HttpContext.Current.Server.MapPath("/root.pem");
+
             X509Certificate2 clientCert = new X509Certificate2(path + "070bf213e6-certificate.pem.pfx", "", X509KeyStorageFlags.MachineKeySet);
             X509Certificate caCert = X509Certificate.CreateFromSignedFile(path2);
             var client = new MqttClient(IotEndpoint, BrokerPort, true, caCert, clientCert, MqttSslProtocols.TLSv1_2 /*this is what AWS IoT uses*/);
 
             //event handler for inbound messages
             client.MqttMsgPublishReceived += ClientMqttMsgPublishReceived;
+
             //client id here is totally arbitary, but I'm pretty sure you can't have more than one client named the same.
-            try
-            {
-                code = client.Connect("listener");
-                //code = client.Connect(Guid.NewGuid().ToString());
-                Debug.WriteLine("***************************************");
-                Debug.WriteLine(code);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine(code);
-                Debug.WriteLine("***************************************");
-                Debug.WriteLine(e);
-                Debug.WriteLine("***************************************");
-            }
+            client.Connect("listener");
 
             // '#' is the wildcard to subscribe to anything under the 'root' topic
             // the QOS level here - I only partially understand why it has to be this level - it didn't seem to work at anything else.
@@ -89,10 +79,9 @@ namespace AiGrow.DeviceServer
             //    //listen good!
             //}
 
-
         }
 
-        public static void ClientMqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
+        public void ClientMqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
             BaseResponse response = new BaseResponse();
             bool msgSent = false;
@@ -179,7 +168,7 @@ namespace AiGrow.DeviceServer
                                 response.requestID = bay.requestID;
                                 response.deviceID = bay.bay_unique_id;
                                 string responseBayJSON = new JavaScriptSerializer().Serialize(response);
-                                new MQTTHandler().Publish(UniversalProperties.MQTT_topic, responseBayJSON);
+                                Publish(UniversalProperties.MQTT_topic, responseBayJSON);
                                 break;
                             }
                         }
@@ -330,31 +319,47 @@ namespace AiGrow.DeviceServer
             if (!msgSent)
             {
                 string responseJSON = new JavaScriptSerializer().Serialize(response);
-                new MQTTHandler().Publish(UniversalProperties.MQTT_topic, responseJSON);
+                Publish(UniversalProperties.MQTT_topic, responseJSON);
             }
         }
-        //public static void Publish(string Topic, string content)
-        //{
-        //    //convert to pfx using openssl - see confluence
-        //    //you'll need to add these two files to the project and copy them to the output (not included in source control deliberately!)
-        //    //X509Certificate2 clientCert2 = new X509Certificate2(clientCert_path, "");
-        //    //X509Certificate caCert2 = X509Certificate.CreateFromSignedFile(caCert_path);
+        public void Publish(string Topic, string content)
+        {
+            try
+            {
+                //@"C:\inetpub\wwwroot\AiGrow\root.pem"
+                //@"C:\inetpub\wwwroot\AiGrow\certificate.pfx"
+                //convert to pfx using openssl - see confluence
+                //you'll need to add these two files to the project and copy them to the output (not included in source control deliberately!)
+                //X509Certificate2 clientCert2 = new X509Certificate2(clientCert_path, "");
+                //X509Certificate caCert2 = X509Certificate.CreateFromSignedFile(caCert_path);
 
-        //    var client = new MqttClient(IotEndpoint, BrokerPort, true, caCert, clientCert, MqttSslProtocols.TLSv1_2);
-        //    //message to publish - could be anything
-        //    var message = "Insert your message here";
-        //    //client naming has to be unique if there was more than one publisher
-        //    client.Connect("clientid1");
-        //    //publish to the topic
-        //    client.Publish(Topic, Encoding.UTF8.GetBytes(content));
-        //    //this was in for debug purposes but it's useful to see something in the console
-        //    if (client.IsConnected)
-        //    {
-        //        Debug.WriteLine("SUCCESS!");
-        //    }
-        //    //wait so that we can see the outcome
+                string path = System.Web.Hosting.HostingEnvironment.MapPath("/070bf213e6-certificate.pem.pfx");
+                //string path = HttpContext.Current.Server.MapPath("/070bf213e6-certificate.pem.pfx");
+               // string path2 = HttpContext.Current.Server.MapPath("/root.pem");
+                string path2 = System.Web.Hosting.HostingEnvironment.MapPath("/root.pem");
 
+                X509Certificate2 clientCert = new X509Certificate2(path, "", X509KeyStorageFlags.MachineKeySet);
+                X509Certificate caCert = X509Certificate.CreateFromSignedFile(path2);
 
-        //}
+                var client = new MqttClient(IotEndpoint, BrokerPort, true, caCert, clientCert, MqttSslProtocols.TLSv1_2);
+                //message to publish - could be anything
+                var message = "Insert your message here";
+                //client naming has to be unique if there was more than one publisher
+                client.Connect("clientid1");
+                //publish to the topic
+                client.Publish(Topic, Encoding.UTF8.GetBytes(content));
+                //this was in for debug purposes but it's useful to see something in the console
+                if (client.IsConnected)
+                {
+                    Debug.WriteLine("SUCCESS!");
+                }
+                //wait so that we can see the outcome
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
     }
 }

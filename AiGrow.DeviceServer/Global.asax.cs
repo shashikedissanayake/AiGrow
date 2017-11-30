@@ -13,6 +13,7 @@ namespace AiGrow.DeviceServer
         protected void Application_Start(object sender, EventArgs e)
         {
             Mqtt.Subscribe();
+           // new MQTTHandler().Subscribe();
         }
 
         protected void Session_Start(object sender, EventArgs e)
