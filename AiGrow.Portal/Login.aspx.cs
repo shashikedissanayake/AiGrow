@@ -37,12 +37,12 @@ namespace AiGrow.Portal
                     if (chkRememberMe.Checked)
                     {
                         Response.Cookies["UserName"].Expires = DateTime.Now.AddDays(1);
-                        Response.Cookies["token"].Expires = DateTime.Now.AddDays(1);
+                        Response.Cookies["Password"].Expires = DateTime.Now.AddDays(1);
                     }
                     else
                     {
                         Response.Cookies["UserName"].Expires = DateTime.Now.AddDays(-1);
-                        Response.Cookies["token"].Expires = DateTime.Now.AddDays(-1);
+                        Response.Cookies["Password"].Expires = DateTime.Now.AddDays(-1);
 
                     }
                     Response.Cookies["UserName"].Value = userName.Text.Trim();

@@ -66,6 +66,7 @@ namespace AiGrow.DeviceServer
             brdr1.io_type = "out";
             brdr1.rack_id = 1;
             brdr1.status = "active";
+            brdr1.requestID = "request_111";
             //bayRackDevicelist1.Add(brdr1);
 
             //gdr1.greenhouse_device_unique_id = "GD_004";

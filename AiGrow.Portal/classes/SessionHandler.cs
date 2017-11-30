@@ -17,7 +17,7 @@ namespace AiGrow
 
             try
             {
-                //HttpContext.Current.Session.Timeout = 1;
+                HttpContext.Current.Session.Timeout = 1;
                 HttpContext.Current.Session["username"] = username.Trim();
                 HttpContext.Current.Session["type"] = type.Trim();
                 HttpContext.Current.Session["token"] = token.Trim();
@@ -34,6 +34,7 @@ namespace AiGrow
         {
             try
             {
+                
                 String username = (String)HttpContext.Current.Session["username"];
                 String type = (String)HttpContext.Current.Session["type"];
 
@@ -51,17 +52,6 @@ namespace AiGrow
             {
                 return false;
             }
-        }
-
-        public static void loginWithCookies(string token)
-        {
-            AiGrow.BaseResponse login = AiGrow.MyUser.validateUserLogout(SessionHandler.getLoggedInid(), SessionHandler.getToken());
-            int userID = SessionHandler.getLoggedInUserID().ToInt();
-
-            if (login.success.Equals("true")) { 
-                
-            }
-                       
         }
 
         public static void logout()

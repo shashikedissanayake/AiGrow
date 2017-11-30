@@ -41,11 +41,13 @@ namespace AiGrow.Portal.Dashboards.Admin
             }
             foreach (DataRow dr in ds.Tables[2].Rows)
             {
-                str = str + "['" + dr["rack_unique_id"].ToString() + "','" + dr["bay_unique_id"].ToString() + "'],";
+                if (!dr["rack_unique_id"].ToString().Equals(""))
+                    str = str + "['<div style=\"background:#52f2f2;\">" + dr["rack_unique_id"].ToString() + "</div>" + "','" + dr["bay_unique_id"].ToString() + "'],";
+                
             }
             foreach (DataRow dr in ds.Tables[3].Rows)
             {
-                str = str + "['" + dr["level_unique_id"].ToString() + "','" + dr["rack_unique_id"].ToString() + "'],";
+                str = str + "['" + dr["level_unique_id"].ToString() + "','<div style=\"background:#52f2f2;\">" + dr["rack_unique_id"].ToString() + "</div>" + "'],";
             }
             foreach (DataRow dr in ds.Tables[4].Rows)
             {
@@ -65,7 +67,7 @@ namespace AiGrow.Portal.Dashboards.Admin
                 scriptText.Append("var data = new google.visualization.DataTable();");
                 scriptText.Append("data.addColumn('string', 'Name'); data.addColumn('string', 'Manager');");
                 scriptText.Append("data.addRows([" + str + "]);");
-                scriptText.Append("var chart = new google.visualization.OrgChart(document.getElementById('tree_div'));");
+                scriptText.Append("var chart = new google.visualization.OrgChart(document.getElementById('chart_div'));");
                 scriptText.Append("chart.draw(data, { allowHtml: true });");
                 scriptText.Append("}");
 

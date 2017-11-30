@@ -13,10 +13,18 @@ View Green House
     Green House View
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContent" runat="server">
+    <style>
+    .google-visualization-orgchart-node {
+        font-family: Calibri !important;
+        border: 2px solid transparent;
+        background:#6eb2d9;
+        
+    }
+</style>
     <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['orgchart']}]}"></script>
     <form id="form1" runat="server">  
         <div>  
-             <div id="tree_div" style="border: 2px solid rgba(181, 217, 26, 0.00);">  
+             <div id="chart_div">  
   
              </div>  
         </div>  
