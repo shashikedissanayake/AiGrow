@@ -21,6 +21,7 @@
 
     <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Comfortaa:400,700'>
 
+
  
 
 </head>
@@ -105,7 +106,6 @@
                         
                         
                     </div>
-                    <label align="left" class="checkbox-inline" style="font-size:12px"><asp:CheckBox runat="server" ID="chkRememberMe" /> Remember me</label>
                     <div class="forgot">
                     
                             <p class="login__signup"><i class="fa fa-lock"></i>&nbsp;<a href="ForgotPassword.aspx">Forgot password? </a></p>
@@ -122,7 +122,6 @@
         <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
         <script src='https://cdn.jsdelivr.net/velocity/1.2.2/velocity.min.js'></script>
         <script src='https://cdn.jsdelivr.net/velocity/1.2.2/velocity.ui.min.js'></script>
-
         <script src="js/index.js"></script>
         </form>
             <!--    -->
