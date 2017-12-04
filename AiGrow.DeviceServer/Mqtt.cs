@@ -69,15 +69,15 @@ namespace AiGrow.DeviceServer
             {
                 code = client.Connect("listener");
                 //code = client.Connect(Guid.NewGuid().ToString());
-                Debug.WriteLine("***************************************");
-                Debug.WriteLine(code);
+                //Debug.WriteLine("***************************************");
+                //Debug.WriteLine(code);
             }
             catch (Exception e)
             {
-                Debug.WriteLine(code);
-                Debug.WriteLine("***************************************");
-                Debug.WriteLine(e);
-                Debug.WriteLine("***************************************");
+                //Debug.WriteLine(code);
+                //Debug.WriteLine("***************************************");
+                //Debug.WriteLine(e);
+                //Debug.WriteLine("***************************************");
             }
 
             // '#' is the wildcard to subscribe to anything under the 'root' topic
@@ -88,7 +88,7 @@ namespace AiGrow.DeviceServer
             //{
             //    //listen good!
             //}
-
+            ApplicationUtilities.writeMsg("\nsubscribed  " + System.DateTime.Now.ToString() + "\n");
 
         }
 
@@ -97,7 +97,7 @@ namespace AiGrow.DeviceServer
             BaseResponse response = new BaseResponse();
             bool msgSent = false;
             string JSONMessage = System.Text.Encoding.UTF8.GetString(e.Message);
-
+            ApplicationUtilities.writeMsg("mqtt received  " + System.DateTime.Now.ToString());
             try
             {
                 BaseRequest request = new JavaScriptSerializer().Deserialize<BaseRequest>(JSONMessage);
@@ -109,6 +109,7 @@ namespace AiGrow.DeviceServer
                 switch (request.command)
                 {
                     case UniversalProperties.data:
+                        ApplicationUtilities.writeMsg("Data");
                         int device_id = (request.deviceID).getDeviceID();
                         if (device_id < 0)
                         {
@@ -158,7 +159,7 @@ namespace AiGrow.DeviceServer
                         break;
 
                     case UniversalProperties.greenhouse:
-
+                        ApplicationUtilities.writeMsg("Greenhouse");
                         GreenhouseRequest gr = new JavaScriptSerializer().Deserialize<GreenhouseRequest>(JSONMessage);
 
                         foreach (GreenhouseDeviceRequest device in gr.listOfDevices)

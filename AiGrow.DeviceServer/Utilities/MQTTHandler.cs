@@ -359,6 +359,8 @@ namespace AiGrow.DeviceServer
             {
                 throw;
             }
+            ApplicationUtilities.writeMsg("mqtt published  " + System.DateTime.Now.ToString());
+
         }
 
     }
