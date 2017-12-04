@@ -15,38 +15,17 @@ namespace AiGrow.Portal
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                if (Request.Cookies["UserName"] != null && Request.Cookies["Password"] != null)
-                {
-                    userName.Text = Request.Cookies["UserName"].Value;
-                    password.Attributes["value"] = Request.Cookies["Password"].Value;
-                }
-            }
-            
+
         }
 
         protected void signinClick(object sender, EventArgs e)
         {
-            
+
 
             if (Page.IsValid)
             {
                 try
                 {
-                    if (chkRememberMe.Checked)
-                    {
-                        Response.Cookies["UserName"].Expires = DateTime.Now.AddDays(1);
-                        Response.Cookies["Password"].Expires = DateTime.Now.AddDays(1);
-                    }
-                    else
-                    {
-                        Response.Cookies["UserName"].Expires = DateTime.Now.AddDays(-1);
-                        Response.Cookies["Password"].Expires = DateTime.Now.AddDays(-1);
-
-                    }
-                    Response.Cookies["UserName"].Value = userName.Text.Trim();
-                    Response.Cookies["Password"].Value = password.Text.Trim();
 
                     string user_name = userName.Text.Trim();
                     string pass_word = password.Text.Trim();
@@ -59,15 +38,12 @@ namespace AiGrow.Portal
                         {
                             username = user_name
                         }))
-
-
-
                         {
                             string type = dt.Rows[0]["role_name"].ToString();
                             string userID = dt.Rows[0]["id_user"].ToString();
                             string loginID = login.loginID;
 
-                            SessionHandler.initiateLoginSession(user_name, type, login.token, userID,loginID);
+                            SessionHandler.initiateLoginSession(user_name, type, login.token, userID, loginID);
 
                             switch (type.Trim())
                             {
@@ -110,7 +86,7 @@ namespace AiGrow.Portal
                         }
                     }
                 }
-                catch 
+                catch
                 {
                     Response.Redirect(string.Format("{0}?error={1}&token={2}", Constants.LOGIN_URL, Messages.undefinedError, Encryption.createSHA1(Messages.undefinedError)), false);
                 }
