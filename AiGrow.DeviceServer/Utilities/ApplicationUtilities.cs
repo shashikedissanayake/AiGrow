@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using AiGrow.Business;
+using System.IO;
+using System.Web.Hosting;
 
 namespace AiGrow.DeviceServer
 {
@@ -98,6 +100,13 @@ namespace AiGrow.DeviceServer
             string[] components = deviceID.Split(':');
             string device = components[components.Length - 1];
             return device;
+        }
+        public static void writeMsg(string msg)
+        {
+            using (StreamWriter testData = new StreamWriter(HostingEnvironment.MapPath("~/log.txt"), true))
+            {
+                testData.WriteLine(msg); // Write the file.
+            }
         }
     }
 }
