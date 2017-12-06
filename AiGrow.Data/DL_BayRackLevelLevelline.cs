@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AiGrow.Data
 {
-    public class DL_BayRackLevelLevelline
+    public class DL_BayRackLevelLevelLine
     {
         public System.Data.DataTable selectAllLevellines()
         {

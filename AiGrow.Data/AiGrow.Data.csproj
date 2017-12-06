@@ -68,7 +68,7 @@
     <Compile Include="DL_BayRack.cs" />
     <Compile Include="DL_BayRackDevice.cs" />
     <Compile Include="DL_BayRackDeviceData.cs" />
-    <Compile Include="DL_BayRackLevelLevelline.cs" />
+    <Compile Include="DL_BayRackLevelLevelLine.cs" />
     <Compile Include="DL_Configurations.cs" />
     <Compile Include="DL_Greenhouse.cs" />
     <Compile Include="DL_GreenhouseDevice.cs" />
