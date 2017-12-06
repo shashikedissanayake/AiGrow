@@ -51,9 +51,6 @@ namespace AiGrow
         //public static string POWER_ON = "ON";
         //public static string POWER_OFF = "OFF";
 
-        //HTTP session timeout
-        public const int SESSIONTIMEOUT = 180;
-
         //Charge Point Type
         public static string LEVEL2 = "L2";
         //public static string LEVEL3 = "L3";
@@ -96,9 +93,7 @@ namespace AiGrow
         public static String ADMIN_DASHBOARD_GREEN_HOUSE_DELETE = HOST_URL + "Dashboards/Admin/AdminDeleteNetwork.aspx";   
         public static String ADMIN_DASHBOARD_GREEN_HOUSE = HOST_URL + "/Dashboards/Admin/AdminGreenHouses.aspx";
         public static string ADMIN_DASHBOARD_VIEW_GREEN_HOUSE = HOST_URL + "Dashboards/Admin/AdminGreenHouseView.aspx";
-        public static string ADMIN_DASHBOARD_DATA_VISUALIZER = HOST_URL + "Dashboards/Admin/AdminDataVisualizer.aspx";
-
-
+       
         public static String ADMIN_DASHBOARD_CHG_POINTS = HOST_URL + "Dashboards/Admin/AdminPoints.aspx";
         public static String ADMIN_DASHBOARD_CHG_POINTS_DELETE = HOST_URL + "Dashboards/Admin/AdminDeletePoint.aspx";
         public static String ADMIN_DASHBOARD_CHG_CUSTOMERS_DELETE = HOST_URL + "Dashboards/Admin/AdminDeleteCustomer.aspx";

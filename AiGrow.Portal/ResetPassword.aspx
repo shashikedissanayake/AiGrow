@@ -14,7 +14,7 @@
     String valueError = Request.QueryString["error"];
     String token = Request.QueryString["token"];
     String token_email = Request.QueryString["token_email"];
-    if (userName == null || email != AiGrow.Encryption.Base64Decode(token_email))
+    if (userName == null || email != chargeNET.Encryption.Base64Decode(token_email))
     {
         Response.Redirect(AiGrow.Constants.LOGIN_URL + "?error=" + AiGrow.Classes.Messages.invalidRequest + "&token=" + AiGrow.Encryption.createSHA1(AiGrow.Classes.Messages.invalidRequest));
 
@@ -39,7 +39,7 @@
                 String value = Request.QueryString["message"];
                 String valueError = Request.QueryString["error"];
                 String token = Request.QueryString["token"];
-                if (value != null && token == AiGrow.Encryption.createSHA1(value))
+                if (value != null && token == chargeNET.Encryption.createSHA1(value))
                 { 
             %>
 
@@ -48,7 +48,7 @@
                 <strong>Message: </strong><% Response.Write(value); %>
             </div>
             <% }
-                else if (valueError != null && token == AiGrow.Encryption.createSHA1(valueError))
+                else if (valueError != null && token == chargeNET.Encryption.createSHA1(valueError))
                 {              
             %>
 
@@ -87,7 +87,7 @@
                                         </fieldset>
                                     </div>
                                     <p><b><i>If you have trouble in resetting your password, feel free to contact us:</i></b></p>
-                                    <% Response.Write(AiGrow.Constants.CONTACT_US_TEXT); %>
+                                    <% Response.Write(chargeNET.Constants.CONTACT_US_TEXT); %>
                                 </div>
                             </div>
                         </div>

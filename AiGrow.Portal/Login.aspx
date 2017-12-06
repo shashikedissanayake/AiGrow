@@ -20,8 +20,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 
     <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Comfortaa:400,700'>
-  
-    <link rel="stylesheet" href="Dashboards/bower_components/font-awesome/css/font-awesome.min.css"
+
+
+ 
 
 </head>
 <body>
@@ -29,22 +30,22 @@
 
         
          <% 
-             //If "error" is returned the "alert-danger" div is displayed.
-             //If "message" is returned the "alert-success" div is displayed.
-             //Each value is validated against the SHA1 encryption value returned in the "token" variable. 
-             String value = Request.QueryString["message"];
-             String valueError = Request.QueryString["error"];
-             String token = Request.QueryString["token"];
+                //If "error" is returned the "alert-danger" div is displayed.
+                //If "message" is returned the "alert-success" div is displayed.
+                //Each value is validated against the SHA1 encryption value returned in the "token" variable. 
+                String value = Request.QueryString["message"];
+                String valueError = Request.QueryString["error"];
+                String token = Request.QueryString["token"];
 
-             String message_enc = Request.QueryString["message_enc"];
-             if (message_enc != null)
-             {
-                 String t = AiGrow.Encryption.createSHA1(message_enc);
+                String message_enc = Request.QueryString["message_enc"];
+                if (message_enc != null)
+                {
+                    String t = AiGrow.Encryption.createSHA1(message_enc);
 
-             }
+                }
 
-             if (value != null && token == AiGrow.Encryption.createSHA1(value))
-             { 
+                if (value != null && token == AiGrow.Encryption.createSHA1(value))
+                { 
             %>
             <div class="alert alert-dismissable alert-success">
                 <button type="button" class="close" data-dismiss="alert">x</button>

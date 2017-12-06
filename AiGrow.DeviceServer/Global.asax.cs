@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
-using System.Web.SessionState;
+using System.Threading;
 
 namespace AiGrow.DeviceServer
 {
@@ -11,8 +7,14 @@ namespace AiGrow.DeviceServer
     {
         protected void Application_Start(object sender, EventArgs e)
         {
-            Mqtt.Subscribe();
-           // new MQTTHandler().Subscribe();
+            //  new MQTTHandler().Subscribe();
+
+            new Thread(delegate()
+            {
+                new MQTTHandler().Subscribe();
+            }).Start();
+
+            // new MQTTHandler().Subscribe();        
         }
 
         protected void Session_Start(object sender, EventArgs e)
