@@ -58,5 +58,10 @@ namespace AiGrow.Business
             }
             
         }
+
+        public System.Data.DataTable select()
+        {
+            return new AiGrow.Data.DL_Greenhouse().select();
+        }
     }
 }
