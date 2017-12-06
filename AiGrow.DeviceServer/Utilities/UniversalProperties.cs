@@ -97,6 +97,7 @@ namespace AiGrow.DeviceServer
         public const string ERROR_TEXT_USER_OR_CHARGE_POINT_NOT_ACTIVE = "Error. The charge point or user is not in active status.";
         public const string ERROR_TEXT_CHARGE_NETWORK_IS_PRIVATE = "Error. The network of the charge point is a private network.";
         public const string unknownError = "Undefined error occurred. Please contact the administrator.";
+        public const string invalidMqttRequest = "Invalid Request";
         public const string bayNotRegsitered = "Bay registration error.";
         public const string lineNotRegsitered = "Line registration error.";
         public const string rackNotRegsitered = "Rack registration error.";
@@ -116,7 +117,7 @@ namespace AiGrow.DeviceServer
 
         #region Data Table Constants
 
-        public const string MQTT_topic = "/aigrow_common";
+        public const string MQTT_topic = "/ai_test";
 
         public const string data = "dataEntry";
         public const string greenhouse = "registerGreenhouse";
@@ -220,7 +221,8 @@ namespace AiGrow.DeviceServer
         public const int EC_OperationSpecificError = 22;
         public const int EC_LocationUpdateFailed = 23;
         public const int EC_UnknownComponent = 24;
-        public const int EC_RegistrationError = 23;
+        public const int EC_RegistrationError = 25;
+        public const int EC_InvalidMqttRequest = 26;
 
         #endregion
 
