@@ -26,5 +26,10 @@ namespace AiGrow.Data
 
             return MySQLHelper.ExecuteNonQuery(DBConnection.connectionString, CommandType.Text, "INSERT INTO rack (rack_unique_id, bay_id) VALUES (@bayRack_unique_id, @bay_id);", para) != -1;
         }
+
+        public DataTable selectAllRacks()
+        {
+            return MySQLHelper.ExecuteDataTable(DBConnection.connectionString, System.Data.CommandType.Text, "SELECT rack_unique_id FROM rack");
+        }
     }
 }

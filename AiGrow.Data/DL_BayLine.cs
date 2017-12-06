@@ -26,5 +26,10 @@ namespace AiGrow.Data
 
             return MySQLHelper.ExecuteNonQuery(DBConnection.connectionString, CommandType.Text, "INSERT INTO bay_line (bay_line_unique_id, bay_id) VALUES (@bayLine_unique_id, @bay_id);", para) != -1;
         }
+
+        public DataTable selectAllBayLines()
+        {
+            return MySQLHelper.ExecuteDataTable(DBConnection.connectionString, System.Data.CommandType.Text, "SELECT bay_line_unique_id FROM bay_line");
+        }
     }
 }

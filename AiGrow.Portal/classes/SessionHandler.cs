@@ -17,7 +17,7 @@ namespace AiGrow
 
             try
             {
-                HttpContext.Current.Session.Timeout = 1;
+                HttpContext.Current.Session.Timeout = AiGrow.Constants.SESSIONTIMEOUT;
                 HttpContext.Current.Session["username"] = username.Trim();
                 HttpContext.Current.Session["type"] = type.Trim();
                 HttpContext.Current.Session["token"] = token.Trim();

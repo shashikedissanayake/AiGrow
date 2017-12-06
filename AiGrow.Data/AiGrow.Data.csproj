@@ -68,10 +68,12 @@
     <Compile Include="DL_BayRack.cs" />
     <Compile Include="DL_BayRackDevice.cs" />
     <Compile Include="DL_BayRackDeviceData.cs" />
+    <Compile Include="DL_BayRackLevelLevelline.cs" />
     <Compile Include="DL_Configurations.cs" />
     <Compile Include="DL_Greenhouse.cs" />
     <Compile Include="DL_GreenhouseDevice.cs" />
     <Compile Include="DL_GreenhouseDeviceData.cs" />
+    <Compile Include="DL_BayRackLevel.cs" />
     <Compile Include="DL_Login.cs" />
     <Compile Include="DL_User.cs" />
     <Compile Include="Utilities\DBConnection.cs" />

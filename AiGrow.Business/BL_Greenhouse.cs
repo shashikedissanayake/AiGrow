@@ -28,5 +28,35 @@ namespace AiGrow.Business
         {
             return new AiGrow.Data.DL_Greenhouse().selectComponentsByGreenHouseID(greenHouseID);
         }
+
+        public System.Data.DataTable selectDevicesByTableName(string tableName)
+        {
+            return new DL_Greenhouse().selectDevicesByTableName(tableName);
+        }
+
+        public System.Data.DataTable selectUniqueIdsByTableName(string tableName)
+        {
+            switch(tableName)
+            {
+                case "bay_line":
+                    return new DL_BayLine().selectAllBayLines();
+                    
+                case "greenhouse":
+                    return new DL_Greenhouse().selectAllGreenhouses();
+                    
+                case "level":
+                    return new DL_BayRackLevel().selectAllLevels();
+                    
+                case "level_line":
+                    return new DL_BayRackLevelLevelline().selectAllLevellines();
+                    
+                case "rack":
+                    return new DL_BayRack().selectAllRacks();
+                    
+                default :
+                    return new DL_Bay().selectAllBays();
+            }
+            
+        }
     }
 }
