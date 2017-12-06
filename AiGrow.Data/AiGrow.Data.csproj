@@ -73,7 +73,6 @@
     <Compile Include="DL_Greenhouse.cs" />
     <Compile Include="DL_GreenhouseDevice.cs" />
     <Compile Include="DL_GreenhouseDeviceData.cs" />
-    <Compile Include="DL_BayRackLevel.cs" />
     <Compile Include="DL_Login.cs" />
     <Compile Include="DL_User.cs" />
     <Compile Include="Utilities\DBConnection.cs" />

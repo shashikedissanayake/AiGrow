@@ -26,5 +26,6 @@ namespace AiGrow.Data
 
             return MySQLHelper.ExecuteNonQuery(DBConnection.connectionString, CommandType.Text, "INSERT INTO bay_line (bay_line_unique_id, bay_id) VALUES (@bayLine_unique_id, @bay_id);", para) != -1;
         }
+
     }
 }
